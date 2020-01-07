@@ -20,7 +20,7 @@ class Footer extends Component {
 				<div className="container">
 					<div className="columns">
 						<div className="column">
-							<p>Copyright &copy; 2018 Polygon.io, LLC - All rights reserved.</p>
+							<p>Copyright &copy; {new Date().getFullYear()} Polygon.io, LLC - All rights reserved.</p>
 						</div>
 						<div className="column">
 							Footer stuff
