@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Swagger UI",
   "scripts": {
-    "pretty": "prettier --write 'app/**/*.js'",
+    "pretty": "prettier --write '{app,gulpfile.js}/**/*.{js,html,json,scss}'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_ENV=development node_modules/gulp/bin/gulp.js",
     "build": "NODE_ENV=production ./node_modules/gulp/bin/gulp.js build",
