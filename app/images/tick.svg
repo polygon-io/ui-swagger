@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>tick</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="designs" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home_Final" transform="translate(-834.000000, -5258.000000)">
+            <g id="pricing" transform="translate(225.000000, 4730.000000)">
+                <g id="professional-usage" transform="translate(510.000000, 168.000000)">
+                    <g id="tick" transform="translate(99.000000, 360.000000)">
+                        <g id="Group-2">
+                            <circle id="Oval" fill="#E4FBFC" cx="10" cy="10" r="10"></circle>
+                            <polyline id="Path-2" stroke="#15C8CF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="6.5 10.0267334 9.08032227 12.5534668 14 8"></polyline>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

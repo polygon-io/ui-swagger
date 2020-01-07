@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000px" height="1000px" viewBox="0 0 1000 1000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="80.7424348%" y1="32.9008509%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#130FB0" offset="0%"></stop>
+            <stop stop-color="#6942F2" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="77.8975189%" y1="118.795313%" x2="50%" y2="50%" id="linearGradient-2">
+            <stop stop-color="#130FB0" offset="0%"></stop>
+            <stop stop-color="#6942F2" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="93.7571909%" x2="50%" y2="15.3370998%" id="linearGradient-3">
+            <stop stop-color="#238DFB" offset="0%"></stop>
+            <stop stop-color="#45E0FF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="22.7676147%" y1="14.1198185%" x2="0%" y2="90.9267623%" id="linearGradient-4">
+            <stop stop-color="#B1FFF6" offset="0%"></stop>
+            <stop stop-color="#0EF7D6" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="32.0756823%" y1="8.03073536%" x2="32.0756825%" y2="71.3284085%" id="linearGradient-5">
+            <stop stop-color="#FFE269" offset="0%"></stop>
+            <stop stop-color="#F68800" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="polygon" transform="translate(149.000000, -29.000000)" fill-rule="nonzero">
+            <g id="Group" transform="translate(177.614882, 322.906970) rotate(12.000000) translate(-177.614882, -322.906970) translate(61.114882, 17.906970)">
+                <polygon id="kepler" fill="url(#linearGradient-1)" transform="translate(116.435675, 460.180411) scale(-1, 1) rotate(-180.000000) translate(-116.435675, -460.180411) " points="227.953173 310.601132 232.479798 609.759691 0.391550793 609.588914"></polygon>
+                <polygon id="kepler" fill="url(#linearGradient-2)" points="231.941876 0.318718158 230.535525 311.225029 0.346603901 310.824786"></polygon>
+            </g>
+            <polygon id="kepler" fill="url(#linearGradient-3)" points="353.724285 48 354 1007 223 644.521044"></polygon>
+            <polygon id="kepler" fill="url(#linearGradient-4)" transform="translate(380.500000, 365.000000) rotate(-150.000000) translate(-380.500000, -365.000000) " points="262.141351 105 562.001333 625.002312 199 554.649363"></polygon>
+            <polygon id="kepler" fill="url(#linearGradient-5)" transform="translate(465.500000, 633.000000) rotate(-150.000000) translate(-465.500000, -633.000000) " points="376 253 555 563.77745 491.937542 1013"></polygon>
+        </g>
+    </g>
+</svg>

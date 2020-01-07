@@ -1,0 +1,110 @@
+@charset "utf-8";
+
+@import "variables.scss";
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css');
+
+// Import Full Bulma:
+@import "bulma/bulma";
+
+// Animation lib:
+@import "animate.css/animate.min";
+
+
+
+
+.has-vertical-padding {
+	padding-top: $padding*2;
+	padding-bottom: $padding*2;
+}
+
+
+pre {
+	background: $bg;
+}
+
+
+
+// TYPOGRAPHY
+.hero.is-light .subtitle {
+	color: $grey-dark;
+}
+
+
+
+
+
+// BUTTONS
+.button {
+	transition: all .1s ease-in-out;
+	height: auto;
+	&:hover {
+		background-color: $primary;
+		&[disabled] {
+			background-color: $button-disabled-background-color;
+		}
+	}
+	&[disabled] {
+		color: $grey;
+	}
+}
+
+
+
+
+
+// INPUTS
+.control.has-icons-left .icon, .control.has-icons-right .icon {
+	height: 3.25rem;
+	width: 3rem;
+}
+.input, .textarea {
+	padding: $padding*1.5;
+}
+.select {
+	&:not(.is-multiple) {
+		height: 3.5rem;
+	}
+	select {
+		padding: $padding*.25 $padding*1.5;
+		height: 3.5rem;
+	}
+}
+.ellipsis {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+
+
+
+
+
+// HELPERS
+.no-shrink {
+	flex-shrink: 0 !important;
+}
+.no-grow {
+	flex-grow: 0 !important;
+}
+.vcenter {
+	flex-grow: 1;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.vbox {
+		display: flex;
+		flex-grow: 1;
+		flex-shrink: 1;
+	}
+}
+.vcenter-only {
+	display: flex;
+	align-items: center;
+}
+
+
+
+

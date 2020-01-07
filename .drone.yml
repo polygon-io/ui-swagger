@@ -1,0 +1,47 @@
+
+
+kind: pipeline
+name: default
+
+steps:
+
+  # Build static assets:
+  - name: build
+    image: node:9.2.0
+    commands:
+      - npm i
+      - npm run build
+
+
+  # Build docker image:
+  - name: docker
+    image: plugins/docker
+    storage_driver: overlay
+    when:
+      branch: master
+    settings:
+      repo: polygonio/ui-swagger
+      tag:
+        - '${DRONE_BRANCH/master/latest}'
+        - '${DRONE_BRANCH}.build-${DRONE_BUILD_NUMBER}'
+      username:
+        from_secret: dockerhub_username
+      password:
+        from_secret: dockerhub_password
+
+
+
+  - name: deploy
+    image: vallard/drone-kube
+    when:
+      branch: master
+    environment:
+      KUBE_SERVER:
+        from_secret: KUBE_SERVER
+      KUBE_TOKEN:
+        from_secret: KUBE_TOKEN
+      KUBE_CA:
+        from_secret: KUBE_CA
+    settings:
+      template: kube.yml
+      namespace: polygon
