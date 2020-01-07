@@ -1,14 +1,13 @@
-[![Build Status](https://drone.stackdot.com/api/badges/polygon-io/ui-swagger/status.svg?maxAge=60)](https://drone.stackdot.com/polygon-io/ui-swagger) [![dependencies Status](https://img.shields.io/david/polygon-io/ui-swagger.svg?maxAge=60)](https://david-dm.org/polygon-io/ui-swagger)
+[![Build Status](http://drone.polygon.io/api/badges/polygon-io/ui-swagger/status.svg)](http://drone.polygon.io/polygon-io/ui-swagger)
 
-UiSwagger
-===
 
 Swagger UI
+===
 
 Requirements:
 ---
 
-- [NodeJS](https://nodejs.org/en/download/) ( Version 6+ )
+- [NodeJS](https://nodejs.org/en/download/) ( Version 9.3 )
  - We recommend using [Node Version Manager](https://github.com/creationix/nvm)
 - Gulp: `npm install -g gulp`
 
@@ -24,16 +23,8 @@ Running the project:
 Inside the directory run:
 
 ```bash
-gulp
+npm run dev
 ```
-
-There are several options when using gulp, to list them, run:
-
-```bash
-gulp --help
-```
-
-Be sure to run `npm update` to ensure all the NPM dependencies are up to date.
 
 
 Building for prod:
