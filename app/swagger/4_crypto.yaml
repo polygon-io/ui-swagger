@@ -1,0 +1,395 @@
+
+
+  
+  /v1/meta/crypto-exchanges:
+    get:
+      summary: Crypto Exchanges
+      description: |
+        List of crypto currency exchanges which are supported by Polygon.io
+      tags:
+        - Crypto
+      responses:
+        200:
+          description: An array of crypto currency exchanges
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CryptoExchange'
+            example:
+            - id: 1
+              type: exchange
+              market: crypto
+              name: GDAX
+              url: 'https://www.gdax.com/'
+            - id: 2
+              type: exchange
+              market: crypto
+              name: BITFINEX
+              url: 'https://www.bitfinex.com/'
+            - id: 3
+              type: exchange
+              market: crypto
+              name: BitMEX
+              url: 'https://www.bitmex.com/'
+        401:
+          $ref: '#/definitions/Unauthorized'
+        404:
+          $ref: '#/definitions/NotFound'
+        409:
+          $ref: '#/definitions/Conflict'
+
+  /v1/last/crypto/{from}/{to}:
+    get:
+      summary: Last Trade for a Crypto Pair
+      description: |
+        Get Last Trade Tick for a Currency Pair.
+      tags:
+        - Crypto
+      parameters: 
+      - name: from
+        in: path
+        description: From Symbol of the pair
+        required: true
+        type: string
+        default: BTC
+      - name: to
+        in: path
+        description: To Symbol of the pair
+        required: true
+        type: string
+        default: USD
+      responses:
+        200:
+          description: Last tick for this currency pair
+          schema:
+            type: object
+            required: [ status, symbol, last ]
+            properties:
+              status:
+                type: string
+                example: success
+                description: Status of this requests response
+              symbol:
+                type: string
+                example: BTC-USD
+                description: Symbol Pair that was evaluated from the request
+              last:
+                $ref: "#/definitions/CryptoTick"
+              lastAverage:
+                type: object
+                properties:
+                  avg:
+                    type: int
+                    description: Average of the trades analyzed
+                    example: 9348.727
+                  tradesAveraged:
+                    type: int
+                    description: Number of trades that were analyzed to get the average.
+                    example: 10
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+  /v1/open-close/crypto/{from}/{to}/{date}:
+    get:
+      summary: Daily Open / Close
+      description: |
+        Get the open, close prices of a symbol on a certain day.
+      tags:
+        - Crypto
+      parameters: 
+      - name: from
+        in: path
+        description: From Symbol of the pair
+        required: true
+        type: string
+        default: BTC
+      - name: to
+        in: path
+        description: To Symbol of the pair
+        required: true
+        type: string
+        default: USD
+      - name: date
+        in: path
+        description: Date of the requested open/close
+        required: true
+        type: string
+        format: date
+        default: "2018-5-9"
+      responses:
+        200:
+          description: Open Close of this symbol
+          schema:
+            type: object
+            required: [ status, symbol, last ]
+            properties:
+              symbol:
+                type: string
+                example: BTC-USD
+                description: Symbol Pair that was evaluated from the request
+              isUTC:
+                type: boolean
+                description: If the timestamps are in UTC timezone
+                example: true
+              day:
+                type: string
+                format: date
+                example: 2018-5-9
+              open:
+                type: int
+                description: Opening trade price
+                example: 9228.1801
+              close:
+                type: int
+                description: Closing trade price
+                example: 9300.40000001
+              openTrades:
+                type: array
+                items:
+                  $ref: "#/definitions/CryptoTickJson"
+              closingTrades:
+                type: array
+                items:
+                  $ref: "#/definitions/CryptoTickJson"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+
+  /v1/historic/crypto/{from}/{to}/{date}:
+    get:
+      summary: Historic Crypto Trades
+      description: |
+        Get historic trade ticks for a crypto pair.
+      tags:
+        - Crypto
+      parameters: 
+      - name: from
+        in: path
+        description: From Symbol of the crypto pair
+        required: true
+        type: string
+        default: BTC
+      - name: to
+        in: path
+        description: To Symbol of the crypto pair
+        required: true
+        type: string
+        default: USD
+      - name: date
+        in: path
+        description: Date/Day of the historic ticks to retreive
+        required: true
+        type: string
+        format: date
+        default: "2018-5-9"
+      - name: offset
+        in: query
+        description: |
+          Timestamp offset, used for pagination. This is the offset at which to start the results. Using the `timestamp` of the last result as the offset will give you the next page of results.
+        required: false
+        type: integer
+      - name: limit
+        in: query
+        description: Limit the size of response, Max 10000
+        required: false
+        type: integer
+        default: 100
+      responses:
+        200:
+          description: An array of crypto trade ticks
+          schema:
+            type: object
+            required: [ day, map, msLatency, status, symbol, ticks ]
+            properties:
+              day:
+                type: string
+                example: "2018-5-9"
+                description: Date that was evaluated from the request
+                format: date
+              map:
+                type: object
+                description: Map for shortened result keys
+                example:
+                  c: conditions
+                  p: price
+                  s: size
+                  x: exchange
+                  t: timestamp
+              msLatency:
+                type: integer
+                example: 2
+                description: Milliseconds of latency for the query results
+              status:
+                type: string
+                example: success
+                description: Status of this requests response
+              symbol:
+                type: string
+                example: BTC-USD
+                description: Symbol that was evaluated from the request
+              ticks:
+                type: array
+                items:
+                  $ref: "#/definitions/CryptoTickJson"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+
+
+  /v2/snapshot/locale/global/markets/crypto/tickers:
+    get:
+      summary: Snapshot - All Tickers
+      description: |
+        Snapshot allows you to see all tickers current minute aggregate, daily aggregate and last trade. As well as previous days aggregate and calculated change for today.
+
+        ### *** Warning, may cause browser to hang ***
+        The response size is large, and sometimes will cause the browser prettyprint to crash.
+      tags:
+        - Crypto
+      responses:
+        200:
+          description: Get current state for all tickers
+          schema:
+            type: object
+            required: [ status, tickers ]
+            properties:
+              status:
+                type: string
+                example: OK
+                description: Status of this requests response
+              tickers:
+                type: array
+                items:
+                  $ref: "#/definitions/CryptoSnapshotTicker"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+
+  /v2/snapshot/locale/global/markets/crypto/tickers/{ticker}:
+    get:
+      summary: Snapshot - Single Ticker
+      description: |
+        See the current snapshot of a single ticker
+      tags:
+        - Crypto
+      parameters: 
+      - name: ticker
+        in: path
+        description: Ticker of the snapshot
+        required: true
+        type: string
+        default: ~BTCUSD
+      responses:
+        200:
+          description: Get current state for a ticker
+          schema:
+            type: object
+            required: [ status, tickers ]
+            properties:
+              status:
+                type: string
+                example: OK
+                description: Status of this requests response
+              ticker:
+                $ref: "#/definitions/CryptoSnapshotTicker"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+
+
+  /v2/snapshot/locale/global/markets/crypto/tickers/{ticker}/book:
+    get:
+      summary: Snapshot - Single Ticker Full Book ( L2 )
+      description: |
+        See the current level 2 book of a single ticker. This is the combined book from all the exchanges.
+      tags:
+        - Crypto
+      parameters: 
+      - name: ticker
+        in: path
+        description: Ticker of the snapshot
+        required: true
+        type: string
+        default: ~BTCUSD
+      responses:
+        200:
+          description: Get current level 2 book for a ticker
+          schema:
+            type: object
+            required: [ status, tickers ]
+            properties:
+              status:
+                type: string
+                example: OK
+                description: Status of this requests response
+              data:
+                $ref: "#/definitions/CryptoSnapshotTickerBook"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+
+  /v2/snapshot/locale/global/markets/crypto/{direction}:
+    get:
+      summary: Snapshot - Gainers / Losers
+      description: |
+        See the current snapshot of the top 20 gainers or losers of the day at the moment.
+      tags:
+        - Crypto
+      parameters:
+        - name: direction
+          in: path
+          description: |
+            Direction we want
+          required: true
+          enum: [ "gainers", "losers"]
+          type: string
+          default: gainers
+      responses:
+        200:
+          description: Get the current gainers / losers of the day
+          schema:
+            type: object
+            required: [ status, tickers ]
+            properties:
+              status:
+                type: string
+                example: OK
+                description: Status of this requests response
+              tickers:
+                type: array
+                items:
+                  $ref: "#/definitions/CryptoSnapshotTicker"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+
+
+

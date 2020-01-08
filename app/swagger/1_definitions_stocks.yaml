@@ -1,0 +1,397 @@
+
+
+  Trade:
+    type: object
+    required: [ c1, c2, c3, c4, e, p, s, t ]
+    properties:
+      c1:
+        type: integer
+        example: 14
+        description: Condition 1 of this trade
+      c2:
+        type: integer
+        example: 12
+        description: Condition 2 of this trade
+      c3:
+        type: integer
+        example: 0
+        description: Condition 3 of this trade
+      c4:
+        type: integer
+        example: 0
+        description: Condition 4 of this trade
+      e:
+        type: string
+        example: 12
+        description: The exchange this trade happened on
+      p:
+        type: integer
+        example: 172.17
+        description: Price of the trade
+        format: double
+      s:
+        type: integer
+        example: 50
+        description: Size of the trade
+      t:
+        type: integer
+        example: 1517529601006
+        description: Timestamp of this trade
+
+
+
+
+
+
+
+
+
+
+
+
+  StocksSnapshotTicker:
+    type: object
+    required: [ ticker, day, lastTrade, min, prevDay, todaysChange, todaysChangePerc, updated ]
+    properties:
+      ticker:
+        type: string
+        example: AAPL
+        description: Ticker of the object
+      day:
+        $ref: "#/definitions/StocksSnapshotAgg"
+      lastTrade:
+        $ref: "#/definitions/Trade"
+      lastQuote:
+        $ref: "#/definitions/StocksSnapshotQuote"
+      min:
+        $ref: "#/definitions/StocksSnapshotAgg"
+      prevDay:
+        $ref: "#/definitions/StocksSnapshotAgg"
+      todaysChange:
+        type: integer
+        example: .001
+        description: Value of the change from previous day
+      todaysChangePerc:
+        type: integer
+        example: 2.55
+        description: Percentage change since previous day
+      updated:
+        type: integer
+        example: 1547787608999
+        description: Last Updated timestamp
+
+
+
+
+  StocksSnapshotBookItem:
+    type: object
+    required: [ p, x ]
+    properties:
+      p:
+        type: integer
+        example: 0.2907
+        description: Price of this book level
+      x:
+        type: object
+        description: Exchange to Size of this price level
+        example:
+          "2": 0.553
+          "5": 2.32
+
+
+
+
+  StocksSnapshotTickerBook:
+    type: object
+    required: [ ticker, day, lastTrade, min, prevDay, todaysChange, todaysChangePerc, updated ]
+    properties:
+      ticker:
+        type: string
+        example: AAPL
+        description: Ticker of the object
+      bids:
+        type: array
+        description: Bids
+        items:
+          $ref: "#/definitions/StocksSnapshotBookItem"
+      asks:
+        type: array
+        description: Asks
+        items:
+          $ref: "#/definitions/StocksSnapshotBookItem"
+      bidCount:
+        type: integer
+        example: 1242.001
+        description: Combined total number of bids in the book
+      askCount:
+        type: integer
+        example: 1242.001
+        description: Combined total number of asks in the book
+      spread:
+        type: integer
+        example: .001
+        description: Difference between the best bid and the best ask price accross exchanges
+      updated:
+        type: integer
+        example: 1547787608999
+        description: Last Updated timestamp
+
+
+
+
+  StocksV2Trade:
+    type: object
+    required: [ t, q, i, x, s, c, p, z ]
+    properties:
+      T:
+        type: string
+        example: AAPL
+        description: Ticker of the object
+      t:
+        type: integer
+        example: 1547787608999125754
+        description: Nanosecond accuracy SIP Unix Timestamp
+      y:
+        type: integer
+        example: 1547787608999125754
+        description: Nanosecond accuracy Participant/Exchange Unix Timestamp
+      f:
+        type: integer
+        example: 1547787608999125754
+        description: Nanosecond accuracy TRF(Trade Reporting Facility) Unix Timestamp
+      q:
+        type: integer
+        example: 23547
+        description: Sequence Number
+      i:
+        type: string
+        example: "00MGON"
+        description: Trade ID
+      x:
+        type: integer
+        example: 11
+        description: Exchange ID
+      s:
+        type: integer
+        example: 100
+        description: Size/Volume of the trade
+      c:
+        type: array
+        description: Conditions
+        items:
+          type: integer
+          description: Condition code
+          example: 14
+      p:
+        type: integer
+        example: 223.001
+        description: Price of the trade
+      z:
+        type: integer
+        example: 1
+        description: Tape where trade occurred. ( 1,2 = CTA, 3 = UTP )
+      
+
+
+
+
+  StocksV2NBBO:
+    type: object
+    required: [ t, q, p, s, x, P, S, X, z ]
+    properties:
+      T:
+        type: string
+        example: AAPL
+        description: Ticker of the object
+      t:
+        type: integer
+        example: 1547787608999125754
+        description: Nanosecond accuracy SIP Unix Timestamp
+      y:
+        type: integer
+        example: 1547787608999125754
+        description: Nanosecond accuracy Participant/Exchange Unix Timestamp
+      f:
+        type: integer
+        example: 1547787608999125754
+        description: Nanosecond accuracy TRF(Trade Reporting Facility) Unix Timestamp
+      q:
+        type: integer
+        example: 23547
+        description: Sequence Number
+      c:
+        type: array
+        description: Conditions
+        items:
+          type: integer
+          description: Condition code
+          example: 14
+      i:
+        type: array
+        description: Indicators
+        items:
+          type: integer
+          description: Indicator code
+          example: 2
+      
+      p:
+        type: integer
+        example: 223.001
+        description: BID Price
+      x:
+        type: integer
+        example: 11
+        description: BID Exchange ID
+      s:
+        type: integer
+        example: 100
+        description: BID Size ( In round lots )
+      
+      P:
+        type: integer
+        example: 223.001
+        description: ASK Price
+      X:
+        type: integer
+        example: 11
+        description: ASK Exchange ID
+      S:
+        type: integer
+        example: 100
+        description: ASK Size ( In round lots )
+
+
+      z:
+        type: integer
+        example: 1
+        description: Tape where trade occurred. ( 1,2 = CTA, 3 = UTP )
+      
+
+
+
+
+
+  StocksSnapshotAgg:
+    type: object
+    required: [ c, h, l, o, v ]
+    properties:
+      c:
+        type: integer
+        example: 0.2907
+        description: Close price
+      h:
+        type: integer
+        example: 0.2947
+        description: High price
+      l:
+        type: integer
+        example: 0.2901
+        description: Low price
+      o:
+        type: integer
+        example: 0.2905
+        description: Open price
+      v:
+        type: integer
+        example: 1432.2907
+        description: Volume
+
+
+
+  StocksSnapshotQuote:
+    type: object
+    required: [ p, s, P, S, t ]
+    properties:
+      p:
+        type: integer
+        example: 120.00
+        description: Bid Price
+      s:
+        type: integer
+        example: 5
+        description: Bid size in lots
+      P:
+        type: integer
+        example: 121.00
+        description: Ask Price
+      S:
+        type: integer
+        example: 3
+        description: Ask size in lots
+      t:
+        type: integer
+        example: 1547787608999000000
+        description: Last Updated timestamp ( Nanosecond Timestamp )
+
+
+
+  Aggv2:
+    type: object
+    required: [ o, h, l, c, v ]
+    properties:
+      T:
+        type: string
+        description: Ticker symbol
+        example: AAPL
+      v: 
+        type: integer
+        description: Volume
+        example: 31315282
+      o:
+        type: integer
+        description: Open
+        example: 102.87
+      c:
+        type: integer
+        description: Close
+        example: 103.74
+      h:
+        type: integer
+        description: High
+        example: 103.82
+      l:
+        type: integer
+        description: Low
+        example: 102.65
+      t:
+        type: number
+        description: Unix Msec Timestamp ( Start of Aggregate window )
+        example: 1549314000000
+      "n":
+        type: number
+        description: Number of items in aggregate window
+        example: 4
+
+
+
+
+
+  AggResponse:
+    type: object
+    required: [ status, ticker, adjusted, results ]
+    properties:
+      ticker:
+        type: string
+        description: Ticker symbol requested
+        example: AAPL
+      status:
+        type: string
+        description: Status of the response
+        example: OK
+      adjusted:
+        type: boolean
+        description: If this response was adjusted for splits
+        example: true
+      queryCount:
+        type: number
+        description: Number of aggregate ( min or day ) used to generate the response
+        example: 55
+      resultsCount:
+        type: number
+        description: Total number of results generated
+        example: 2
+      results:
+        type: array
+        items:
+          $ref: '#/definitions/Aggv2'
+

@@ -1,0 +1,214 @@
+
+
+
+
+
+  CryptoTick:
+    type: object
+    required: [ price, size, exchange, conditions, timestamp ]
+    properties:
+      price:
+        type: integer
+        example: 9349.44
+        description: Trade Price
+      size:
+        type: integer
+        example: 0.03
+        description: Size of the trade
+      exchange:
+        type: integer
+        example: 2
+        description: Exchange the trade occurred on
+      conditions:
+        type: array
+        items:
+          type: integer
+        example: [ 2, 0 ]
+        description: Conditions of this trade
+      timestamp:
+        type: integer
+        example: 1525930460102
+        description: Timestamp of this trade
+
+
+
+  CryptoTickJson:
+    type: object
+    required: [ p, s, x, c, t ]
+    properties:
+      p:
+        type: integer
+        example: 9349.44
+        description: Trade Price
+      s:
+        type: integer
+        example: 0.03
+        description: Size of the trade
+      x:
+        type: integer
+        example: 2
+        description: Exchange the trade occurred on
+      c:
+        type: array
+        items:
+          type: integer
+        example: [ 2, 0 ]
+        description: Conditions of this trade
+      t:
+        type: integer
+        example: 1525930460102
+        description: Timestamp of this trade
+
+
+
+  CryptoExchange:
+    type: object
+    required: [ id, type, market, name, url ]
+    properties:
+      id:
+        type: number
+        example: 2
+        description: ID of the exchange
+      type:
+        type: string
+        example: exchange
+        enum: ['exchange']
+        description: Type of exchange feed
+      market:
+        type: string
+        example: crypto
+        enum: ['crypto']
+        description: Market data type this exchange contains ( crypto only currently )
+      name:
+        type: string
+        example: GDAX
+        description: Name of the exchange
+      url:
+        type: string
+        example: https://www.gdax.com/
+        description: URL of this exchange
+
+
+
+
+
+
+
+
+  CryptoSnapshotTicker:
+    type: object
+    required: [ ticker, day, lastTrade, min, prevDay, todaysChange, todaysChangePerc, updated ]
+    properties:
+      ticker:
+        type: string
+        example: X:BTCUSD
+        description: Ticker of the object
+      day:
+        $ref: "#/definitions/CryptoSnapshotAgg"
+      lastTrade:
+        $ref: "#/definitions/CryptoTickJson"
+      min:
+        $ref: "#/definitions/CryptoSnapshotAgg"
+      prevDay:
+        $ref: "#/definitions/CryptoSnapshotAgg"
+      todaysChange:
+        type: integer
+        example: .001
+        description: Value of the change from previous day
+      todaysChangePerc:
+        type: integer
+        example: 2.55
+        description: Percentage change since previous day
+      updated:
+        type: integer
+        example: 1547787608999
+        description: Last Updated timestamp
+
+
+
+
+  CryptoSnapshotBookItem:
+    type: object
+    required: [ p, x ]
+    properties:
+      p:
+        type: integer
+        example: 0.2907
+        description: Price of this book level
+      x:
+        type: object
+        description: Exchange to Size of this price level
+        example:
+          "2": 0.553
+          "5": 2.32
+
+
+
+
+  CryptoSnapshotTickerBook:
+    type: object
+    required: [ ticker, day, lastTrade, min, prevDay, todaysChange, todaysChangePerc, updated ]
+    properties:
+      ticker:
+        type: string
+        example: X:BTCUSD
+        description: Ticker of the object
+      bids:
+        type: array
+        description: Bids
+        items:
+          $ref: "#/definitions/CryptoSnapshotBookItem"
+      asks:
+        type: array
+        description: Asks
+        items:
+          $ref: "#/definitions/CryptoSnapshotBookItem"
+      bidCount:
+        type: integer
+        example: 1242.001
+        description: Combined total number of bids in the book
+      askCount:
+        type: integer
+        example: 1242.001
+        description: Combined total number of asks in the book
+      spread:
+        type: integer
+        example: .001
+        description: Difference between the best bid and the best ask price accross exchanges
+      updated:
+        type: integer
+        example: 1547787608999
+        description: Last Updated timestamp
+
+
+
+
+
+  CryptoSnapshotAgg:
+    type: object
+    required: [ c, h, l, o, v ]
+    properties:
+      c:
+        type: integer
+        example: 0.2907
+        description: Close price
+      h:
+        type: integer
+        example: 0.2947
+        description: High price
+      l:
+        type: integer
+        example: 0.2901
+        description: Low price
+      o:
+        type: integer
+        example: 0.2905
+        description: Open price
+      v:
+        type: integer
+        example: 1432.2907
+        description: Volume
+
+
+
+

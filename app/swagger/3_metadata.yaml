@@ -1,0 +1,280 @@
+
+
+# 
+#  ---------------------------
+#   META-DATA ROUTES:
+#  ---------------------------
+# 
+
+  # /v1/meta/symbols:
+  #   get:
+  #     summary: Symbols
+  #     description: |
+  #       Get the list of symbols that Polygon.io tracks. This list is quite large, currently over 9400 symbols.
+        
+  #       **Note:** This list includes all types of symbols like Common Stock and ETFs. However indecies are a seperate API call. See `Index / Indecies` for details.
+  #     parameters:
+  #       - name: sort
+  #         in: query
+  #         description: |
+  #           Which field to sort by. 
+  #           For desc place a `-` in front of the field name.
+            
+  #           **Example:**
+  #           - `?sort=-symbol` to sort symbols Z-A
+  #           - `?sort=type` to sort symbols by type
+  #         required: false
+  #         type: string
+  #         default: symbol
+  #       - name: type
+  #         in: query
+  #         description: |
+  #           If you want the results to only container a certain type.
+            
+  #           **Example:**
+  #           - `?type=etp` to get all ETFs
+  #           - `?type=cs` to get all Common Stock's
+  #         required: false
+  #         type: string
+  #       - name: perpage
+  #         in: query
+  #         description: |
+  #           How many items to be on each page during pagination. Max 50
+  #         required: false
+  #         type: number
+  #         default: 50
+  #       - name: page
+  #         in: query
+  #         description: |
+  #           Which page of results to return
+  #         required: false
+  #         default: 1
+  #         type: number
+  #       - name: isOTC
+  #         in: query
+  #         description: |
+  #           Filter on if the symbol is OTC
+  #         required: false
+  #         type: boolean
+  #     tags:
+  #       - Meta Data
+  #     responses:
+  #       200:
+  #         description: An array of symbols
+  #         schema:
+  #           type: array
+  #           items:
+  #             $ref: '#/definitions/Symbol'
+  #           example:
+  #             - symbol: AAPL
+  #               name: Apple Inc.
+  #               type: cs
+  #               isOTC: false
+  #               updated: "2018-02-05T05:21:28.437Z"
+  #               url: https://api.polygon.io/v1/meta/symbols/AAPL
+  #             - symbol: NVDA
+  #               name: NVIDIA Corporation
+  #               type: cs
+  #               isOTC: false
+  #               updated: "2018-02-05T05:21:28.437Z"
+  #               url: https://api.polygon.io/v1/meta/symbols/NVDA
+  #             - symbol: MINE
+  #               name: Minerco, Inc.
+  #               type: cs
+  #               isOTC: true
+  #               updated: "2018-02-05T05:21:28.437Z"
+  #               url: https://api.polygon.io/v1/meta/symbols/MINE
+  #       401:
+  #         $ref: '#/definitions/Unauthorized'
+  #       404:
+  #         $ref: '#/definitions/NotFound'
+  #       409:
+  #         $ref: '#/definitions/Conflict'
+  
+  # /v1/meta/symbols/{symbol}:
+  #   get:
+  #     summary: Symbol Endpoints
+  #     description: |
+  #       Get gets the endpoints that are supported for a symbol.
+  #       **Note:** The `endpoints` object is key/values of the endpoint name and url. These will almost always be the same of all symbols.
+  #     parameters:
+  #       - name: symbol
+  #         in: path
+  #         description: |
+  #           Symbol we want the endpoint list for.
+  #         required: true
+  #         type: string
+  #         default: AAPL
+  #     tags:
+  #       - Meta Data
+  #     responses:
+  #       200:
+  #         description: An array of symbols
+  #         schema:
+  #           type: object
+  #           required: [ symbol, endpoints ]
+  #           properties:
+  #             symbol:
+  #               $ref: '#/definitions/Symbol'
+  #             endpoints:
+  #               type: object
+  #               example: 
+  #                 company: https://api.polygon.io/v1/meta/symbols/AAPL/company
+  #                 analysts: http://localhost:8060/v1/meta/symbols/AAPL/analysts
+  #                 dividends: http://localhost:8060/v1/meta/symbols/AAPL/dividends
+  #                 splits: http://localhost:8060/v1/meta/symbols/AAPL/splits
+  #                 news: https://api.polygon.io/v1/meta/symbols/AAPL/news
+                  
+  #       401:
+  #         $ref: '#/definitions/Unauthorized'
+  #       404:
+  #         $ref: '#/definitions/NotFound'
+  #       409:
+  #         $ref: '#/definitions/Conflict'
+
+
+  # /v1/meta/symbols/{symbol}/analysts:
+  #   get:
+  #     summary: Symbol Analyst Ratings
+  #     description: |
+  #       Get the analyst ratings of the symbol company/entity. Ratings are from current date, up to 5months into the future.
+  #     parameters:
+  #       - name: symbol
+  #         in: path
+  #         description: |
+  #           Symbol we want analyst ratings for
+  #         required: true
+  #         type: string
+  #         default: AAPL
+  #     tags:
+  #       - Meta Data
+  #     responses:
+  #       200:
+  #         description: AnalystRatings
+  #         schema:
+  #           $ref: '#/definitions/AnalystRatings'
+  #       401:
+  #         $ref: '#/definitions/Unauthorized'
+  #       404:
+  #         $ref: '#/definitions/NotFound'
+  #       409:
+  #         $ref: '#/definitions/Conflict'
+
+
+  # /v1/meta/symbols/{symbol}/dividends:
+  #   get:
+  #     summary: Symbol Dividends
+  #     description: |
+  #       Get the historical dividends for this symbol.
+  #     parameters:
+  #       - name: symbol
+  #         in: path
+  #         description: |
+  #           Symbol we want details for
+  #         required: true
+  #         type: string
+  #         default: AAPL
+  #     tags:
+  #       - Meta Data
+  #     responses:
+  #       200:
+  #         description: An array of dividends
+  #         schema:
+  #           type: array
+  #           items:
+  #             $ref: '#/definitions/Dividend'
+  #       401:
+  #         $ref: '#/definitions/Unauthorized'
+  #       404:
+  #         $ref: '#/definitions/NotFound'
+  #       409:
+  #         $ref: '#/definitions/Conflict'
+
+
+  # /v1/meta/symbols/{symbol}/splits:
+  #   get:
+  #     summary: Symbol Splits
+  #     description: |
+  #       Get the historical splits for this symbol.
+  #     parameters:
+  #       - name: symbol
+  #         in: path
+  #         description: |
+  #           Symbol we want details for
+  #         required: true
+  #         type: string
+  #         default: AAPL
+  #     tags:
+  #       - Meta Data
+  #     responses:
+  #       200:
+  #         description: An array of splits
+  #         schema:
+  #           type: array
+  #           items:
+  #             $ref: '#/definitions/Split'
+  #       401:
+  #         $ref: '#/definitions/Unauthorized'
+  #       404:
+  #         $ref: '#/definitions/NotFound'
+  #       409:
+  #         $ref: '#/definitions/Conflict'
+  
+  # /v1/meta/symbols/{symbol}/earnings:
+  #   get:
+  #     summary: Symbol Earnings
+  #     description: |
+  #       Get the historical earnings for a company
+  #     parameters:
+  #       - name: symbol
+  #         in: path
+  #         description: |
+  #           Symbol we want details for
+  #         required: true
+  #         type: string
+  #         default: AAPL
+  #     tags:
+  #       - Meta Data
+  #     responses:
+  #       200:
+  #         description: An array of earnings
+  #         schema:
+  #           type: array
+  #           items:
+  #             $ref: '#/definitions/Earning'
+  #       401:
+  #         $ref: '#/definitions/Unauthorized'
+  #       404:
+  #         $ref: '#/definitions/NotFound'
+  #       409:
+  #         $ref: '#/definitions/Conflict'  
+  
+  # /v1/meta/symbols/{symbol}/financials:
+  #   get:
+  #     summary: Symbol Financials
+  #     description: |
+  #       Get the historical financials for a company
+  #     parameters:
+  #       - name: symbol
+  #         in: path
+  #         description: |
+  #           Symbol we want details for
+  #         required: true
+  #         type: string
+  #         default: AAPL
+  #     tags:
+  #       - Meta Data
+  #     responses:
+  #       200:
+  #         description: An array of financials
+  #         schema:
+  #           type: array
+  #           items:
+  #             $ref: '#/definitions/Financial'
+  #       401:
+  #         $ref: '#/definitions/Unauthorized'
+  #       404:
+  #         $ref: '#/definitions/NotFound'
+  #       409:
+  #         $ref: '#/definitions/Conflict'
+    

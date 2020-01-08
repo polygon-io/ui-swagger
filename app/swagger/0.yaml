@@ -1,0 +1,21 @@
+# this is an example of the Uber API
+swagger: '2.0'
+info:
+  title: Polygon API
+  description: The future of fintech.
+  version: "1.0.1"
+# the domain of the service
+host: api.polygon.io
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+produces:
+  - application/json
+securityDefinitions:
+  apiKey:
+    type: apiKey
+    name: apiKey
+    in: query
+security:
+  - apiKey: []

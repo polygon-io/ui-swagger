@@ -1,0 +1,293 @@
+
+
+
+  /v1/historic/forex/{from}/{to}/{date}:
+    get:
+      summary: Historic Forex Ticks
+      description: |
+        Get historic ticks for a currency pair. Example for **USD/JPY** the from would be **USD** and to would be **JPY**. The date formatted like **2017-6-22**
+      tags:
+        - Forex / Currencies
+      parameters: 
+      - name: from
+        in: path
+        description: From Symbol of the currency pair
+        required: true
+        type: string
+        default: AUD
+      - name: to
+        in: path
+        description: To Symbol of the currency pair
+        required: true
+        type: string
+        default: USD
+      - name: date
+        in: path
+        description: Date/Day of the historic ticks to retreive
+        required: true
+        type: string
+        format: date
+        default: "2018-2-2"
+      - name: offset
+        in: query
+        description: |
+          Timestamp offset, used for pagination. This is the offset at which to start the results. Using the `timestamp` of the last result as the offset will give you the next page of results.
+        required: false
+        type: integer
+      - name: limit
+        in: query
+        description: Limit the size of response, Max 10000
+        required: false
+        type: integer
+        default: 100
+      responses:
+        200:
+          description: An array of forex ticks
+          schema:
+            type: object
+            required: [ day, map, msLatency, status, pair, ticks ]
+            properties:
+              day:
+                type: string
+                example: "2018-2-2"
+                description: Date that was evaluated from the request
+                format: date
+              map:
+                type: object
+                description: Map for shortened result keys
+                example:
+                  a: ask
+                  b: bid
+                  t: timestamp
+              msLatency:
+                type: integer
+                example: 2
+                description: Milliseconds of latency for the query results
+              status:
+                type: string
+                example: success
+                description: Status of this requests response
+              pair:
+                type: string
+                example: AUD/USD
+                description: Currency Pair that was evaluated from the request
+              ticks:
+                type: array
+                items:
+                  $ref: "#/definitions/Forex"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+
+  /v1/conversion/{from}/{to}:
+    get:
+      summary: Real-time Currency Conversion
+      description: |
+        Convert currencies using the latest market conversion rates. Note than you can convert in both directions. For example USD->CAD or CAD->USD.
+      tags:
+        - Forex / Currencies
+      parameters: 
+      - name: from
+        in: path
+        description: From Symbol of the pair
+        required: true
+        type: string
+        default: AUD
+      - name: to
+        in: path
+        description: To Symbol of the pair
+        required: true
+        type: string
+        default: USD
+      - name: amount
+        in: query
+        description: Amount we want to convert. With decimal
+        required: false
+        type: integer
+        default: 100
+      - name: precision
+        in: query
+        description: Decimal precision of the conversion. Defaults to 2 which is 2 decimal places accuracy.
+        enum: [0, 1, 2, 3, 4, 5]
+        required: false
+        type: integer
+        default: 2
+      responses:
+        200:
+          description: Last tick for this currency pair, plus the converted amount for the requested amount.
+          schema:
+            type: object
+            required: [ status, from, to, initialAmount, converted, lastTrade ]
+            properties:
+              status:
+                type: string
+                example: success
+                description: Status of this requests response
+              from:
+                type: string
+                example: AUD
+                description: From currency symbol
+              to:
+                type: string
+                example: USD
+                description: To currency symbol
+              initialAmount:
+                type: number
+                example: 100.00
+                description: The amount we are to convert
+              converted:
+                type: number
+                example: 78.76
+                description: To currency symbol
+              lastTrade:
+                $ref: "#/definitions/LastForexTrade"
+              symbol:
+                type: string
+                example: AUD/USD
+                description: Symbol Pair that was evaluated from the request
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+  /v1/last_quote/currencies/{from}/{to}:
+    get:
+      summary: Last Quote for a Currency Pair
+      description: |
+        Get Last Quote Tick for a Currency Pair.
+      tags:
+        - Forex / Currencies
+      parameters: 
+      - name: from
+        in: path
+        description: From Symbol of the pair
+        required: true
+        type: string
+        default: AUD
+      - name: to
+        in: path
+        description: To Symbol of the pair
+        required: true
+        type: string
+        default: USD
+      responses:
+        200:
+          description: Last quote tick for this currency pair
+          schema:
+            type: object
+            required: [ status, symbol, last ]
+            properties:
+              status:
+                type: string
+                example: success
+                description: Status of this requests response
+              symbol:
+                type: string
+                example: AUD/USD
+                description: Symbol Pair that was evaluated from the request
+              last:
+                $ref: "#/definitions/LastForexQuote"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+
+
+
+
+  /v2/snapshot/locale/global/markets/forex/tickers:
+    get:
+      summary: Snapshot - All Tickers
+      description: |
+        Snapshot allows you to see all tickers current minute aggregate, daily aggregate and last trade. As well as previous days aggregate and calculated change for today.
+
+        ### *** Warning, may cause browser to hang ***
+        The response size is large, and sometimes will cause the browser prettyprint to crash.
+      tags:
+        - Forex / Currencies
+      responses:
+        200:
+          description: Get current state for all tickers
+          schema:
+            type: object
+            required: [ status, tickers ]
+            properties:
+              status:
+                type: string
+                example: OK
+                description: Status of this requests response
+              tickers:
+                type: array
+                items:
+                  $ref: "#/definitions/ForexSnapshotTicker"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+
+  /v2/snapshot/locale/global/markets/forex/{direction}:
+    get:
+      summary: Snapshot - Gainers / Losers
+      description: |
+        See the current snapshot of the top 20 gainers or losers of the day at the moment.
+      tags:
+        - Forex / Currencies
+      parameters:
+        - name: direction
+          in: path
+          description: |
+            Direction we want
+          required: true
+          enum: [ "gainers", "losers"]
+          type: string
+          default: gainers
+      responses:
+        200:
+          description: Get the current gainers / losers of the day
+          schema:
+            type: object
+            required: [ status, tickers ]
+            properties:
+              status:
+                type: string
+                example: OK
+                description: Status of this requests response
+              tickers:
+                type: array
+                items:
+                  $ref: "#/definitions/ForexSnapshotTicker"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

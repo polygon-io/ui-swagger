@@ -19,7 +19,8 @@ module.exports = function(ops) {
         "fonts",
         "images",
         "webp",
-        "icons"
+        "icons",
+	"swaggerYamlToJson",
       ],
       cb
     );
