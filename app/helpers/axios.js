@@ -12,4 +12,10 @@ export const AxiosV2 = axios.create({
   withCredentials: true
 });
 
+export const PublicAPI = axios.create({
+  baseURL: `${window.window.PUB_API_BASE}`,
+  timeout: 20000
+  // withCredentials: true
+});
+
 export default AxiosV1;

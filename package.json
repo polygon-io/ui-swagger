@@ -110,6 +110,8 @@
     "request-promise": "^4.2.2",
     "require-dir": "^0.3.2",
     "rimraf": "^2.6.2",
+    "swagger-ui": "^3.24.3",
+    "swagger-ui-react": "^3.24.3",
     "webfontloader": "^1.6.28",
     "webpack": "^3.12.0"
   },

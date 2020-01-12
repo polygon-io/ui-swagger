@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import SwaggerUI from "swagger-ui";
+
 import actions from "./../../actions/";
+import { SwaggerCustomLayoutPlugin } from "../../components/SwaggerCustomLayout";
 
 @connect(store => ({
+  app: store.app,
   router: store.router,
   location: store.location
 }))
@@ -18,20 +22,19 @@ class Homepage extends Component {
         title: "Polygon.io - Real-time Stock APIs, Forex and Crypto"
       })
     );
+    const swaggerUI = SwaggerUI({
+      domNode: document.getElementById("api-data"),
+      url: this.props.app.definitionLink,
+      plugins: [SwaggerCustomLayoutPlugin],
+      layout: "SwaggerCustomLayout"
+    });
   }
 
   // Render
   render() {
     return (
       <div id="homepage" class="page">
-        <section class="hero is-info is-large">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">Homepage - UiSwagger</h1>
-              <h2 class="subtitle">Homepage subtitle</h2>
-            </div>
-          </div>
-        </section>
+        <div id="api-data" />
       </div>
     );
   }

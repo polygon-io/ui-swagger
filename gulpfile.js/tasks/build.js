@@ -15,12 +15,12 @@ module.exports = function(ops) {
         "sass",
         "svgs",
         "html",
+        "swaggerYamlToJson",
         "webpack:production",
         "fonts",
         "images",
         "webp",
-        "icons",
-	"swaggerYamlToJson",
+        "icons"
       ],
       cb
     );

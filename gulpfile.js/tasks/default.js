@@ -19,7 +19,8 @@ module.exports = function(ops) {
         "fonts:watch",
         "images:watch",
         "webp:watch",
-        "icons:watch"
+        "icons:watch",
+        "swaggerYamlToJson"
       ],
       "browserSync",
       cb

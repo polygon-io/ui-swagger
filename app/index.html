@@ -9,7 +9,10 @@
     <meta property="og:description" content="desc" />
     <meta property="og:image" content="https://polygon.io/images/splash.jpg" />
     <meta name="description" content="desc" />
-    <meta name="keywords" content="keyword1,keyword2" />
+    <meta
+      name="keywords"
+      content="realtime,streaming,stocks,equities,forex,currencies,crypto,api,data"
+    />
 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -21,6 +24,7 @@
     <!-- build:css -->
     <link rel="stylesheet" href="/styles/app.css" />
     <!-- endbuild -->
+    <link rel="stylesheet" href="/icons/template.css" />
 
     <!-- Google tags -->
     <script type="application/ld+json">
@@ -41,8 +45,15 @@
     <!-- UI Settings: -->
     <script type="text/javascript">
       window.API_BASE = "https://api.polygon.io/";
+      window.STRIPE_API_KEY = "pk_live_bGjQzaU0bawFLuGIGr7wr9de";
+      window.PUB_API_BASE = "https://public.polygon.io/";
+      window.F_BASE = "https://polygon.io";
+
       if (window.location.hostname === "localhost") {
-        window.API_BASE = "http://localhost:8080/";
+        // window.API_BASE = "http://localhost:8080/";
+        window.DISABLE_MARKET_TICKER = true;
+        window.STRIPE_API_KEY = "pk_test_jxzheROntfCzCusnmJyAhc9a";
+        window.F_BASE = "http://localhost:5005";
       }
     </script>
   </head>
