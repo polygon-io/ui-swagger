@@ -1,5 +1,8 @@
 import React from "react";
 
+import { SideBar } from "../SideBar";
+import { GettingStarted } from "../GettingStarted";
+
 export class SwaggerCustomLayout extends React.Component {
   constructor(props) {
     super(props);
@@ -7,10 +10,16 @@ export class SwaggerCustomLayout extends React.Component {
   }
   render() {
     const Operations = this.props.getComponent("operations", true);
-
+    const taggedOperations = this.props.specSelectors.taggedOperations();
     return (
-      <div>
-        <Operations />
+      <div className="columns">
+        <div className="column is-one-third is-hidden-mobile">
+          <SideBar taggedOperations={taggedOperations} />
+        </div>
+        <div className="column">
+          <GettingStarted id="getting-started" />
+          <Operations />
+        </div>
       </div>
     );
   }
