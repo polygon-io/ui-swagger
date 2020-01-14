@@ -11,7 +11,7 @@ const Endpoint = ({ operation }) => {
   return (
     <li key={pathToId(id)}>
       <a href={`#${pathToId(id)}`}>
-        <span className="method">{method}</span> {summary}
+        <span className="sidebar__operation__method">{method}</span> {summary}
       </a>
     </li>
   );
@@ -19,7 +19,7 @@ const Endpoint = ({ operation }) => {
 
 const OperationsSection = ({ operations, tag }) => {
   return (
-    <div>
+    <div className="is-hidden-mobile">
       <p className="menu-label">{tag}</p>
       <ul className="menu-list">
         {operations.map(operation => (
@@ -36,18 +36,18 @@ const OperationsSection = ({ operations, tag }) => {
 export const SideBar = ({ taggedOperations }) => {
   return (
     <aside className="menu sidebar">
-      <a href="/">
+      <a className="sidebar__logo" href="/">
         <img src="images/icon.svg" />
       </a>
-      <p className="menu-label">API KEY</p>
-      <div className="columns">
+      <p className="menu-label is-hidden-mobile">API KEY</p>
+      <div className="columns is-hidden-mobile">
         <input className="input" type="text" />
         <button className="button">
           <i class="fas fa-arrow-right"></i>
         </button>
       </div>
-      <p className="menu-label">API REFERENCE</p>
-      <ul className="menu-list">
+      <p className="menu-label is-hidden-mobile">API REFERENCE</p>
+      <ul className="menu-list is-hidden-mobile">
         <li key="getting-started">
           <a href="#getting-started">Getting Started</a>
         </li>

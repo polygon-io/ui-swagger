@@ -2,7 +2,16 @@
   padding: 1em;
 }
 
-.method {
+.sidebar__logo {
+  text-align: center;
+  width: auto;
+  display: block;
+}
+.sidebar__logo > img {
+  height: 10em;
+}
+
+.sidebar__operation__method {
   text-transform: uppercase;
   border: 1px solid #2ad389;
   border-radius: 3px;

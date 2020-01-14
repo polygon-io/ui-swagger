@@ -13,7 +13,7 @@ export class SwaggerCustomLayout extends React.Component {
     const taggedOperations = this.props.specSelectors.taggedOperations();
     return (
       <div className="columns">
-        <div className="column is-one-third is-hidden-mobile">
+        <div className="column is-one-quarter">
           <SideBar taggedOperations={taggedOperations} />
         </div>
         <div className="column">
