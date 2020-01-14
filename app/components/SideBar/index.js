@@ -1,6 +1,6 @@
 import React from "react";
 
-const pathToId = path => path.replace(/\//g, "_");
+import { pathToId } from "../../helpers/utils";
 
 const Endpoint = ({ operation }) => {
   const path = operation.get("path");
@@ -36,6 +36,16 @@ const OperationsSection = ({ operations, tag }) => {
 export const SideBar = ({ taggedOperations }) => {
   return (
     <aside className="menu sidebar">
+      <a href="/">
+        <img src="images/icon.svg" />
+      </a>
+      <p className="menu-label">API KEY</p>
+      <div className="columns">
+        <input className="input" type="text" />
+        <button className="button">
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
       <p className="menu-label">API REFERENCE</p>
       <ul className="menu-list">
         <li key="getting-started">
