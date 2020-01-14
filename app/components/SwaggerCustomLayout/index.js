@@ -2,6 +2,7 @@ import React from "react";
 
 import { SideBar } from "../SideBar";
 import { GettingStarted } from "../GettingStarted";
+import { TaggedOperations } from "../Operations";
 
 export class SwaggerCustomLayout extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ export class SwaggerCustomLayout extends React.Component {
     this.props = { ...props };
   }
   render() {
-    const Operations = this.props.getComponent("operations", true);
+    console.log(this.props);
     const taggedOperations = this.props.specSelectors.taggedOperations();
     return (
       <div className="columns">
@@ -18,7 +19,7 @@ export class SwaggerCustomLayout extends React.Component {
         </div>
         <div className="column">
           <GettingStarted id="getting-started" />
-          <Operations />
+          <TaggedOperations taggedOperations={taggedOperations} />
         </div>
       </div>
     );

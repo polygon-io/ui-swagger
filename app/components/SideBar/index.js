@@ -1,6 +1,6 @@
 import React from "react";
 
-import { pathToId } from "../../helpers/utils";
+import { toHTMLId } from "../../helpers/utils";
 
 const Endpoint = ({ operation }) => {
   const path = operation.get("path");
@@ -9,8 +9,8 @@ const Endpoint = ({ operation }) => {
   const summary = operation.get("operation").get("summary");
 
   return (
-    <li key={pathToId(id)}>
-      <a href={`#${pathToId(id)}`}>
+    <li key={toHTMLId(id)}>
+      <a href={`#${toHTMLId(id)}`}>
         <span className="sidebar__operation__method">{method}</span> {summary}
       </a>
     </li>
@@ -20,11 +20,13 @@ const Endpoint = ({ operation }) => {
 const OperationsSection = ({ operations, tag }) => {
   return (
     <div className="is-hidden-mobile">
-      <p className="menu-label">{tag}</p>
+      <p className="menu-label">
+        <a href={`#${toHTMLId(tag)}`}>{tag}</a>
+      </p>
       <ul className="menu-list">
         {operations.map(operation => (
           <Endpoint
-            key={`endpoint_${pathToId(operation.get("id"))}`}
+            key={`endpoint_${toHTMLId(operation.get("id"))}`}
             operation={operation}
           />
         ))}
