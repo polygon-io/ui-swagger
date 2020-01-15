@@ -42,4 +42,4 @@ steps:
         from_secret: KUBE_CA
     settings:
       template: kube.yml
-      namespace: polygon
+      namespace: polygon-public
