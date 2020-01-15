@@ -17,8 +17,6 @@ steps:
   - name: docker
     image: plugins/docker
     storage_driver: overlay
-    when:
-      branch: master
     settings:
       repo: polygonio/ui-swagger
       tag:
@@ -31,17 +29,17 @@ steps:
 
 
 
-  # - name: deploy
-  #   image: vallard/drone-kube
-  #   when:
-  #     branch: master
-  #   environment:
-  #     KUBE_SERVER:
-  #       from_secret: KUBE_SERVER
-  #     KUBE_TOKEN:
-  #       from_secret: KUBE_TOKEN
-  #     KUBE_CA:
-  #       from_secret: KUBE_CA
-  #   settings:
-  #     template: kube.yml
-  #     namespace: polygon
+  - name: deploy
+    image: vallard/drone-kube
+    when:
+      branch: dev
+    environment:
+      KUBE_SERVER:
+        from_secret: KUBE_SERVER
+      KUBE_TOKEN:
+        from_secret: KUBE_TOKEN
+      KUBE_CA:
+        from_secret: KUBE_CA
+    settings:
+      template: kube.yml
+      namespace: polygon
