@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Markdown from "react-markdown";
 
 import { toHTMLId } from "../../helpers/utils";
+import { responseToJsonSample } from "../../helpers/responseToJsonSample";
+import {SampleResponse} from "./SampleResponse";
+
 
 const Response = ({ response }) => {
   const [status, details] = response;
@@ -36,7 +39,7 @@ const Parameter = ({ parameter }) => {
     </div>
   );
 };
-const Operation = ({ operation }) => {
+const Operation = ({ operation, ...props }) => {
   const path = operation.get("path");
   const method = operation.get("method");
   const id = operation.get("id");
@@ -47,9 +50,12 @@ const Operation = ({ operation }) => {
   const responses = operation.get("operation").get("responses");
   const parameters = operation.get("operation").get("parameters");
 
+  // console.log('__OPERATION', operation)
+  // console.log('RESPONSES ', responses)
+
   return (
-    <section className="columns">
-      <div className="column description">
+    <section className="columns operation">
+      <div className="column operation__description">
         <h2 id={toHTMLId(id)} className="title is-3">
           {summary}
         </h2>
@@ -90,23 +96,26 @@ const Operation = ({ operation }) => {
         </section>
       </div>
 
-      <div className="columns samples"></div>
+      <section className="column operation__samples">
+        <SampleResponse responses={responses} />
+      </section>
     </section>
   );
 };
 
-const Operations = ({ tag, tagObj }) => {
+const Operations = ({ tag, tagObj, ...props }) => {
   const operations = tagObj.get("operations");
   return operations.map(operation => (
     <Operation
       key={`operation_${toHTMLId(operation.get("id"))}`}
       operation={operation}
+      {...props}
     />
   ));
 };
 
-export const TaggedOperations = ({ taggedOperations }) => {
+export const TaggedOperations = ({ taggedOperations, ...props }) => {
   return Array.from(taggedOperations).map(([tag, tagObj]) => (
-    <Operations tag={tag} tagObj={tagObj} />
+    <Operations tag={tag} tagObj={tagObj} {...props} />
   ));
 };

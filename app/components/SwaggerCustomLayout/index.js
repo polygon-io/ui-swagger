@@ -10,18 +10,18 @@ export class SwaggerCustomLayout extends React.Component {
     this.props = { ...props };
   }
   render() {
-    console.log(this.props);
     const taggedOperations = this.props.specSelectors.taggedOperations();
     return (
-      <div className="columns">
-        <div className="column is-one-quarter">
-          <SideBar taggedOperations={taggedOperations} />
-        </div>
-        <div className="column">
-          <GettingStarted id="getting-started" />
-          <TaggedOperations taggedOperations={taggedOperations} />
-        </div>
-      </div>
+        <section className="main-content columns">
+          <SideBar className="column is-2 section" taggedOperations={taggedOperations} {...this.props} />
+          <div className="container column">
+              <GettingStarted id="getting-started" />
+              <TaggedOperations
+                  taggedOperations={taggedOperations}
+                  {...this.props}
+              />
+          </div>
+        </section>
     );
   }
 }

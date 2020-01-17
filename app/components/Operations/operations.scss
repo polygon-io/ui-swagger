@@ -1,3 +1,17 @@
+.operation {
+  border-bottom: 1px solid #4e575e;
+}
+
+.operation__description {
+  padding: 2em;
+}
+
+.operation__samples {
+  background-color: #5C666F;
+  padding: 0;
+  margin: 0;
+}
+
 .operation__description__method {
   text-transform: uppercase;
   border: 1px solid #2ad389;

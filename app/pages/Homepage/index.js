@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import SwaggerUI from "swagger-ui";
 
@@ -33,7 +32,7 @@ class Homepage extends Component {
   // Render
   render() {
     return (
-      <div id="homepage" class="page">
+      <div id="homepage" className="page">
         <div id="api-data" />
       </div>
     );

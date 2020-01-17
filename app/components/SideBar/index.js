@@ -3,7 +3,6 @@ import React from "react";
 import { toHTMLId } from "../../helpers/utils";
 
 const Endpoint = ({ operation }) => {
-  const path = operation.get("path");
   const method = operation.get("method");
   const id = operation.get("id");
   const summary = operation.get("operation").get("summary");
@@ -44,7 +43,7 @@ export const SideBar = ({ taggedOperations }) => {
       <p className="menu-label is-hidden-mobile">API KEY</p>
       <div className="columns is-hidden-mobile">
         <input className="input" type="text" />
-        <button className="button">
+        <button className="button is-primary is-small">
           <i class="fas fa-arrow-right"></i>
         </button>
       </div>
