@@ -33,7 +33,6 @@ class AppContainer extends Component {
   render() {
     return (
       <div className="app_wrapper">
-        <Ticker />
         <Header />
         <ConnectedSwitch>
           <Route exact path="/" component={Homepage} />

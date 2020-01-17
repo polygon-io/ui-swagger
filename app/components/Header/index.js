@@ -97,7 +97,7 @@ class HeaderComponent extends Component {
     return (
       <nav
         id="header"
-        class="navbar is-primary"
+        class="navbar is-primary is-fixed-top"
         role="navigation"
         aria-label="main navigation"
       >
