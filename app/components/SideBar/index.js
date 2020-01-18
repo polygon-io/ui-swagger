@@ -34,32 +34,7 @@ const OperationsSection = ({ taggedOperations, ...props }) => {
   );
 };
 
-export const SideBar = ({ swaggerClient }) => {
-  const { paths } = swaggerClient.spec;
-  const orderedOperations = Object.values(
-    Object.entries(paths).reduce((carry, item) => {
-      const [path, operations] = item;
-      const tag = operations.get.tags[0];
-      if (!carry[tag]) {
-        carry[tag] = {
-          tag,
-          operations: {
-            [path]: {
-              path,
-              ...operations
-            }
-          }
-        };
-      } else {
-        carry[tag].operations[path] = {
-          path,
-          ...operations
-        };
-      }
-      return carry;
-    }, {})
-  );
-
+export const SideBar = ({ orderedOperations }) => {
   return (
     <aside className="menu sidebar">
       <a className="sidebar__logo" href="/">

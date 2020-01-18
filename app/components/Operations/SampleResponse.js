@@ -20,12 +20,10 @@ export class SampleResponse extends React.Component {
 
   render() {
     const { responses } = this.props;
-    if (!responses.get("200")) {
+    if (!responses["200"]) {
       return <div></div>;
     }
-    const sampleResponse = responseToJsonSample(
-      this.props.responses.get("200")
-    );
+    const sampleResponse = responseToJsonSample(this.props.responses["200"]);
     return (
       <section>
         <div className="collapsable">
