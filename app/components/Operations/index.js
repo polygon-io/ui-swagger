@@ -5,7 +5,6 @@ import { toHTMLId } from "../../helpers/utils";
 import { SampleResponse } from "./SampleResponse";
 
 const Response = ({ response, code }) => {
-  console.log(" RESPONSE ", response);
   let description;
   try {
     description = response.description;
@@ -15,14 +14,13 @@ const Response = ({ response, code }) => {
   return (
     <tr>
       <td>{code}</td>
-      <td>{description || "no description provided"}</td>
+      <td>{description || "no description"}</td>
     </tr>
   );
 };
 
 const Parameter = ({ parameter }) => {
   const { name, type, description } = parameter;
-  console.log("PARAMETER", parameter);
   return (
     <div className="">
       <div className="columns">
@@ -45,12 +43,12 @@ const Parameters = ({ parameters }) => {
   if (!parameters || parameters.length == 0) {
     return "";
   }
-  console.log("PARAMETERS", parameters);
+
   return (
     <div>
       <h5 className="title is-5">Parameters</h5>
       {parameters.map(parameter => (
-        <Parameter parameter={parameter} />
+        <Parameter key={parameter.name} parameter={parameter} />
       ))}
     </div>
   );
@@ -65,7 +63,7 @@ const Operation = ({ operation, ...props }) => {
 
   return (
     <section className="columns operation">
-      <div className="column operation__description">
+      <div className="column operation__description is-half">
         <h3 id={toHTMLId(id)} className="title is-3">
           {summary}
         </h3>
@@ -103,7 +101,7 @@ const Operation = ({ operation, ...props }) => {
         </section>
       </div>
 
-      <section className="column operation__samples">
+      <section className="column operation__samples is-half">
         <SampleResponse responses={responses} {...props} />
       </section>
     </section>

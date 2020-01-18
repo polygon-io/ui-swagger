@@ -23,7 +23,9 @@ export class SampleResponse extends React.Component {
     if (!responses["200"]) {
       return <div></div>;
     }
-    const sampleResponse = responseToJsonSample(this.props.responses["200"]);
+    const sampleResponse = responseToJsonSample(
+      this.props.responses["200"].schema
+    );
     return (
       <section>
         <div className="collapsable">
