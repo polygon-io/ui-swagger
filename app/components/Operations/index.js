@@ -2,36 +2,37 @@ import React, { useEffect } from "react";
 import Markdown from "react-markdown";
 
 import { toHTMLId } from "../../helpers/utils";
-import { responseToJsonSample } from "../../helpers/responseToJsonSample";
-import {SampleResponse} from "./SampleResponse";
+import { SampleResponse } from "./SampleResponse";
 
-
-const Response = ({ response }) => {
-  const [status, details] = response;
+const Response = ({ response, code }) => {
+  console.log(" RESPONSE ", response);
   let description;
   try {
-    description = details.get("description");
+    description = response.description;
   } catch (error) {
     console.log("ERROR FETCHING DESCRIPTION", error);
   }
   return (
     <tr>
-      <td>{status}</td>
-      <td>{description || "TODO: find a way to get error messages"}</td>
+      <td>{code}</td>
+      <td>{description || "no description provided"}</td>
     </tr>
   );
 };
 
 const Parameter = ({ parameter }) => {
-  const name = parameter.get("name");
-  const type = parameter.get("type");
-  const description = parameter.get("description");
+  const { name, type, description } = parameter;
+  console.log("PARAMETER", parameter);
   return (
     <div className="">
       <div className="columns">
         <div className="column is-one-quarter">{name}</div>
         <div className="column">
-          <input className="input" type={type} />
+          <input
+            className="input"
+            type={type}
+            value={parameter.default || ""}
+          />
           <p className="parameter__type">{type}</p>
           <Markdown source={description} />
         </div>
@@ -39,46 +40,52 @@ const Parameter = ({ parameter }) => {
     </div>
   );
 };
+
+const Parameters = ({ parameters }) => {
+  if (!parameters || parameters.length == 0) {
+    return "";
+  }
+  console.log("PARAMETERS", parameters);
+  return (
+    <div>
+      <h5 className="title is-5">Parameters</h5>
+      {parameters.map(parameter => (
+        <Parameter parameter={parameter} />
+      ))}
+    </div>
+  );
+};
 const Operation = ({ operation, ...props }) => {
-  const path = operation.get("path");
-  const method = operation.get("method");
-  const id = operation.get("id");
+  const path = operation.path;
+  const method = "get";
+  const id = `get_${path}`;
 
-  const summary = operation.get("operation").get("summary");
-  const description = operation.get("operation").get("description");
-  const produces = operation.get("operation").get("produces");
-  const responses = operation.get("operation").get("responses");
-  const parameters = operation.get("operation").get("parameters");
-
-  // console.log('__OPERATION', operation)
-  // console.log('RESPONSES ', responses)
+  const { get } = operation;
+  const { summary, description, produces, responses, parameters } = get;
 
   return (
     <section className="columns operation">
       <div className="column operation__description">
-        <h2 id={toHTMLId(id)} className="title is-3">
+        <h3 id={toHTMLId(id)} className="title is-3">
           {summary}
-        </h2>
+        </h3>
         <h4 className="title is-4">
           <span className="operation__description__method">{method}</span>
           {path}
         </h4>
         <Markdown source={description} />
         <div>
-          <h5 className="title is-5">Parameters</h5>
-          {Array.from(parameters || []).map(parameter => (
-            <Parameter parameter={parameter} />
-          ))}
+          <Parameters parameters={parameters} />
         </div>
         <section>
           <h5 className="title is-5">Test this endpoint</h5>
-          <button className="button"> TRY </button>
+          <button className="button is-primary"> TRY </button>
           <div className="box">
             <div className="field control">
               Response Types
               <select className="select">
                 {produces.map(contentType => (
-                  <option>{contentType}</option>
+                  <option value={contentType}>{contentType}</option>
                 ))}
               </select>
             </div>
@@ -88,8 +95,8 @@ const Operation = ({ operation, ...props }) => {
           <h5 className="title is-5">Response Messages</h5>
           <table className="table full-width">
             <tbody>
-              {Array.from(responses).map(response => (
-                <Response response={response} />
+              {Object.entries(responses).map(([code, response]) => (
+                <Response response={response} code={code} />
               ))}
             </tbody>
           </table>
@@ -97,25 +104,36 @@ const Operation = ({ operation, ...props }) => {
       </div>
 
       <section className="column operation__samples">
-        <SampleResponse responses={responses} />
+        <SampleResponse responses={responses} {...props} />
       </section>
     </section>
   );
 };
 
-const Operations = ({ tag, tagObj, ...props }) => {
-  const operations = tagObj.get("operations");
-  return operations.map(operation => (
-    <Operation
-      key={`operation_${toHTMLId(operation.get("id"))}`}
-      operation={operation}
-      {...props}
-    />
-  ));
+const Operations = ({ tag, taggedOperations, ...props }) => {
+  const operations = Object.values(taggedOperations.operations);
+  return (
+    <section id={toHTMLId(tag)}>
+      <div>
+        {operations.map(operation => (
+          <Operation
+            key={`operation_${toHTMLId(operation.path)}`}
+            operation={operation}
+            {...props}
+          />
+        ))}
+      </div>
+    </section>
+  );
 };
 
-export const TaggedOperations = ({ taggedOperations, ...props }) => {
-  return Array.from(taggedOperations).map(([tag, tagObj]) => (
-    <Operations tag={tag} tagObj={tagObj} {...props} />
+export const TaggedOperations = ({ orderedOperations, ...props }) => {
+  return orderedOperations.map(taggedOperations => (
+    <Operations
+      key={`operations_${toHTMLId(taggedOperations.tag)}`}
+      tag={taggedOperations.tag}
+      taggedOperations={taggedOperations}
+      {...props}
+    />
   ));
 };
