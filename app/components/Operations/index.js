@@ -15,19 +15,24 @@ const Response = ({ response, code }) => {
   return (
     <tr>
       <td>{code}</td>
-      <td>{description || "TODO: find a way to get error messages"}</td>
+      <td>{description || "no description provided"}</td>
     </tr>
   );
 };
 
 const Parameter = ({ parameter }) => {
   const { name, type, description } = parameter;
+  console.log("PARAMETER", parameter);
   return (
     <div className="">
       <div className="columns">
         <div className="column is-one-quarter">{name}</div>
         <div className="column">
-          <input className="input" type={type} />
+          <input
+            className="input"
+            type={type}
+            value={parameter.default || ""}
+          />
           <p className="parameter__type">{type}</p>
           <Markdown source={description} />
         </div>
