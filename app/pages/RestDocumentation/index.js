@@ -10,42 +10,41 @@ import { SwaggerUI } from "../../components/SwaggerUI";
   router: store.router,
   location: store.location
 }))
-class Homepage extends Component {
+export class RestDocumentation extends Component {
   state = {
     visible: {},
-    swaggerClient: false,
+    swaggerClient: false
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     this.props.dispatch(
       actions.app.update({
         title: "Polygon.io - Real-time Stock APIs, Forex and Crypto"
       })
     );
-    const swaggerClient = await new SwaggerClient(this.props.app.definitionLink);
-    this.setState({
-      ...this.state,
-      swaggerClient,
-    })
+    new SwaggerClient(this.props.app.definitionLink).then(swaggerClient => {
+      this.setState({
+        ...this.state,
+        swaggerClient
+      });
+    });
   }
 
   // Render
   render() {
     if (!this.state.swaggerClient) {
       return (
-          <div id="homepage" className="page">
-            <div>
-              TODO: LOADING PAGE
-            </div>
-          </div>
-      )
+        <div id="homepage" className="page">
+          <div>TODO: LOADING PAGE</div>
+        </div>
+      );
     }
     return (
       <div id="homepage" className="page">
-          <SwaggerUI swaggerClient={this.state.swaggerClient} />
+        <SwaggerUI swaggerClient={this.state.swaggerClient} />
       </div>
     );
   }
 }
 
-export default Homepage;
+export default RestDocumentation;

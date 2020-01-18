@@ -9,7 +9,7 @@ import NotificationsBar from "../components/NotificationsBar";
 import Icons from "../helpers/icons";
 
 // Pages:
-import Homepage from "../pages/Homepage";
+import { RestDocumentation } from "../pages/RestDocumentation";
 import FourOhFour from "./FourOhFour.js";
 
 const ConnectedSwitch = connect(store => ({
@@ -35,7 +35,7 @@ class AppContainer extends Component {
       <div className="app_wrapper">
         <Header />
         <ConnectedSwitch>
-          <Route exact path="/" component={Homepage} />
+          <Route exact path="/" component={RestDocumentation} />
           <Route component={FourOhFour}></Route>
         </ConnectedSwitch>
         <Footer />

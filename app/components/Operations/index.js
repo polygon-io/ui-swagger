@@ -3,8 +3,7 @@ import Markdown from "react-markdown";
 
 import { toHTMLId } from "../../helpers/utils";
 import { responseToJsonSample } from "../../helpers/responseToJsonSample";
-import {SampleResponse} from "./SampleResponse";
-
+import { SampleResponse } from "./SampleResponse";
 
 const Response = ({ response }) => {
   const [status, details] = response;

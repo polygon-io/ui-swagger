@@ -2,31 +2,31 @@ import React from "react";
 
 import { toHTMLId } from "../../helpers/utils";
 
-const Endpoint = ({ operation }) => {
-  const method = operation.get("method");
-  const id = operation.get("id");
-  const summary = operation.get("operation").get("summary");
-
+const Endpoint = ({ operation, path }) => {
+  const { get } = operation;
+  const id = `get_${path}`;
   return (
     <li key={toHTMLId(id)}>
       <a href={`#${toHTMLId(id)}`}>
-        <span className="sidebar__operation__method">{method}</span> {summary}
+        <span className="sidebar__operation__method">GET</span> {get.summary}
       </a>
     </li>
   );
 };
 
-const OperationsSection = ({ operations, tag }) => {
+const OperationsSection = ({ taggedOperations, ...props }) => {
+  const { tag, operations } = taggedOperations;
   return (
     <div className="is-hidden-mobile">
       <p className="menu-label">
         <a href={`#${toHTMLId(tag)}`}>{tag}</a>
       </p>
       <ul className="menu-list">
-        {operations.map(operation => (
+        {Object.entries(operations).map(([path, operation]) => (
           <Endpoint
-            key={`endpoint_${toHTMLId(operation.get("id"))}`}
+            key={`endpoint_${toHTMLId(path)}`}
             operation={operation}
+            path={path}
           />
         ))}
       </ul>
@@ -34,7 +34,32 @@ const OperationsSection = ({ operations, tag }) => {
   );
 };
 
-export const SideBar = ({ taggedOperations }) => {
+export const SideBar = ({ swaggerClient }) => {
+  const { paths } = swaggerClient.spec;
+  const orderedOperations = Object.values(
+    Object.entries(paths).reduce((carry, item) => {
+      const [path, operations] = item;
+      const tag = operations.get.tags[0];
+      if (!carry[tag]) {
+        carry[tag] = {
+          tag,
+          operations: {
+            [path]: {
+              path,
+              ...operations
+            }
+          }
+        };
+      } else {
+        carry[tag].operations[path] = {
+          path,
+          ...operations
+        };
+      }
+      return carry;
+    }, {})
+  );
+
   return (
     <aside className="menu sidebar">
       <a className="sidebar__logo" href="/">
@@ -53,13 +78,11 @@ export const SideBar = ({ taggedOperations }) => {
           <a href="#getting-started">Getting Started</a>
         </li>
       </ul>
-      {Array.from(taggedOperations).map(([tag, tagObj]) => {
-        const operations = tagObj.get("operations");
+      {orderedOperations.map(taggedOperations => {
         return (
           <OperationsSection
-            key={`section_${tag}`}
-            operations={operations}
-            tag={tag}
+            key={`section_${taggedOperations.tag}`}
+            taggedOperations={taggedOperations}
           />
         );
       })}
