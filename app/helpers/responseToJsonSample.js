@@ -20,6 +20,8 @@ const schemaToJSON = schema => {
     }
     return [output];
   }
+  if (schema.type === "integer") return 0;
+  if (schema.type === "number") return 0.0;
 };
 
 export const responseToJsonSample = response => {

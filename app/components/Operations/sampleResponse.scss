@@ -15,3 +15,76 @@
   color: #ffffff;
   background-color: #4e575e;
 }
+
+.response__properties__schema {
+  background: rgb(87, 97, 105);
+  padding: 10px 30px;
+}
+.response__properties__schema__brackets {
+  opacity: 0.7;
+  font-family: Menlo, monospace;
+  font-size: 11px;
+}
+.response__properties__schema__name {
+  padding: 10px 30px;
+}
+
+.response__property {
+  display: block;
+}
+
+.response__property__labels {
+  text-align: right;
+  display: block;
+  width: calc(140px);
+  float: left;
+  font-size: 12px;
+}
+
+.response__property__name {
+  display: block;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+$typesDefaultColor: rgb(255, 156, 227);
+$typesStringColor: #2ad389;
+$typesObjectColor: rgb(255, 156, 227);
+$typesArrayColor: rgb(234, 202, 44);
+
+.response__property__type {
+  border-radius: 3px;
+  font-size: 8pt;
+  padding: 2px 4px;
+  margin-right: 4px;
+  color: $typesDefaultColor;
+  border: 1px solid $typesDefaultColor;
+}
+
+.response__property__type.response__property__type--string {
+  color: $typesStringColor;
+  border: 1px solid $typesStringColor;
+}
+.response__property__type.response__property__type--object {
+  color: $typesObjectColor;
+  border: 1px solid $typesObjectColor;
+}
+.response__property__type.response__property__type--array {
+  color: $typesArrayColor;
+  border: 1px solid $typesArrayColor;
+}
+
+.response__property__optional {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 5px;
+  position: relative;
+  top: -2px;
+}
+
+.response__property__description {
+  width: calc(100% - 140px);
+  padding-left: 20px;
+  font-size: 12px;
+  line-height: 1.5;
+}
