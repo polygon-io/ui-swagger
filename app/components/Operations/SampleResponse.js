@@ -49,7 +49,7 @@ const Property = ({ name, type, optional, description, property }) => {
         )}
       </div>
       <div className="response__property__description column">
-        <Markdown source={description} />
+        <Markdown source={description} escapeHtml={false} />
       </div>
     </div>
   );
