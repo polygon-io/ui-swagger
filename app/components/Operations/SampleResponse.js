@@ -4,7 +4,7 @@ import Markdown from "react-markdown";
 import { responseToJsonSample } from "../../helpers/responseToJsonSample";
 import { toHTMLId } from "../../helpers/utils";
 
-const SchemaRef = ({ schema }) => {
+const SchemaRef = ({ schema, parent }) => {
   const rawRef = schema.$$ref.split("/");
   const ref = rawRef[rawRef.length - 1];
   return (
@@ -14,9 +14,9 @@ const SchemaRef = ({ schema }) => {
         <span className="response__properties__schema__name">{ref}</span>
       </div>
       <div>
-        {Object.entries(schema.properties).map(([name, property]) => (
+        {Object.entries(schema.properties).map(([name, property], idx) => (
           <Property
-            key={toHTMLId(schema.$$ref)}
+            key={`${toHTMLId(schema.$$ref)}_${idx}_${parent}`}
             name={name}
             type={property.type}
             optional={!schema.required || schema.required.includes(name)}
@@ -31,7 +31,7 @@ const SchemaRef = ({ schema }) => {
 
 const Property = ({ name, type, optional, description, property }) => {
   if (property.items && property.items.$$ref && property.items.properties) {
-    return <SchemaRef schema={property.items} />;
+    return <SchemaRef schema={property.items} parent={name} />;
   }
   return (
     <div className="response__property columns">
@@ -55,7 +55,7 @@ const Property = ({ name, type, optional, description, property }) => {
   );
 };
 
-const ResponseProperties = ({ schema, swaggerClient }) => {
+const ResponseProperties = ({ schema }) => {
   if (schema.items && schema.items.$$ref) {
     return <SchemaRef schema={schema.items} />;
   }
@@ -64,6 +64,7 @@ const ResponseProperties = ({ schema, swaggerClient }) => {
       <div className="response__properties">
         {Object.entries(schema.properties).map(([name, property]) => (
           <Property
+            key={`response_propertie_${name}`}
             name={name}
             type={property.type}
             optional={!schema.required || schema.required.includes(name)}

@@ -30,6 +30,7 @@ const Parameter = ({ parameter }) => {
             className="input"
             type={type}
             value={parameter.default || ""}
+            onChange={console.log} // TODO save parameter for request
           />
           <p className="parameter__type">{type}</p>
           <Markdown source={description} />
@@ -83,7 +84,12 @@ const Operation = ({ operation, ...props }) => {
               Response Types
               <select className="select">
                 {produces.map(contentType => (
-                  <option value={contentType}>{contentType}</option>
+                  <option
+                    key={toHTMLId(`${id}_produce_option_${contentType}`)}
+                    value={contentType}
+                  >
+                    {contentType}
+                  </option>
                 ))}
               </select>
             </div>
@@ -94,7 +100,11 @@ const Operation = ({ operation, ...props }) => {
           <table className="table full-width">
             <tbody>
               {Object.entries(responses).map(([code, response]) => (
-                <Response response={response} code={code} />
+                <Response
+                  key={`response_${code}`}
+                  response={response}
+                  code={code}
+                />
               ))}
             </tbody>
           </table>

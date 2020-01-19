@@ -5,10 +5,6 @@ import { GettingStarted } from "../GettingStarted";
 import { TaggedOperations } from "../Operations";
 
 export class SwaggerUI extends React.Component {
-  constructor(props) {
-    super(props);
-    this.props = { ...props };
-  }
   render() {
     const { swaggerClient } = this.props;
     const { paths } = swaggerClient.spec;
