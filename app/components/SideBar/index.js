@@ -42,7 +42,7 @@ export const SideBar = ({ orderedOperations }) => {
       </a>
       <p className="menu-label is-hidden-mobile">API KEY</p>
       <div className="columns is-hidden-mobile">
-        <input className="input" type="text" />
+        <input className="input is-small" type="text" onChange={alert} />
         <button className="button is-primary is-small">
           <i class="fas fa-arrow-right"></i>
         </button>
