@@ -83,7 +83,7 @@ export class SampleResponse extends React.Component {
     super(props);
     this.state = {
       properties: true,
-      sampleResponse: false
+      sampleResponse: true
     };
   }
 
