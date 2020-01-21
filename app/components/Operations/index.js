@@ -95,7 +95,7 @@ const ResponseModal = ({
           </div>
           <h5 className="title is-5">RESPONSE BODY</h5>
           <div>
-            <pre>{responseBody}</pre>
+            <pre>{JSON.stringify(responseBody, null, 2)}</pre>
           </div>
           <h5 className="title is-5">RESPONSE CODE</h5>
           <div>
@@ -103,7 +103,7 @@ const ResponseModal = ({
           </div>
           <h5 className="title is-5">RESPONSE HEADERS</h5>
           <div>
-            <pre>{responseHeaders}</pre>
+            <pre>{JSON.stringify(responseHeaders, null, 2)}</pre>
           </div>
         </section>
       </div>
@@ -134,20 +134,38 @@ class Operation extends React.Component {
   };
 
   tryOperation = (tag, path, swaggerClient) => {
+    console.log("this.parameters", this.state.parameters);
     swaggerClient.apis[tag][toHTMLId(path)]()
       .then(response => {
-        const responseCode = res.statusCode; // status code
-        const responseBody = res.body; // JSON object or undefined
-        const responseHeaders = res.headers; // header hash
+        const requestUrl = response.url;
+        const responseCode = response.statusCode; // status code
+        const responseBody = response.body; // JSON object or undefined
+        const responseHeaders = response.headers; // header hash
 
         this.openResponseModal({
+          requestUrl,
           responseBody,
           responseCode,
           responseHeaders
         });
       })
       .catch(error => {
-        this.openResponseModal({ error });
+        if (error.response) {
+          const { response } = error;
+          const requestUrl = response.url;
+          const responseCode = response.status; // status code
+          const responseBody = response.body; // JSON object or undefined
+          const responseHeaders = response.headers; // header hash
+
+          this.openResponseModal({
+            requestUrl,
+            responseBody,
+            responseCode,
+            responseHeaders
+          });
+        } else {
+          this.openResponseModal({ error });
+        }
       });
   };
 
