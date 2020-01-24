@@ -1,6 +1,10 @@
 import React from "react";
+import { debounce } from "lodash";
+
+import { update as updateUser } from "../../actions/user";
 
 import { toHTMLId } from "../../helpers/utils";
+import { connect } from "react-redux";
 
 const Endpoint = ({ operation, path }) => {
   const { get } = operation;
@@ -34,7 +38,12 @@ const OperationsSection = ({ taggedOperations, ...props }) => {
   );
 };
 
-export const SideBar = ({ orderedOperations }) => {
+export const SideBar = ({ orderedOperations, dispatch, user }) => {
+  const setApiKey = event => {
+    dispatch(updateUser({ apiKey: document.getElementById("apikey").value }));
+  };
+  const debouncedSetApiKey = debounce(setApiKey, 300);
+
   return (
     <aside className="menu sidebar">
       <a className="sidebar__logo" href="/">
@@ -42,10 +51,12 @@ export const SideBar = ({ orderedOperations }) => {
       </a>
       <p className="menu-label is-hidden-mobile">API KEY</p>
       <div className="columns is-hidden-mobile">
-        <input className="input is-small" type="text" onChange={alert} />
-        <button className="button is-primary is-small">
-          <i class="fas fa-arrow-right"></i>
-        </button>
+        <input
+          id="apikey"
+          className="input is-small"
+          type="text"
+          onChange={debouncedSetApiKey}
+        />
       </div>
       <p className="menu-label is-hidden-mobile">API REFERENCE</p>
       <ul className="menu-list is-hidden-mobile">

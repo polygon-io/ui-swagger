@@ -163,12 +163,13 @@ class Operation extends React.Component {
   };
 
   tryOperation = (tag, path, swaggerClient) => {
-    const payload = {
-      ...this.state.parameters,
-      apiKey: this.props.user.apiKey
-    };
-    console.log("PAYLOAD", payload);
-    swaggerClient.apis[tag][toHTMLId(path)](payload)
+    swaggerClient.apis[tag][toHTMLId(path)](this.state.parameters, {
+      securities: {
+        authorized: {
+          apiKey: this.props.user.apiKey
+        }
+      }
+    })
       .then(response => {
         const requestUrl = response.url;
         const responseCode = response.statusCode; // status code

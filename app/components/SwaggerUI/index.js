@@ -1,9 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import { SideBar } from "../SideBar";
 import { GettingStarted } from "../GettingStarted";
 import { TaggedOperations } from "../Operations";
 
+@connect(store => ({
+  user: store.user
+}))
 export class SwaggerUI extends React.Component {
   render() {
     const { swaggerClient } = this.props;

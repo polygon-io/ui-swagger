@@ -41,7 +41,7 @@ export class RestDocumentation extends Component {
     }
     return (
       <div id="homepage" className="page">
-        <SwaggerUI swaggerClient={this.state.swaggerClient} />
+        <SwaggerUI swaggerClient={this.state.swaggerClient} {...this.props} />
       </div>
     );
   }

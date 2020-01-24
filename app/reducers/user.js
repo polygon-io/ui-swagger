@@ -9,7 +9,8 @@ const initialState = {
   access: null,
   accessFetched: false,
   connections: null,
-  connectionsFetched: false
+  connectionsFetched: false,
+  apiKey: ""
 };
 
 export default function reducer(state = initialState, action) {
