@@ -1,5 +1,15 @@
 [![Build Status](http://drone.polygon.io/api/badges/polygon-io/ui-swagger/status.svg)](http://drone.polygon.io/polygon-io/ui-swagger)
 
+# TODO:
+
+[] getting started section
+[] api key (dispatched from the input or the user login)
+[] sticky side menu
+[] polishing the try section (the select with the producing output is ugly )
+[] a loader for when the app is starting
+[] testing the response modal with success
+[X] passing custom parameters to the test request
+[] testing on different browsers (just tested in chrome and brave on linux)
 
 Swagger UI
 ===

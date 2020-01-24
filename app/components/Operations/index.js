@@ -3,6 +3,7 @@ import Markdown from "react-markdown";
 
 import { toHTMLId } from "../../helpers/utils";
 import { SampleResponse } from "./SampleResponse";
+import { connect } from "react-redux";
 
 const Response = ({ response, code }) => {
   let description;
@@ -29,7 +30,7 @@ const Parameter = ({ parameter, setParameter, values }) => {
           <input
             className="input"
             type={type}
-            value={values[name] || parameter.default || ""}
+            value={values[name] || ""}
             onChange={event => setParameter(name, event.target.value)} // TODO save parameter for request
           />
           <p className="parameter__type">{type}</p>
@@ -40,20 +41,38 @@ const Parameter = ({ parameter, setParameter, values }) => {
   );
 };
 
-const Parameters = ({ parameters, ...props }) => {
-  if (!parameters || parameters.length == 0) {
-    return "";
+class Parameters extends React.Component {
+  componentDidMount() {
+    if (!this.props.parameters) return;
+    const defaultParams = {};
+    for (const p of this.props.parameters) {
+      if (p.default) {
+        defaultParams[p.name] = p.default;
+      }
+    }
+    this.props.initDefaultParameters(defaultParams);
   }
 
-  return (
-    <div>
-      <h5 className="title is-5">Parameters</h5>
-      {parameters.map(parameter => (
-        <Parameter key={parameter.name} parameter={parameter} {...props} />
-      ))}
-    </div>
-  );
-};
+  render() {
+    const { parameters } = this.props;
+    if (!parameters || parameters.length == 0) {
+      return "";
+    }
+
+    return (
+      <div>
+        <h5 className="title is-5">Parameters</h5>
+        {parameters.map(parameter => (
+          <Parameter
+            key={parameter.name}
+            parameter={parameter}
+            {...this.props}
+          />
+        ))}
+      </div>
+    );
+  }
+}
 
 const ResponseModal = ({
   isActive = false,
@@ -116,6 +135,9 @@ const ResponseModal = ({
   );
 };
 
+@connect(store => ({
+  user: store.user
+}))
 class Operation extends React.Component {
   state = {
     showTryResponseModal: false,
@@ -133,9 +155,20 @@ class Operation extends React.Component {
     });
   };
 
+  initDefaultParameters = defaultValues => {
+    this.setState({
+      ...this.state,
+      parameters: defaultValues
+    });
+  };
+
   tryOperation = (tag, path, swaggerClient) => {
-    console.log("this.parameters", this.state.parameters);
-    swaggerClient.apis[tag][toHTMLId(path)]()
+    const payload = {
+      ...this.state.parameters,
+      apiKey: this.props.user.apiKey
+    };
+    console.log("PAYLOAD", payload);
+    swaggerClient.apis[tag][toHTMLId(path)](payload)
       .then(response => {
         const requestUrl = response.url;
         const responseCode = response.statusCode; // status code
@@ -221,6 +254,7 @@ class Operation extends React.Component {
             <Parameters
               parameters={parameters}
               setParameter={this.setParameter}
+              initDefaultParameters={this.initDefaultParameters}
               values={this.state.parameters}
             />
           </div>
