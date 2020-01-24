@@ -2,7 +2,7 @@
 
 # TODO:
 
-[] getting started section
+[*] getting started section
 [*] api key (dispatched from the input or the user login)
 [] sticky side menu
 [] polishing the try section (the select with the producing output is ugly )
