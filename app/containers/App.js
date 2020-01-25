@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Route, Redirect, Switch, Link, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import actions from "../actions/index";
-import Ticker from "../components/MarketTicker";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import NotificationsBar from "../components/NotificationsBar";
-import Icons from "../helpers/icons";
 
 // Pages:
 import { RestDocumentation } from "../pages/RestDocumentation";

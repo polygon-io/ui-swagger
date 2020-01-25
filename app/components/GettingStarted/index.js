@@ -16,12 +16,12 @@ export class GettingStarted extends React.Component {
             <p>
               These can be called passing your API key ( when needed ) in the
               query string. For example:
-              <pre>
-                <code>
-                  https://api.polygon.io/v1/last/stocks/AAPL?apiKey=YOURKEY
-                </code>
-              </pre>
             </p>
+            <pre>
+              <code>
+                https://api.polygon.io/v1/last/stocks/AAPL?apiKey=YOURKEY
+              </code>
+            </pre>
             <h3 className="title is-3">Streaming Clients</h3>
             <p>
               Polygon.io uses WebSockets as the primary way to broadcast

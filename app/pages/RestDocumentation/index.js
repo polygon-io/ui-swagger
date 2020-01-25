@@ -34,13 +34,18 @@ export class RestDocumentation extends Component {
   render() {
     if (!this.state.swaggerClient) {
       return (
-        <div id="homepage" className="page">
-          <div>TODO: LOADING PAGE</div>
+        <div id="restdocumentation" className="page restdocumentation--loader">
+          <span>
+            <i
+              key="restdocumentation__loader"
+              className="fas fa-spinner fa-spin is-primary"
+            ></i>
+          </span>
         </div>
       );
     }
     return (
-      <div id="homepage" className="page">
+      <div id="restdocumentation" className="page">
         <SwaggerUI swaggerClient={this.state.swaggerClient} {...this.props} />
       </div>
     );

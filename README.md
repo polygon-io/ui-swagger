@@ -4,11 +4,12 @@
 
 [*] getting started section
 [*] api key (dispatched from the input or the user login)
-[] sticky side menu
-[] polishing the try section (the select with the producing output is ugly )
-[] a loader for when the app is starting
-[] testing the response modal with success
 [*] passing custom parameters to the test request
+[*] a loader for when the app is starting
+[] sticky side menu
+[] display sample below description on mobile
+[] polishing the try section (the select with the producing output is ugly )
+[] testing the response modal with success
 [] testing on different browsers (just tested in chrome and brave on linux)
 
 Swagger UI

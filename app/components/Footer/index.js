@@ -23,7 +23,6 @@ class Footer extends Component {
                 All rights reserved.
               </p>
             </div>
-            <div className="column">Footer stuff</div>
           </div>
         </div>
       </footer>
