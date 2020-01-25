@@ -241,8 +241,8 @@ class Operation extends React.Component {
     const { summary, description, produces, responses, parameters } = get;
 
     return (
-      <section className="columns operation">
-        <div className="column operation__description is-half">
+      <section className="columns is-desktop operation">
+        <div className="column operation__description is-half-desktop is-half-tablet">
           <h3 id={toHTMLId(id)} className="title is-3">
             {summary}
           </h3>
@@ -301,7 +301,7 @@ class Operation extends React.Component {
             </table>
           </section>
         </div>
-        <section className="column operation__samples is-half">
+        <section className="column operation__samples is-half-desktop is-half-tablet">
           <SampleResponse responses={responses} {...props} />
         </section>
         <ResponseModal

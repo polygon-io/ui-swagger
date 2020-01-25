@@ -21,7 +21,7 @@ const Endpoint = ({ operation, path }) => {
 const OperationsSection = ({ taggedOperations, ...props }) => {
   const { tag, operations } = taggedOperations;
   return (
-    <div className="is-hidden-mobile">
+    <div className="is-hidden-mobile is-hidden-tablet">
       <p className="menu-label">
         <a href={`#${toHTMLId(tag)}`}>{tag}</a>
       </p>
@@ -45,12 +45,12 @@ export const SideBar = ({ orderedOperations, dispatch, user }) => {
   const debouncedSetApiKey = debounce(setApiKey, 300);
 
   return (
-    <aside className="menu sidebar">
+    <aside className="menu sidebar is-hidden-tablet-only">
       <a className="sidebar__logo" href="/">
         <img src="images/icon.svg" />
       </a>
-      <p className="menu-label is-hidden-mobile">API KEY</p>
-      <div className="columns is-hidden-mobile">
+      <p className="menu-label is-hidden-mobile is-hidden-tablet">API KEY</p>
+      <div className="columns is-hidden-mobile is-hidden-tablet">
         <input
           id="apikey"
           className="input is-small"
@@ -58,8 +58,8 @@ export const SideBar = ({ orderedOperations, dispatch, user }) => {
           onChange={debouncedSetApiKey}
         />
       </div>
-      <p className="menu-label is-hidden-mobile">API REFERENCE</p>
-      <ul className="menu-list is-hidden-mobile">
+      <p className="menu-label is-hidden-mobile is-hidden-tablet">API REFERENCE</p>
+      <ul className="menu-list is-hidden-mobile is-hidden-tablet">
         <li key="getting-started">
           <a href="#getting-started">Getting Started</a>
         </li>
