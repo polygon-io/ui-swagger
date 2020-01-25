@@ -3,8 +3,11 @@ import React from "react";
 export class GettingStarted extends React.Component {
   render() {
     return (
-      <section className="getting-started columns">
-        <div id="getting-started" className="operation column is-half">
+      <section className="columns">
+        <div
+          id="getting-started"
+          className="operation getting-started column is-half"
+        >
           <div className="heading">
             <h2 className="title is-2">Getting Started</h2>
           </div>
