@@ -58,7 +58,9 @@ export const SideBar = ({ orderedOperations, dispatch, user }) => {
           onChange={debouncedSetApiKey}
         />
       </div>
-      <p className="menu-label is-hidden-mobile is-hidden-tablet">API REFERENCE</p>
+      <p className="menu-label is-hidden-mobile is-hidden-tablet">
+        API REFERENCE
+      </p>
       <ul className="menu-list is-hidden-mobile is-hidden-tablet">
         <li key="getting-started">
           <a href="#getting-started">Getting Started</a>

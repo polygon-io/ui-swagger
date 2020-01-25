@@ -34,8 +34,8 @@ const Property = ({ name, type, optional, description, property }) => {
     return <SchemaRef schema={property.items} parent={name} />;
   }
   return (
-    <div className="response__property columns">
-      <div className="response__property__labels column is-one-quarter">
+    <div className="response__property columns is-mobile">
+      <div className="response__property__labels column is-one-quarter is-mobile">
         <span className="response__property__name">{name}</span>
         <span
           className={`response__property__type response__property__type--${type}`}
@@ -48,7 +48,7 @@ const Property = ({ name, type, optional, description, property }) => {
           ""
         )}
       </div>
-      <div className="response__property__description column">
+      <div className="response__property__description column is-mobile">
         <Markdown source={description} escapeHtml={false} />
       </div>
     </div>

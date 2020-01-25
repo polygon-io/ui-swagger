@@ -271,21 +271,19 @@ class Operation extends React.Component {
               TRY
             </button>
             <div className="columns">
-              <div className="column">
-                Response Types
-              </div>
+              <div className="column">Response Types</div>
               <div className="column">
                 <div className="select">
-                <select>
-                  {produces.map(contentType => (
+                  <select>
+                    {produces.map(contentType => (
                       <option
-                          key={toHTMLId(`${id}_produce_option_${contentType}`)}
-                          value={contentType}
+                        key={toHTMLId(`${id}_produce_option_${contentType}`)}
+                        value={contentType}
                       >
                         {contentType}
                       </option>
-                  ))}
-                </select>
+                    ))}
+                  </select>
                 </div>
               </div>
             </div>
