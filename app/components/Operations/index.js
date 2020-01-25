@@ -270,19 +270,23 @@ class Operation extends React.Component {
               {" "}
               TRY
             </button>
-            <div className="box">
-              <div className="field control">
+            <div className="columns">
+              <div className="column">
                 Response Types
-                <select className="select">
+              </div>
+              <div className="column">
+                <div className="select">
+                <select>
                   {produces.map(contentType => (
-                    <option
-                      key={toHTMLId(`${id}_produce_option_${contentType}`)}
-                      value={contentType}
-                    >
-                      {contentType}
-                    </option>
+                      <option
+                          key={toHTMLId(`${id}_produce_option_${contentType}`)}
+                          value={contentType}
+                      >
+                        {contentType}
+                      </option>
                   ))}
                 </select>
+                </div>
               </div>
             </div>
           </section>
