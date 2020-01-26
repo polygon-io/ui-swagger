@@ -31,7 +31,7 @@ const Parameter = ({ parameter, setParameter, values }) => {
             className="input"
             type={type}
             value={values[name] || ""}
-            onChange={event => setParameter(name, event.target.value)} // TODO save parameter for request
+            onChange={event => setParameter(name, event.target.value)}
           />
           <p className="parameter__type">{type}</p>
           <Markdown source={description} />
@@ -142,7 +142,8 @@ class Operation extends React.Component {
   state = {
     showTryResponseModal: false,
     parameters: {},
-    tryResponseModal: {}
+    tryResponseModal: {},
+    loading: false,
   };
 
   setParameter = (parameter, value) => {
@@ -163,6 +164,10 @@ class Operation extends React.Component {
   };
 
   tryOperation = (tag, path, swaggerClient) => {
+    this.setState({
+      ...this.state,
+      loading: true,
+    });
     swaggerClient.apis[tag][toHTMLId(path)](this.state.parameters, {
       securities: {
         authorized: {
@@ -212,6 +217,7 @@ class Operation extends React.Component {
   }) => {
     this.setState({
       ...this.state,
+      loading: false,
       showTryResponseModal: true,
       tryResponseModal: {
         requestUrl,
@@ -266,8 +272,7 @@ class Operation extends React.Component {
                 this.tryOperation(props.tag, id, this.props.swaggerClient)
               }
             >
-              {" "}
-              TRY
+              { this.state.loading ? "LOADING..." : "TRY" }
             </button>
             <div className="columns">
               <div className="column">Response Types</div>
