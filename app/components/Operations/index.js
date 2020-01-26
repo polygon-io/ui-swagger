@@ -23,7 +23,7 @@ const Response = ({ response, code }) => {
 const Parameter = ({ parameter, setParameter, values }) => {
   const { name, type, description } = parameter;
   return (
-    <div className="">
+    <div className="parameter__box">
       <div className="columns">
         <div className="column is-one-quarter">{name}</div>
         <div className="column">

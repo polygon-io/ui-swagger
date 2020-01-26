@@ -11,3 +11,15 @@
   padding: 0;
   margin: 0;
 }
+
+.parameter__box {
+  background-color: #f8f8f9;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 3px;
+  border: 1px solid #e8eaeb;
+}
+
+.parameter__box:hover {
+  background-color: #f0f0f2;
+}
