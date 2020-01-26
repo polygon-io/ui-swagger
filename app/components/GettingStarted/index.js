@@ -10,7 +10,7 @@ export class GettingStarted extends React.Component {
             <h2 className="title is-2">Getting Started</h2>
           </div>
           <div className="getting-started-summary">
-            <h3 className="title is-3">RESTfull APIs</h3>
+            <h3 className="title is-3">RESTful APIs</h3>
             <p>
               Restful API endpoints are listed on the left menu of this page.
             </p>
