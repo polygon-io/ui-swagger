@@ -10,7 +10,7 @@ const Endpoint = ({ operation, path }) => {
   return (
     <li key={toHTMLId(id)}>
       <a href={`#${toHTMLId(id)}`}>
-        <span className="sidebar__operation__method">GET</span> {get.summary}
+        <span className="tag is-success">GET</span> {get.summary}
       </a>
     </li>
   );
@@ -20,7 +20,7 @@ const OperationsSection = ({ taggedOperations, ...props }) => {
   const { tag, operations } = taggedOperations;
   return (
     <div className="">
-      <p className="menu-label">
+      <p className="menu-label title is-5 padding-top-2">
         <a href={`#${toHTMLId(tag)}`}>{tag}</a>
       </p>
       <ul className="menu-list">
@@ -45,11 +45,11 @@ export const SideBar = ({ orderedOperations, dispatch, user }) => {
   return (
     <aside className="menu">
       <div className="sidebar is-hidden-mobile">
-          {/* I find it cleaner without the logo in the side menu */}
+        {/* I find it cleaner without the logo in the side menu */}
         {/*<a className="sidebar__logo" href="/">*/}
         {/*  <img src="images/icon.svg" />*/}
         {/*</a>*/}
-        <p className="menu-label">API KEY</p>
+        <p className="menu-label title is-5">API KEY</p>
         <div className="columns">
           <input
             id="apikey"
@@ -58,7 +58,7 @@ export const SideBar = ({ orderedOperations, dispatch, user }) => {
             onChange={debouncedSetApiKey}
           />
         </div>
-        <p className="menu-label">API REFERENCE</p>
+        <p className="menu-label title is-5">API REFERENCE</p>
         <ul className="menu-list">
           <li key="getting-started">
             <a href="#getting-started">Getting Started</a>

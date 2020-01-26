@@ -8,24 +8,16 @@
   overflow: scroll;
   height: 100vh;
   padding: 2em 2em 3.25rem 2em;
-  //padding-bottom: 3.25rem;
 }
 
 .sidebar__logo {
   text-align: center;
   width: auto;
-  //display: block;
 }
 .sidebar__logo > img {
   height: 10em;
 }
 
-.sidebar__operation__method {
-  text-transform: uppercase;
-  border: 1px solid #2ad389;
-  border-radius: 3px;
-  font-size: 8pt;
-  padding: 2px 4px;
-  color: #2ad389;
-  margin-right: 4px;
+.padding-top-2 {
+  padding-top: 2em;
 }

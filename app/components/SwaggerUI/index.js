@@ -42,7 +42,7 @@ export class SwaggerUI extends React.Component {
           orderedOperations={orderedOperations}
           {...this.props}
         />
-        <div className="container column">
+        <div className="column container is-three-quarters">
           <GettingStarted id="getting-started" />
           <TaggedOperations
             orderedOperations={orderedOperations}

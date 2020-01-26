@@ -242,11 +242,11 @@ class Operation extends React.Component {
 
     return (
       <section className="columns is-desktop operation">
-        <div className="column operation__description is-half-desktop is-half-tablet">
+        <div className="column operation__description is-half-desktop">
           <span className="anchor" id={toHTMLId(id)}></span>
           <h3 className="title is-3">{summary}</h3>
           <h4 className="title is-4">
-            <span className="operation__description__method">{method}</span>
+            <span className="tag is-success">{method}</span>
             {path}
           </h4>
           <Markdown source={description} />
@@ -302,7 +302,7 @@ class Operation extends React.Component {
             </table>
           </section>
         </div>
-        <section className="column operation__samples is-half-desktop is-half-tablet">
+        <section className="column operation__samples is-half-desktop">
           <SampleResponse responses={responses} {...props} />
         </section>
         <ResponseModal
