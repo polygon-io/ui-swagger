@@ -1,13 +1,20 @@
+.scrollbox {
+}
+
 .sidebar {
-  padding: 2em;
-  //position: fixed;
-  //overflow: scroll;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 3.25rem;
+  overflow: scroll;
+  height: 100vh;
+  padding: 2em 2em 3.25rem 2em;
+  //padding-bottom: 3.25rem;
 }
 
 .sidebar__logo {
   text-align: center;
   width: auto;
-  display: block;
+  //display: block;
 }
 .sidebar__logo > img {
   height: 10em;

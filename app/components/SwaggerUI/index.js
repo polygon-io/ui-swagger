@@ -36,9 +36,9 @@ export class SwaggerUI extends React.Component {
       }, {})
     );
     return (
-      <section className="main-content columns">
+      <div className="columns">
         <SideBar
-          className="column is-2 section"
+          className="column is-one-quarter"
           orderedOperations={orderedOperations}
           {...this.props}
         />
@@ -49,7 +49,7 @@ export class SwaggerUI extends React.Component {
             {...this.props}
           />
         </div>
-      </section>
+      </div>
     );
   }
 }

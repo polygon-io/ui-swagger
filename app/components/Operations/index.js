@@ -242,10 +242,9 @@ class Operation extends React.Component {
 
     return (
       <section className="columns is-desktop operation">
-        <div className="column operation__description is-half-desktop is-half-tablet">
-          <h3 id={toHTMLId(id)} className="title is-3">
-            {summary}
-          </h3>
+        <div className="column opera}tion__description is-half-desktop is-half-tablet">
+          <span className="anchor" id={toHTMLId(id)}></span>
+          <h3 className="title is-3">{summary}</h3>
           <h4 className="title is-4">
             <span className="operation__description__method">{method}</span>
             {path}
@@ -319,7 +318,8 @@ class Operation extends React.Component {
 const Operations = ({ tag, taggedOperations, ...props }) => {
   const operations = Object.values(taggedOperations.operations);
   return (
-    <section id={toHTMLId(tag)}>
+    <section>
+      <span className="anchor" id={toHTMLId(tag)}></span>
       <div>
         {operations.map(operation => (
           <Operation
