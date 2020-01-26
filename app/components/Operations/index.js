@@ -242,7 +242,7 @@ class Operation extends React.Component {
 
     return (
       <section className="columns is-desktop operation">
-        <div className="column opera}tion__description is-half-desktop is-half-tablet">
+        <div className="column operation__description is-half-desktop is-half-tablet">
           <span className="anchor" id={toHTMLId(id)}></span>
           <h3 className="title is-3">{summary}</h3>
           <h4 className="title is-4">
