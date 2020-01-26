@@ -45,9 +45,10 @@ export const SideBar = ({ orderedOperations, dispatch, user }) => {
   return (
     <aside className="menu">
       <div className="sidebar is-hidden-mobile">
-        <a className="sidebar__logo" href="/">
-          <img src="images/icon.svg" />
-        </a>
+          {/* I find it cleaner without the logo in the side menu */}
+        {/*<a className="sidebar__logo" href="/">*/}
+        {/*  <img src="images/icon.svg" />*/}
+        {/*</a>*/}
         <p className="menu-label">API KEY</p>
         <div className="columns">
           <input
