@@ -50,7 +50,7 @@ export const SideBar = ({ orderedOperations, dispatch, user }) => {
         {/*  <img src="images/icon.svg" />*/}
         {/*</a>*/}
         <p className="menu-label title is-5">API KEY</p>
-        <div className="columns">
+        <div>
           <input
             id="apikey"
             className="input is-small"
