@@ -2,39 +2,7 @@ import React from "react";
 import { debounce } from "lodash";
 
 import { update as updateUser } from "../../actions/user";
-import { toHTMLId } from "../../helpers/utils";
-
-const Endpoint = ({ operation, path }) => {
-  const { get } = operation;
-  const id = `get${path}`;
-  return (
-    <li key={toHTMLId(id)}>
-      <a href={`#${toHTMLId(id)}`}>
-        <span className="tag is-success">GET</span> {get.summary}
-      </a>
-    </li>
-  );
-};
-
-const OperationsSection = ({ taggedOperations, ...props }) => {
-  const { tag, operations } = taggedOperations;
-  return (
-    <div className="">
-      <p className="menu-label title is-5 padding-top-2">
-        <a href={`#${toHTMLId(tag)}`}>{tag}</a>
-      </p>
-      <ul className="menu-list">
-        {Object.entries(operations).map(([path, operation]) => (
-          <Endpoint
-            key={`endpoint_${toHTMLId(path)}`}
-            operation={operation}
-            path={path}
-          />
-        ))}
-      </ul>
-    </div>
-  );
-};
+import { SidebarOperationsSection } from "./OperationSection";
 
 export const SideBar = ({ orderedOperations, dispatch, user }) => {
   const setApiKey = event => {
@@ -66,7 +34,7 @@ export const SideBar = ({ orderedOperations, dispatch, user }) => {
         </ul>
         {orderedOperations.map(taggedOperations => {
           return (
-            <OperationsSection
+            <SidebarOperationsSection
               key={`section_${taggedOperations.tag}`}
               taggedOperations={taggedOperations}
             />
