@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { SideBar } from "../SideBar";
 import { GettingStarted } from "../GettingStarted";
-import { TaggedOperations } from "../Operations";
+import { TaggedOperations } from "../TaggedOperations";
 
 @connect(store => ({
   user: store.user
