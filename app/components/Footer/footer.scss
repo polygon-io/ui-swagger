@@ -1,2 +1,50 @@
 .footer {
+  background-color: #fff;
+
+  .is-blurb {
+    min-width: 200px;
+    min-height: 100px;
+  }
+
+  .bump-right {
+    padding-left: 32px;
+    margin-left: 1.33rem;
+  }
+
+  .logo-figure {
+    margin-right: 1.33rem;
+    min-height: 60px;
+  }
+
+  hr {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  strong {
+    color: $primary;
+    font-family: $title-family;
+    font-size: 1.08rem;
+    &:hover {
+      color: $link;
+    }
+  }
+
+  a {
+    color: $text;
+    &:hover {
+      color: $link;
+    }
+  }
+
+  .company-news {
+    margin-top: $padding * 2;
+  }
+
+  .disclaimer {
+    @include desktop {
+      margin-top: $padding * 8;
+      margin-left: $padding * 13;
+    }
+  }
 }
