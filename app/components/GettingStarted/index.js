@@ -7,7 +7,9 @@ export class GettingStarted extends React.Component {
         <span className="anchor" id="getting-started"></span>
         <div className="operation getting-started column is-half">
           <div className="heading">
-            <h2 className="title is-2 gettingStarted__title">Getting Started</h2>
+            <h2 className="title is-2 gettingStarted__title">
+              Getting Started
+            </h2>
           </div>
           <div className="getting-started-summary">
             <h3 className="title is-3">RESTful APIs</h3>

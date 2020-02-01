@@ -99,6 +99,7 @@ class ApiEndpoint extends React.Component {
   };
 
   closeResponseModal = () => {
+    console.log("CLOSE RESPONSE MODAL");
     this.setState({
       ...this.state,
       showTryResponseModal: false,

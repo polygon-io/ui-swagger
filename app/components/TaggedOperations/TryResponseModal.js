@@ -9,6 +9,12 @@ export const TryResponseModal = ({
   responseHeaders,
   error
 }) => {
+  document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    if (evt.keyCode === 27 || evt.key === "Escape" || evt.key === "Esc") {
+      close();
+    }
+  };
   if (error) {
     return (
       <div className={`modal ${isActive ? "is-active" : ""}`}>
