@@ -7,7 +7,7 @@ export const SidebarEndpointMenuEntry = ({ operation, path }) => {
   return (
     <li key={toHTMLId(id)}>
       <a href={`#${toHTMLId(id)}`}>
-        <span className="tag is-success">GET</span> {get.summary}
+        <span className="tag is-success sidebar__method">GET</span> {get.summary}
       </a>
     </li>
   );
