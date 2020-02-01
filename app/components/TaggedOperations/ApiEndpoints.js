@@ -121,7 +121,7 @@ class ApiEndpoint extends React.Component {
           <span className="anchor" id={toHTMLId(id)}></span>
           <h3 className="title is-3">{summary}</h3>
           <h4 className="title is-4">
-            <span className="tag is-success">{method}</span>
+            <span className="tag is-success apiEndpoint__method">GET</span>
             {path}
           </h4>
           <Markdown source={description} />
