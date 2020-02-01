@@ -124,7 +124,7 @@ class ApiEndpoint extends React.Component {
             <span className="tag is-success apiEndpoint__method">GET</span>
             {path}
           </h4>
-          <Markdown source={description} />
+          <Markdown className="apiEndpoint__description" source={description} />
           <div>
             <RequestParameters
               parameters={parameters}
