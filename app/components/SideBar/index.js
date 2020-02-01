@@ -29,7 +29,7 @@ export const SideBar = ({ orderedOperations, dispatch, user }) => {
         <p className="menu-label title is-5">API REFERENCE</p>
         <ul className="menu-list">
           <li key="getting-started">
-            <a href="#getting-started">Getting Started</a>
+            <a href="#getting-started">GETTING STARTED</a>
           </li>
         </ul>
         {orderedOperations.map(taggedOperations => {
