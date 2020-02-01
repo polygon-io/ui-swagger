@@ -183,6 +183,7 @@ class ApiEndpoint extends React.Component {
         <TryResponseModal
           isActive={this.state.showTryResponseModal}
           close={this.closeResponseModal}
+          summary={summary}
           {...this.state.tryResponseModal}
         />
       </section>

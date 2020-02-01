@@ -7,6 +7,7 @@ export const TryResponseModal = ({
   responseBody,
   responseCode,
   responseHeaders,
+  summary,
   error
 }) => {
   document.onkeydown = function(evt) {
@@ -20,8 +21,15 @@ export const TryResponseModal = ({
       <div className={`modal ${isActive ? "is-active" : ""}`}>
         <div className="modal-background" onClick={close}></div>
         <div className="modal-card">
+          <header className="modal-card-head">
+            <p className="modal-card-title">oops, something went wrong...</p>
+            <button
+              className="delete"
+              aria-label="close"
+              onClick={close}
+            ></button>
+          </header>
           <div className="modal-card-body">
-            <h5 className="title is-5">oops, something went wrong...</h5>
             <div>
               <pre>{error.message}</pre>
             </div>
@@ -39,20 +47,31 @@ export const TryResponseModal = ({
     <div className={`modal ${isActive ? "is-active" : ""}`}>
       <div className="modal-background" onClick={close}></div>
       <div className="modal-card">
+        <header className="modal-card-head">
+          <p className="modal-card-title">
+            <span className="tag is-success apiEndpoint__method">GET</span>
+            {summary}
+          </p>
+          <button
+            className="delete"
+            aria-label="close"
+            onClick={close}
+          ></button>
+        </header>
         <section className="modal-card-body">
-          <h5 className="title is-5">REQUEST URL</h5>
+          <h5 className="title is-5 modal__title">REQUEST URL</h5>
           <div>
             <pre>{requestUrl}</pre>
           </div>
-          <h5 className="title is-5">RESPONSE BODY</h5>
+          <h5 className="title is-5 modal__title">RESPONSE BODY</h5>
           <div>
             <pre>{JSON.stringify(responseBody, null, 2)}</pre>
           </div>
-          <h5 className="title is-5">RESPONSE CODE</h5>
+          <h5 className="title is-5 modal__title">RESPONSE CODE</h5>
           <div>
             <pre>{responseCode}</pre>
           </div>
-          <h5 className="title is-5">RESPONSE HEADERS</h5>
+          <h5 className="title is-5 modal__title">RESPONSE HEADERS</h5>
           <div>
             <pre>{JSON.stringify(responseHeaders, null, 2)}</pre>
           </div>
