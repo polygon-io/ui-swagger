@@ -125,14 +125,14 @@ class ApiEndpoint extends React.Component {
             {path}
           </h4>
           <Markdown className="apiEndpoint__description" source={description} />
-          <div>
+          <section className="apiEndpoint__parameters">
             <RequestParameters
               parameters={parameters}
               setParameter={this.setParameter}
               initDefaultParameters={this.initDefaultParameters}
               values={this.state.parameters}
             />
-          </div>
+          </section>
           <section>
             <h5 className="title is-5">Test this endpoint</h5>
             <button
