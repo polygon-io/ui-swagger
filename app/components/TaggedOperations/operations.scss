@@ -1,17 +1,19 @@
 .operation {
-  border-bottom: 1px solid #fafafa;
+  //border-bottom: 1px solid #4E575E;
   background-color: #ffffff;
   overflow: hidden;
 }
 
 .operation__description {
   padding: 2em;
+  border-bottom: 1px solid #eee;
 }
 
 .operation__samples {
   background-color: #5c666f;
   padding: 0;
   margin: 0;
+  border-top: 1px solid #4e575e;
 }
 
 .parameter__box {
