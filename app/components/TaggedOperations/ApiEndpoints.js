@@ -164,7 +164,7 @@ class ApiEndpoint extends React.Component {
           </section>
           <section>
             <h5 className="title is-5">Response Messages</h5>
-            <table className="table full-width">
+            <table className="table full-width apiEndpoint__responseMessages__table">
               <tbody>
                 {Object.entries(responses).map(([code, response]) => (
                   <Response
