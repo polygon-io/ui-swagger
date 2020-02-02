@@ -101,7 +101,7 @@ class HeaderComponent extends Component {
         role="navigation"
         aria-label="main navigation"
       >
-        <div className="container">
+        <div className="container navbar__container">
           <div class="navbar-brand">
             <a class="navbar-item" href="/">
               <img class="logo-img" src="/images/logo_white.svg" />
