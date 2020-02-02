@@ -134,18 +134,19 @@ class ApiEndpoint extends React.Component {
               values={this.state.parameters}
             />
           </section>
-          <section>
+          <section className="apiEndpoint__try">
             <h5 className="title is-5">Test this endpoint</h5>
-            <button
-              className="button is-primary"
-              onClick={() =>
-                this.tryOperation(props.tag, id, this.props.swaggerClient)
-              }
-            >
-              {this.state.loading ? "LOADING..." : "TRY"}
-            </button>
             <div className="columns">
-              <div className="column">Response Types</div>
+              <div className="column">
+                <button
+                  className="button is-primary"
+                  onClick={() =>
+                    this.tryOperation(props.tag, id, this.props.swaggerClient)
+                  }
+                >
+                  {this.state.loading ? "LOADING..." : "TRY"}
+                </button>
+              </div>
               <div className="column">
                 <div className="select">
                   <select>
