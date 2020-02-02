@@ -1,4 +1,6 @@
 import React from "react";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { atomOneDarkReasonable as highlightTheme } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 import { responseToJsonSample } from "../../helpers/responseToJsonSample";
 import { SampleResponseProperties } from "./SampleResponseProperties";
@@ -20,6 +22,7 @@ export class SampleResponse extends React.Component {
   }
 
   render() {
+    highlightTheme.hljs.background = "";
     const { responses } = this.props;
     if (!responses["200"]) {
       return <div></div>;
@@ -54,7 +57,9 @@ export class SampleResponse extends React.Component {
               this.state.sampleResponse ? "" : "is-hidden"
             }`}
           >
-            <pre>{JSON.stringify(sampleResponse, null, 2)}</pre>
+            <SyntaxHighlighter language="json" style={highlightTheme}>
+              {JSON.stringify(sampleResponse, null, 2)}
+            </SyntaxHighlighter>
           </div>
         </div>
         <div className="collapsable">

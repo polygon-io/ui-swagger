@@ -1,4 +1,6 @@
 import React from "react";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { atomOneLight as highlightTheme } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 export const TryResponseModal = ({
   isActive = false,
@@ -10,6 +12,7 @@ export const TryResponseModal = ({
   summary,
   error
 }) => {
+  highlightTheme.hljs.background = "";
   document.onkeydown = function(evt) {
     evt = evt || window.event;
     if (evt.keyCode === 27 || evt.key === "Escape" || evt.key === "Esc") {
@@ -65,7 +68,9 @@ export const TryResponseModal = ({
           </div>
           <h5 className="title is-5 modal__title">RESPONSE BODY</h5>
           <div>
-            <pre>{JSON.stringify(responseBody, null, 2)}</pre>
+            <SyntaxHighlighter language="json" style={highlightTheme}>
+              {JSON.stringify(responseBody, null, 2) || ""}
+            </SyntaxHighlighter>
           </div>
           <h5 className="title is-5 modal__title">RESPONSE CODE</h5>
           <div>
