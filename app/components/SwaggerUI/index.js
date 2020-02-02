@@ -38,11 +38,11 @@ export class SwaggerUI extends React.Component {
     return (
       <div className="columns">
         <SideBar
-          className="column is-one-quarter"
+          className="column"
           orderedOperations={orderedOperations}
           {...this.props}
         />
-        <div className="column is-three-quarters">
+        <div className="column">
           <GettingStarted id="getting-started" />
           <TaggedOperations
             orderedOperations={orderedOperations}
