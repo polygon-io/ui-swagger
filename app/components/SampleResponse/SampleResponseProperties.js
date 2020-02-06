@@ -6,6 +6,7 @@ export const SampleResponseProperties = ({ schema }) => {
   if (schema.items && schema.items.$$ref) {
     return <SampleResponseSchemaRef schema={schema.items} />;
   }
+
   if (schema.properties) {
     return (
       <div className="response__properties">
@@ -22,6 +23,8 @@ export const SampleResponseProperties = ({ schema }) => {
       </div>
     );
   }
-
+  if (schema.type === "object" && schema.$$ref) {
+    return <SampleResponseSchemaRef schema={schema} />;
+  }
   return <div>Missing response property formatter</div>;
 };

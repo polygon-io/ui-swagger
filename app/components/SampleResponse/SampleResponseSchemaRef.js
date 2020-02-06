@@ -12,16 +12,17 @@ export const SampleResponseSchemaRef = ({ schema, parent }) => {
         <span className="response__properties__schema__name">{ref}</span>
       </div>
       <div>
-        {Object.entries(schema.properties).map(([name, property], idx) => (
-          <SampleResponseProperty
-            key={`${toHTMLId(schema.$$ref)}_${idx}_${parent}`}
-            name={name}
-            type={property.type}
-            optional={!schema.required || schema.required.includes(name)}
-            description={property.description}
-            property={property}
-          />
-        ))}
+        {schema.properties &&
+          Object.entries(schema.properties).map(([name, property], idx) => (
+            <SampleResponseProperty
+              key={`${toHTMLId(schema.$$ref)}_${idx}_${parent}`}
+              name={name}
+              type={property.type}
+              optional={!schema.required || schema.required.includes(name)}
+              description={property.description}
+              property={property}
+            />
+          ))}
       </div>
     </div>
   );
