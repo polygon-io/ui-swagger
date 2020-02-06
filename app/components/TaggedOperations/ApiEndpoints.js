@@ -119,7 +119,7 @@ class ApiEndpoint extends React.Component {
     return (
       <section className="columns is-desktop operation" id={toHTMLId(id)}>
         <div className="column operation__description is-half-desktop">
-          <span className="anchor" id={toHTMLId(id)+'_anchor'}></span>
+          <span className="anchor" id={toHTMLId(id) + "_anchor"}></span>
           <h3 className="title is-3">{summary}</h3>
           <h4 className="title is-4">
             <span className="tag is-success apiEndpoint__method">GET</span>

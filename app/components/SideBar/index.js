@@ -1,6 +1,6 @@
 import React from "react";
 import { debounce } from "lodash";
-import Scrollspy from 'react-scrollspy';
+import Scrollspy from "react-scrollspy";
 
 import { update as updateUser } from "../../actions/user";
 import { SidebarOperationsSection } from "./OperationSection";
@@ -31,14 +31,14 @@ export const SideBar = ({ orderedOperations, dispatch, user }) => {
         <div>{apiKeyComponent}</div>
         <p className="menu-label title is-5">API REFERENCE</p>
         <Scrollspy
-            items={['getting-started']}
+          items={["getting-started"]}
           currentClassName="sidebar__method--current"
         >
-        <ul className="menu-list">
-          <li key="getting-started">
-            <a href="#getting-started">GETTING STARTED</a>
-          </li>
-        </ul>
+          <ul className="menu-list">
+            <li key="getting-started">
+              <a href="#getting-started">GETTING STARTED</a>
+            </li>
+          </ul>
         </Scrollspy>
         {orderedOperations.map(taggedOperations => {
           return (
