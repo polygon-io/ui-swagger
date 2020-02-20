@@ -36,7 +36,7 @@ export const SideBar = ({ orderedOperations, dispatch, user }) => {
         >
           <ul className="menu-list">
             <li key="getting-started">
-              <a href="#getting-started">GETTING STARTED</a>
+              <a href="#getting-started">Getting Started</a>
             </li>
           </ul>
         </Scrollspy>

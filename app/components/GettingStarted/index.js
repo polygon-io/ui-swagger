@@ -6,25 +6,33 @@ export class GettingStarted extends React.Component {
       <section className="columns">
         <span className="anchor" id="getting-started"></span>
         <div className="operation getting-started column is-half">
-          <div className="heading">
-            <h2 className="title is-2 gettingStarted__title">
-              Getting Started
-            </h2>
-          </div>
-          <div className="getting-started-summary">
+
+          <h2 className="title is-2 gettingStarted__title">Getting Started</h2>
+
+          <div className="getting-started-summary content">
             <h3 className="title is-3">RESTful APIs</h3>
             <p>
               Restful API endpoints are listed on the left menu of this page.
             </p>
             <p>
-              These can be called passing your API key ( when needed ) in the
-              query string. For example:
+              These can be called passing your API key in the query string:
             </p>
             <pre>
               <code>
                 https://api.polygon.io/v1/last/stocks/AAPL?apiKey=YOURKEY
               </code>
             </pre>
+            <h3 className="title is-3">Examples</h3>
+            <p>
+              For example code, visit our github, feel free to put in a
+              pull request to add more examples.
+            </p>
+            <a
+              href="https://github.com/Polygon-io"
+              target="_blank"
+            >
+              <button className="button is-primary">Polygon.io on GitHub</button>
+            </a>
             <h3 className="title is-3">Streaming Clients</h3>
             <p>
               Polygon.io uses WebSockets as the primary way to broadcast
@@ -36,23 +44,17 @@ export class GettingStarted extends React.Component {
                   WebSockets Documentation
                 </button>
               </a>
-            </p>
-
-            <h3 className="operation-title">Examples</h3>
-            <p>
-              For example code look at our github repo, feel free to put in a
-              pull request to add more examples. <br />
-              <br />
               <a
                 href="https://github.com/Polygon-io/client-examples"
                 target="_blank"
               >
-                <button className="button">Examples</button>
+                <button className="button is-white is-text">Streaming Client Examples</button>
               </a>
             </p>
 
             <br />
             <br />
+            <hr />
             <h3>Update Log</h3>
 
             <ul>
