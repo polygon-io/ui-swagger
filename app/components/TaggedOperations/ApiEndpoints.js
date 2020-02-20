@@ -120,7 +120,7 @@ class ApiEndpoint extends React.Component {
       <section className="columns is-desktop operation" id={toHTMLId(id)}>
         <div className="column operation__description is-half-desktop">
           <span className="anchor" id={toHTMLId(id) + "_anchor"}></span>
-          <h3 className="title is-3">{summary}</h3>
+          <h3 className="title is-3 summary__title">{summary}</h3>
           <h4 className="title is-4">
             <span className="tag is-success apiEndpoint__method">GET</span>
             {path}
@@ -147,7 +147,7 @@ class ApiEndpoint extends React.Component {
                   {this.state.loading ? "LOADING..." : "TRY"}
                 </button>
               </div>
-              <div className="column">
+              <div className="column is-narrow">
                 <div className="select">
                   <select>
                     {produces.map(contentType => (

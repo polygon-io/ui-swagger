@@ -5,22 +5,21 @@
 }
 
 .operation__description {
-  padding: 2em;
+  padding: $padding*2;
   border-bottom: 1px solid #eee;
 }
 
 .operation__samples {
   background-color: #5c666f;
   padding: 0;
+  padding-top: $padding*2;
   margin: 0;
   border-top: 1px solid #4e575e;
 }
 
 .parameter__box {
   background-color: #f8f8f9;
-  padding: 1em;
-  margin: 1em;
-  border-radius: 3px;
+  padding: $padding*2;
   border: 1px solid #e8eaeb;
 }
 
@@ -30,6 +29,10 @@
 
 .parameter__select {
   width: 100%;
+}
+
+.summary__title {
+  padding-top: $padding*2;
 }
 
 .apiEndpoint__method {
