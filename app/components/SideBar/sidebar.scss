@@ -1,0 +1,23 @@
+.sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 3.25rem;
+  overflow: scroll;
+  height: 100vh;
+  padding: $padding*2;
+  padding-bottom: $padding*6;
+  background-color: $light;
+}
+
+.padding-top-2 {
+  padding-top: 2em;
+}
+
+.sidebar__method {
+  margin-right: 1em;
+}
+
+.sidebar__method--current {
+  background-color: $white;
+  width: 100%;
+}

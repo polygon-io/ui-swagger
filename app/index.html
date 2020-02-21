@@ -1,91 +1,119 @@
 <!DOCTYPE html>
-<html><head>
-	
-	<title>UiSwagger</title>
-	<link rel="icon" href="/images/logo-symbol.png">
-	<meta property="og:title" content="Title" />
-	<meta property="og:url" content="https://polygon.io" />
-	<meta property="og:type" content="website" />
-	<meta property="og:description" content="desc" />
-	<meta property="og:image" content="https://polygon.io/images/splash.jpg" />
-	<meta name="description" content="desc">
-	<meta name="keywords" content="keyword1,keyword2">
+<html>
+  <head>
+    <title>Polygon.io - API Documentation</title>
+    <link rel="icon" href="/images/favicon.png">
+    <meta property="og:title" content="Title" />
+    <meta property="og:url" content="https://polygon.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="desc" />
+    <meta property="og:image" content="https://polygon.io/images/splash.jpg" />
+    <meta name="description" content="desc" />
+    <meta
+      name="keywords"
+      content="realtime,streaming,stocks,equities,forex,currencies,crypto,api,data"
+    />
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
 
-	<!-- build:css -->
-	<link rel="stylesheet" href="/styles/app.css">
-	<!-- endbuild -->
+    <!-- Apple touch icons -->
+	<link rel="apple-touch-icon" sizes="128x128" href="/images/poly-icon-128.png">
+	<link rel="icon" sizes="192x192" href="/images/poly-icon-192.png">
 
-	<!-- Google tags -->
-	<script type="application/ld+json">
-	{
-		"@context": "http://schema.org",
-		"@type": "Organization",
-		"url": "https://polygon.io",
-		"name": "Polygon.io",
-		"logo": "https://polygon.io/images/trans-icon-small.png",
-		"sameAs": [
-			"https://www.instagram.com/polygon_io/",
-			"https://www.facebook.com/polygonio/",
-			"https://twitter.com/polygon_io"
-		]
-	}
-	</script>
+    <!-- build:css -->
+    <link rel="stylesheet" href="/styles/app.css" />
+    <!-- endbuild -->
+    <link rel="stylesheet" href="/icons/template.css" />
 
-	<!-- UI Settings: -->
-	<script type="text/javascript">
-		window.API_BASE = 'https://api.polygon.io/'
-		if(window.location.hostname === 'localhost'){
-			window.API_BASE = 'http://localhost:8080/'
-		}
-	</script>
+    <!-- Google tags -->
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "url": "https://polygon.io",
+        "name": "Polygon.io",
+        "logo": "https://polygon.io/images/trans-icon-small.png",
+        "sameAs": [
+          "https://www.instagram.com/polygon_io/",
+          "https://www.facebook.com/polygonio/",
+          "https://twitter.com/polygon_io"
+        ]
+      }
+    </script>
 
-</head><body>
+    <!-- UI Settings: -->
+    <script type="text/javascript">
+      window.API_BASE = "https://api.polygon.io/";
+      window.STRIPE_API_KEY = "pk_live_bGjQzaU0bawFLuGIGr7wr9de";
+      window.PUB_API_BASE = "https://public.polygon.io/";
+      window.F_BASE = "https://polygon.io";
 
-	<!-- Top anchor for scrolling to top -->
-	<a id="top"></a>
+      if (window.location.hostname === "localhost") {
+        // window.API_BASE = "http://localhost:8080/";
+        window.DISABLE_MARKET_TICKER = true;
+        window.STRIPE_API_KEY = "pk_test_jxzheROntfCzCusnmJyAhc9a";
+        window.F_BASE = "http://localhost:5005";
+      }
+    </script>
+  </head>
+  <body class="has-navbar-fixed-top">
+    <!-- Top anchor for scrolling to top -->
+    <a id="top"></a>
 
-	<!-- Page Setup: -->
-	<div id="root"></div>
+    <!-- Page Setup: -->
+    <div id="root"></div>
 
-	<!-- SketchViewer Scripts: -->
-	<script type="text/javascript">
+    <!-- SketchViewer Scripts: -->
+    <script type="text/javascript">
 
-		// Script ASYNC Loader:
-		(function(e,t){typeof module!="undefined"&&module.exports?module.exports=t():typeof define=="function"&&define.amd?define(t):this[e]=t()})("$script",function(){function p(e,t){for(var n=0,i=e.length;n<i;++n)if(!t(e[n]))return r;return 1}function d(e,t){p(e,function(e){return t(e),1})}function v(e,t,n){function g(e){return e.call?e():u[e]}function y(){if(!--h){u[o]=1,s&&s();for(var e in f)p(e.split("|"),g)&&!d(f[e],g)&&(f[e]=[])}}e=e[i]?e:[e];var r=t&&t.call,s=r?t:n,o=r?e.join(""):t,h=e.length;return setTimeout(function(){d(e,function t(e,n){if(e===null)return y();!n&&!/^https?:\/\//.test(e)&&c&&(e=e.indexOf(".js")===-1?c+e+".js":c+e);if(l[e])return o&&(a[o]=1),l[e]==2?y():setTimeout(function(){t(e,!0)},0);l[e]=1,o&&(a[o]=1),m(e,y)})},0),v}function m(n,r){var i=e.createElement("script"),u;i.onload=i.onerror=i[o]=function(){if(i[s]&&!/^c|loade/.test(i[s])||u)return;i.onload=i[o]=null,u=1,l[n]=2,r()},i.async=1,i.src=h?n+(n.indexOf("?")===-1?"?":"&")+h:n,t.insertBefore(i,t.lastChild)}var e=document,t=e.getElementsByTagName("head")[0],n="string",r=!1,i="push",s="readyState",o="onreadystatechange",u={},a={},f={},l={},c,h;return v.get=m,v.order=function(e,t,n){(function r(i){i=e.shift(),e.length?v(i,r):v(i,t,n)})()},v.path=function(e){c=e},v.urlArgs=function(e){h=e},v.ready=function(e,t,n){e=e[i]?e:[e];var r=[];return!d(e,function(e){u[e]||r[i](e)})&&p(e,function(e){return u[e]})?t():!function(e){f[e]=f[e]||[],f[e][i](t),n&&n(r)}(e.join("|")),v},v.done=function(e){v([null],e)},v});
+      // Script ASYNC Loader:
+      (function(e,t){typeof module!="undefined"&&module.exports?module.exports=t():typeof define=="function"&&define.amd?define(t):this[e]=t()})("$script",function(){function p(e,t){for(var n=0,i=e.length;n<i;++n)if(!t(e[n]))return r;return 1}function d(e,t){p(e,function(e){return t(e),1})}function v(e,t,n){function g(e){return e.call?e():u[e]}function y(){if(!--h){u[o]=1,s&&s();for(var e in f)p(e.split("|"),g)&&!d(f[e],g)&&(f[e]=[])}}e=e[i]?e:[e];var r=t&&t.call,s=r?t:n,o=r?e.join(""):t,h=e.length;return setTimeout(function(){d(e,function t(e,n){if(e===null)return y();!n&&!/^https?:\/\//.test(e)&&c&&(e=e.indexOf(".js")===-1?c+e+".js":c+e);if(l[e])return o&&(a[o]=1),l[e]==2?y():setTimeout(function(){t(e,!0)},0);l[e]=1,o&&(a[o]=1),m(e,y)})},0),v}function m(n,r){var i=e.createElement("script"),u;i.onload=i.onerror=i[o]=function(){if(i[s]&&!/^c|loade/.test(i[s])||u)return;i.onload=i[o]=null,u=1,l[n]=2,r()},i.async=1,i.src=h?n+(n.indexOf("?")===-1?"?":"&")+h:n,t.insertBefore(i,t.lastChild)}var e=document,t=e.getElementsByTagName("head")[0],n="string",r=!1,i="push",s="readyState",o="onreadystatechange",u={},a={},f={},l={},c,h;return v.get=m,v.order=function(e,t,n){(function r(i){i=e.shift(),e.length?v(i,r):v(i,t,n)})()},v.path=function(e){c=e},v.urlArgs=function(e){h=e},v.ready=function(e,t,n){e=e[i]?e:[e];var r=[];return!d(e,function(e){u[e]||r[i](e)})&&p(e,function(e){return u[e]})?t():!function(e){f[e]=f[e]||[],f[e][i](t),n&&n(r)}(e.join("|")),v},v.done=function(e){v([null],e)},v});
 
-		var deps = [
-			"https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.0.0/polyfill.min.js",
-			<!-- build:js -->
-			"app.bundle.js"
-			<!-- endbuild -->
-		]
+      var deps = [
+      	"https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.0.0/polyfill.min.js",
+      	"https://use.fontawesome.com/releases/v5.6.0/js/all.js",
+        <!-- build:js -->
+      	"app.bundle.js"
+      	<!-- endbuild -->
+      ]
 
-		// Load Application
-		$script(deps, function(){
-			window.runApp()
+      // Load Application
+      $script(deps, function(){
+      		window.runApp()
 
-			// Load Optionals / Secondary
-			$script([
-				'https://www.google-analytics.com/analytics.js',
-				'https://www.googletagmanager.com/gtag/js?id=AW-811280232'
-			], function(){
-				
-			})
+      		// Load Optionals / Secondary
+      		$script([
+      				'https://www.google-analytics.com/analytics.js',
+      				'https://www.googletagmanager.com/gtag/js?id=AW-811280232'
+      		], function(){
 
-		})
-	</script>
+      		})
 
-	<script>
-		// Analytics
-		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-		ga('create', 'UA-90689589-1', 'auto'); ga('send', 'pageview')
-		// Adwords
-		window.dataLayer = window.dataLayer || []
-		function gtag(){dataLayer.push(arguments)}; gtag('js', new Date()); gtag('config', 'AW-811280232')
-	</script>
+      		})
+    </script>
 
-</body></html>
+    <script>
+      // Analytics
+      window.ga =
+        window.ga ||
+        function() {
+          (ga.q = ga.q || []).push(arguments);
+        };
+      ga.l = +new Date();
+      ga("create", "UA-90689589-1", "auto");
+      ga("send", "pageview");
+      // Adwords
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "AW-811280232");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,871 @@
+
+# 
+#  ---------------------------
+#   STOCKS ROUTES:
+#  ---------------------------
+# 
+
+  
+  /v1/marketstatus/now:
+    get:
+      summary: Market Status
+      description: |
+        Current status of each market
+      tags:
+        - Reference
+      responses:
+        200:
+          description: Status of the market and each exchange
+          schema:
+            $ref: '#/definitions/MarketStatus'
+        401:
+          $ref: '#/definitions/Unauthorized'
+        404:
+          $ref: '#/definitions/NotFound'
+        409:
+          $ref: '#/definitions/Conflict'
+  
+
+  
+  /v1/marketstatus/upcoming:
+    get:
+      summary: Market Holidays
+      description: |
+        Get upcoming market holidays and their open/close times
+      tags:
+        - Reference
+      responses:
+        200:
+          description: Holidays for each market in the near future
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/MarketHoliday'
+        401:
+          $ref: '#/definitions/Unauthorized'
+        404:
+          $ref: '#/definitions/NotFound'
+        409:
+          $ref: '#/definitions/Conflict'
+  
+
+
+  /v1/meta/exchanges:
+    get:
+      summary: Exchanges
+      description: |
+        List of stock exchanges which are supported by Polygon.io
+      tags:
+        - Stocks / Equities
+      responses:
+        200:
+          description: An array of exchanges
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Exchange'
+            example:
+            - id: 1
+              type: exchange
+              market: equities
+              mic: XASE
+              name: NYSE American (AMEX)
+              tape: A
+            - id: 2
+              type: exchange
+              market: equities
+              mic: XBOS
+              name: NASDAQ OMX BX
+              tape: B
+            - id: 15
+              type: exchange
+              market: equities
+              mic: IEXG
+              name: IEX
+              tape: V
+            - id: 16
+              type: TRF
+              market: equities
+              mic: XCBO
+              name: Chicago Board Options Exchange
+              tape: W
+        401:
+          $ref: '#/definitions/Unauthorized'
+        404:
+          $ref: '#/definitions/NotFound'
+        409:
+          $ref: '#/definitions/Conflict'
+
+
+
+  # /v1/meta/symbol-types:
+  #   get:
+  #     summary: Symbol Type Map
+  #     description: |
+  #       Map for a symbols type -> description
+  #     tags:
+  #       - Stocks / Equities
+  #     responses:
+  #       200:
+  #         description: Symbol Type Map
+  #         schema:
+  #           $ref: '#/definitions/SymbolTypeMap'
+  #       401:
+  #         $ref: '#/definitions/Unauthorized'
+  #       404:
+  #         $ref: '#/definitions/NotFound'
+  #       409:
+  #         $ref: '#/definitions/Conflict'
+
+
+  # /v1/historic/trades/{symbol}/{date}:
+  #   get:
+  #     summary: Historic Trades
+  #     description: |
+  #       Get historic trades for a symbol.
+  #     tags:
+  #       - Stocks / Equities
+  #     parameters: 
+  #     - name: symbol
+  #       in: path
+  #       description: Symbol of the company to retrieve
+  #       required: true
+  #       type: string
+  #       default: AAPL
+  #     - name: date
+  #       in: path
+  #       description: Date/Day of the historic ticks to retreive
+  #       required: true
+  #       type: string
+  #       format: date
+  #       default: "2018-2-2"
+  #     - name: offset
+  #       in: query
+  #       description: |
+  #         Timestamp offset, used for pagination. This is the offset at which to start the results. Using the `timestamp` of the last result as the offset will give you the next page of results.
+  #       required: false
+  #       type: integer
+  #     - name: limit
+  #       in: query
+  #       description: Limit the size of response, Max 50000
+  #       required: false
+  #       type: integer
+  #       default: 100
+  #     responses:
+  #       200:
+  #         description: An array of trades
+  #         schema:
+  #           type: object
+  #           required: [ day, map, msLatency, status, symbol, ticks ]
+  #           properties:
+  #             day:
+  #               type: string
+  #               description: Date that was evaluated from the request
+  #               format: date
+  #               example: "2018-2-2"
+  #             map:
+  #               type: object
+  #               description: Map for shortened result keys
+  #               example:
+  #                 c1: condition1
+  #                 c2: condition2
+  #                 c3: condition3
+  #                 c4: condition4
+  #                 e: exchange
+  #                 p: price
+  #                 s: size
+  #                 t: timestamp
+  #             msLatency:
+  #               type: integer
+  #               example: 8
+  #               description: Milliseconds of latency for the query results
+  #             status:
+  #               type: string
+  #               example: success
+  #               description: Status of this requests response
+  #             symbol:
+  #               type: string
+  #               example: AAPL
+  #               description: Symbol that was evaluated from the request
+  #             ticks:
+  #               type: array
+  #               items:
+  #                 $ref: "#/definitions/Trade"
+  #       default:
+  #         description: Unexpected error
+  #         schema:
+  #           $ref: '#/definitions/Error'
+
+  /v2/ticks/stocks/trades/{ticker}/{date}:
+    get:
+      summary: Historic Trades
+      description: |
+        Get historic trades for a ticker.
+      tags:
+        - Stocks / Equities
+      parameters: 
+      - name: ticker
+        in: path
+        description: Ticker symbol we want ticks for
+        required: true
+        type: string
+        default: AAPL
+      - name: date
+        in: path
+        description: Date/Day of the historic ticks to retreive ( YYYY-MM-DD )
+        required: true
+        type: string
+        format: date
+        default: "2018-02-02"
+      - name: timestamp
+        in: query
+        description: |
+          Timestamp offset, used for pagination. This is the offset at which to start the results. Using the `timestamp` of the last result as the offset will give you the next page of results.
+        required: false
+        type: integer
+      - name: timestampLimit
+        in: query
+        description: |
+          Maximum timestamp allowed in the results.
+        required: false
+        type: integer
+      - name: reverse
+        in: query
+        description: |
+          Reverse the order of the results. This is useful in combination with `timestamp` param.
+        required: false
+        type: boolean
+      - name: limit
+        in: query
+        description: Limit the size of response, Max 50000
+        required: false
+        type: integer
+        default: 10
+      responses:
+        200:
+          description: An array of trades
+          schema:
+            type: object
+            required: [ ticker, success ]
+            properties:
+              results_count:
+                type: integer
+                description: Total number of results in this response
+                example: 10
+              db_latency:
+                type: integer
+                example: 2
+                description: Milliseconds of latency for the query results from DB
+              success:
+                type: boolean
+                example: true
+                description: If this query was executed successfully
+              ticker:
+                type: string
+                example: AAPL
+                description: Ticker symbol that was evaluated from the request
+              results:
+                type: array
+                items:
+                  $ref: "#/definitions/StocksV2Trade"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+  # /v1/historic/quotes/{symbol}/{date}:
+  #   get:
+  #     summary: Historic Quotes
+  #     description: |
+  #       Get historic quotes for a symbol.
+  #     tags:
+  #       - Stocks / Equities
+  #     parameters: 
+  #     - name: symbol
+  #       in: path
+  #       description: Symbol of the company to retrieve
+  #       required: true
+  #       type: string
+  #       default: AAPL
+  #     - name: date
+  #       in: path
+  #       description: Date/Day of the historic ticks to retreive
+  #       required: true
+  #       type: string
+  #       format: date
+  #       default: "2018-2-2"
+  #     - name: offset
+  #       in: query
+  #       description: |
+  #         Timestamp offset, used for pagination. This is the offset at which to start the results. Using the `timestamp` of the last result as the offset will give you the next page of results.
+  #       required: false
+  #       type: integer
+  #     - name: limit
+  #       in: query
+  #       description: Limit the size of response, Max 50000
+  #       required: false
+  #       type: integer
+  #       default: 100
+  #     responses:
+  #       200:
+  #         description: An array of quotes
+  #         schema:
+  #           type: object
+  #           required: [ day, map, msLatency, status, symbol, ticks ]
+  #           properties:
+  #             day:
+  #               type: string
+  #               example: "2018-2-2"
+  #               description: Date that was evaluated from the request
+  #               format: date
+  #             map:
+  #               type: object
+  #               description: Map for shortened result keys
+  #               example:
+  #                 aE: askexchange
+  #                 aP: askprice
+  #                 aS: asksize
+  #                 bE: bidexchange
+  #                 bP: bidprice
+  #                 bS: bidsize
+  #                 c: condition
+  #                 t: timestamp
+  #             msLatency:
+  #               type: integer
+  #               example: 3
+  #               description: Milliseconds of latency for the query results
+  #             status:
+  #               type: string
+  #               example: success
+  #               description: Status of this requests response
+  #             symbol:
+  #               type: string
+  #               example: AAPL
+  #               description: Symbol that was evaluated from the request
+  #             ticks:
+  #               type: array
+  #               items:
+  #                 $ref: "#/definitions/Quote"
+  #       default:
+  #         description: Unexpected error
+  #         schema:
+  #           $ref: '#/definitions/Error'
+  
+
+
+  /v2/ticks/stocks/nbbo/{ticker}/{date}:
+    get:
+      summary: Historic Quotes ( NBBO )
+      description: |
+        Get historic NBBO quotes for a ticker.
+      tags:
+        - Stocks / Equities
+      parameters: 
+      - name: ticker
+        in: path
+        description: Ticker symbol we want ticks for
+        required: true
+        type: string
+        default: AAPL
+      - name: date
+        in: path
+        description: Date/Day of the historic ticks to retreive ( YYYY-MM-DD )
+        required: true
+        type: string
+        format: date
+        default: "2018-02-02"
+      - name: timestamp
+        in: query
+        description: |
+          Timestamp offset, used for pagination. This is the offset at which to start the results. Using the `timestamp` of the last result as the offset will give you the next page of results.
+        required: false
+        type: integer
+      - name: timestampLimit
+        in: query
+        description: |
+          Maximum timestamp allowed in the results.
+        required: false
+        type: integer
+      - name: reverse
+        in: query
+        description: |
+          Reverse the order of the results. This is useful in combination with `timestamp` param.
+        required: false
+        type: boolean
+      - name: limit
+        in: query
+        description: Limit the size of response, Max 50000
+        required: false
+        type: integer
+        default: 10
+      responses:
+        200:
+          description: An array of trades
+          schema:
+            type: object
+            required: [ ticker, success ]
+            properties:
+              results_count:
+                type: integer
+                description: Total number of results in this response
+                example: 10
+              db_latency:
+                type: integer
+                example: 2
+                description: Milliseconds of latency for the query results from DB
+              success:
+                type: boolean
+                example: true
+                description: If this query was executed successfully
+              ticker:
+                type: string
+                example: AAPL
+                description: Ticker symbol that was evaluated from the request
+              results:
+                type: array
+                items:
+                  $ref: "#/definitions/StocksV2NBBO"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+ 
+  /v1/last/stocks/{symbol}:
+    get:
+      summary: Last Trade for a Symbol
+      description: |
+        Get the last trade for a given stock.
+      tags:
+        - Stocks / Equities
+      parameters: 
+      - name: symbol
+        in: path
+        description: Symbol of the stock to get
+        required: true
+        type: string
+        default: AAPL
+      responses:
+        200:
+          description: Last trade for this stock
+          schema:
+            type: object
+            required: [ status, symbol, last ]
+            properties:
+              status:
+                type: string
+                example: success
+                description: Status of this requests response
+              symbol:
+                type: string
+                example: AAPL
+                description: Symbol that was evaluated from the request
+              last:
+                $ref: "#/definitions/LastTrade"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /v1/last_quote/stocks/{symbol}:
+    get:
+      summary: Last Quote for a Symbol
+      description: |
+        Get the last quote tick for a given stock.
+      tags:
+        - Stocks / Equities
+      parameters: 
+      - name: symbol
+        in: path
+        description: Symbol of the quote to get
+        required: true
+        type: string
+        default: AAPL
+      responses:
+        200:
+          description: Last quote tick for this stock
+          schema:
+            type: object
+            required: [ status, symbol, last ]
+            properties:
+              status:
+                type: string
+                example: success
+                description: Status of this requests response
+              symbol:
+                type: string
+                example: AAPL
+                description: Symbol that was evaluated from the request
+              last:
+                $ref: "#/definitions/LastQuote"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /v1/open-close/{symbol}/{date}:
+    get:
+      summary: Daily Open / Close
+      description: |
+        Get the open, close and afterhours prices of a symbol on a certain date.
+      tags:
+        - Stocks / Equities
+      parameters: 
+      - name: symbol
+        in: path
+        description: Symbol of the stock to get
+        required: true
+        type: string
+        default: AAPL
+      - name: date
+        in: path
+        description: Date of the requested open/close
+        required: true
+        type: string
+        format: date
+        default: "2018-3-2"
+      responses:
+        200:
+          description: Open Close of this symbol
+          schema:
+            type: object
+            required: [ status, symbol, last ]
+            properties:
+              symbol:
+                type: string
+                example: AAPL
+                description: Symbol that was evaluated from the request
+              open:
+                $ref: "#/definitions/HistTrade"
+              close:
+                $ref: "#/definitions/HistTrade"
+              afterHours:
+                $ref: "#/definitions/HistTrade"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+  /v1/meta/conditions/{ticktype}:
+    get:
+      summary: Condition Mappings
+      description: |
+        The mappings for conditions on trades and quotes.
+      parameters:
+        - name: ticktype
+          in: path
+          description: |
+            Ticker type we want mappings for
+          required: true
+          type: string
+          enum: ['trades','quotes']
+          default: trades
+      tags:
+        - Stocks / Equities
+      responses:
+        200:
+          description: An array of condition maps
+          schema:
+            $ref: '#/definitions/ConditionTypeMap'
+        401:
+          $ref: '#/definitions/Unauthorized'
+        404:
+          $ref: '#/definitions/NotFound'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /v2/snapshot/locale/us/markets/stocks/tickers:
+    get:
+      summary: Snapshot - All Tickers
+      description: |
+        Snapshot allows you to see all tickers current minute aggregate, daily aggregate and last trade. As well as previous days aggregate and calculated change for today.
+
+        ### *** Warning, may cause browser to hang ***
+        The response size is large, and sometimes will cause the browser prettyprint to crash.
+      tags:
+        - Stocks / Equities
+      responses:
+        200:
+          description: Get current state for all tickers
+          schema:
+            type: object
+            required: [ status, tickers ]
+            properties:
+              status:
+                type: string
+                example: OK
+                description: Status of this requests response
+              tickers:
+                type: array
+                items:
+                  $ref: "#/definitions/StocksSnapshotTicker"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+
+
+  /v2/snapshot/locale/us/markets/stocks/tickers/{ticker}:
+    get:
+      summary: Snapshot - Single Ticker
+      description: |
+        See the current snapshot of a single ticker
+      tags:
+        - Stocks / Equities
+      parameters: 
+      - name: ticker
+        in: path
+        description: Ticker of the snapshot
+        required: true
+        type: string
+        default: AAPL
+      responses:
+        200:
+          description: Get current state for a ticker
+          schema:
+            type: object
+            required: [ status, tickers ]
+            properties:
+              status:
+                type: string
+                example: OK
+                description: Status of this requests response
+              ticker:
+                $ref: "#/definitions/StocksSnapshotTicker"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+
+
+  /v2/snapshot/locale/us/markets/stocks/{direction}:
+    get:
+      summary: Snapshot - Gainers / Losers
+      description: |
+        See the current snapshot of the top 20 gainers or losers of the day at the moment.
+      tags:
+        - Stocks / Equities
+      parameters:
+        - name: direction
+          in: path
+          description: |
+            Direction we want
+          required: true
+          enum: [ "gainers", "losers"]
+          type: string
+          default: gainers
+      responses:
+        200:
+          description: Get the current tickers of the day
+          schema:
+            type: object
+            required: [ status, tickers ]
+            properties:
+              status:
+                type: string
+                example: OK
+                description: Status of this requests response
+              tickers:
+                type: array
+                items:
+                  $ref: "#/definitions/StocksSnapshotTicker"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+
+
+
+
+
+
+ 
+  /v2/aggs/ticker/{ticker}/prev:
+    get:
+      summary: Previous Close
+      description: |
+        Get the previous day close for the specified ticker
+      tags:
+        - Stocks / Equities
+        - Forex / Currencies
+        # - Indices
+        - Crypto
+      parameters: 
+      - name: ticker
+        in: path
+        description: Ticker symbol of the request
+        required: true
+        type: string
+        default: AAPL
+      - name: unadjusted
+        in: query
+        description: |
+          Set to true if the results should NOT be adjusted for splits.
+        required: false
+        type: boolean
+      responses:
+        200:
+          description: Previous day OHLC for ticker
+          schema:
+            $ref: "#/definitions/AggResponse"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+
+
+
+
+
+ 
+  /v2/aggs/ticker/{ticker}/range/{multiplier}/{timespan}/{from}/{to}:
+    get:
+      summary: Aggregates
+      description: |
+        Get aggregates for a date range, in custom time window sizes.
+        
+        Some tickers require a prefix, see examples below&#58;
+        - Stocks&#58; **AAPL**
+        - Currencies&#58; **C&#58;EURUSD**
+        - Crypto&#58; **X&#58;BTCUSD**
+      tags:
+        - Stocks / Equities
+        - Forex / Currencies
+        # - Indices
+        - Crypto
+      parameters: 
+      - name: ticker
+        in: path
+        description: Ticker symbol of the request
+        required: true
+        type: string
+        default: AAPL
+      - name: multiplier
+        in: path
+        description: Size of the timespan multiplier
+        required: true
+        type: number
+        default: 1
+      - name: timespan
+        in: path
+        description: Size of the time window
+        required: true
+        type: string
+        default: day
+        enum: [ minute, hour, day, week, month, quarter, year ]
+      - name: from
+        in: path
+        description: From date
+        required: true
+        type: string
+        default: "2019-01-01"
+      - name: to
+        in: path
+        description: To date
+        required: true
+        type: string
+        default: "2019-02-01"
+      - name: unadjusted
+        in: query
+        description: |
+          Set to true if the results should NOT be adjusted for splits.
+        required: false
+        type: boolean
+      responses:
+        200:
+          description: Previous day OHLC for ticker
+          schema:
+            $ref: "#/definitions/AggResponse"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+ 
+  /v2/aggs/grouped/locale/{locale}/market/{market}/{date}:
+    get:
+      summary: Grouped Daily
+      description: |
+        Get the daily OHLC for entire markets.
+
+        ### *** Warning, may cause browser to hang ***
+        The response size is large, and sometimes will cause the browser prettyprint to crash.
+      tags:
+        - Stocks / Equities
+        - Forex / Currencies
+        # - Indices
+        - Crypto
+      parameters: 
+      - name: locale
+        in: path
+        description: Locale of the aggregates ( See 'Locales' API )
+        required: true
+        type: string
+        default: US
+        enum: [ GLOBAL,US,GB,CA,NL,GR,SP,DE,BE,DK,FI,IE,PT,IN,MX,FR,CN,CH,SE ]
+      - name: market
+        in: path
+        description: Market of the aggregates ( See 'Markets' API )
+        required: true
+        type: string
+        default: STOCKS
+        enum: [ STOCKS, CRYPTO, BONDS, MF, MMF, INDICES, FX ]
+      - name: date
+        in: path
+        description: To date
+        required: true
+        type: string
+        default: "2019-02-01"
+      - name: unadjusted
+        in: query
+        description: |
+          Set to true if the results should NOT be adjusted for splits.
+        required: false
+        type: boolean
+      responses:
+        200:
+          description: Previous day OHLC for ticker
+          schema:
+            $ref: "#/definitions/AggResponse"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
+
+
+
+
+

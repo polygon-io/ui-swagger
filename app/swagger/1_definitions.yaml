@@ -1,0 +1,819 @@
+
+
+# 
+#  ---------------------------
+#   DEFINITIONS
+#  ---------------------------
+# 
+  
+definitions:
+
+
+  LastTrade:
+    type: object
+    required: [ price, size, exchange, cond1, cond2, cond3, cond4, timestamp ]
+    properties:
+      price:
+        type: integer
+        example: 159.59
+        description: Price of the trade
+        format: double
+      size:
+        type: integer
+        example: 20
+        description: Size of this trade
+      exchange:
+        type: integer
+        example: 11
+        description: Exchange this trade happened on
+      cond1:
+        type: integer
+        example: 14
+        description: Condition 1 of the trade
+      cond2:
+        type: integer
+        example: 16
+        description: Condition 2 of the trade
+      cond3:
+        type: integer
+        example: 0
+        description: Condition 3 of the trade
+      cond4:
+        type: integer
+        example: 0
+        description: Condition 4 of the trade
+      timestamp:
+        type: integer
+        example: 1518086464720
+        description: Timestamp of this trade
+
+  LastQuote:
+    type: object
+    required: [ askprice, asksize, askexchange, bidprice, bidsize, bidexchange, timestamp ]
+    properties:
+      askprice:
+        type: integer
+        example: 159.59
+        description: Ask Price
+        format: double
+      asksize:
+        type: integer
+        example: 2
+        description: Ask Size
+      askexchange:
+        type: integer
+        example: 11
+        description: Exchange the ask happened on
+      bidprice:
+        type: integer
+        example: 159.45
+        description: Bid Price
+        format: double
+      bidsize:
+        type: integer
+        example: 20
+        description: Bid Size
+      bidexchange:
+        type: integer
+        example: 12
+        description: Exchange the bid happened on
+      # cond:
+      #   type: integer
+      #   description: Condition of the quote
+      timestamp:
+        type: integer
+        example: 1518086601843
+        description: Timestamp of this trade
+
+
+  HistTrade:
+    type: object
+    required: [ condition1, condition2, condition3, condition4, exchange, price, size, timestamp ]
+    properties:
+      condition1:
+        type: integer
+        example: 14
+        description: Condition 1 of this trade
+      condition2:
+        type: integer
+        example: 12
+        description: Condition 2 of this trade
+      condition3:
+        type: integer
+        example: 0
+        description: Condition 3 of this trade
+      condition4:
+        type: integer
+        example: 0
+        description: Condition 4 of this trade
+      exchange:
+        type: string
+        example: 12
+        description: The exchange this trade happened on
+      price:
+        type: integer
+        example: 172.17
+        description: Price of the trade
+        format: double
+      size:
+        type: integer
+        example: 50
+        description: Size of the trade
+      timestamp:
+        type: string
+        example: "2018-03-05T14:30:00.080Z"
+        description: Timestamp of this trade
+
+  Quote:
+    type: object
+    required: [ c, bE, aE, aP, bP, bS, aS, t ]
+    properties:
+      c:
+        type: integer
+        example: 0
+        description: Condition of this quote
+      bE:
+        type: string
+        example: 11
+        description: Bid Exchange
+      aE:
+        type: string
+        example: 12
+        description: Ask Exchange
+      aP:
+        type: integer
+        example: 173.15
+        description: Ask Price
+        format: "double"
+      bP:
+        type: integer
+        example: 173.13
+        description: Bid Price
+        format: "double"
+      bS:
+        type: integer
+        example: 25
+        description: Bid Size
+      aS:
+        type: integer
+        example: 55
+        description: Ask Size
+      t:
+        type: integer
+        example: 1517529601006
+        description: Timestamp of this trade
+
+  Aggregate:
+    type: object
+    required: [ o, c, l, h, v, k, t ]
+    properties:
+      o:
+        type: integer
+        example: 173.15
+        description: Open price
+      c:
+        type: integer
+        example: 173.20
+        description: Close price
+      l:
+        type: integer
+        example: 173.15
+        description: Low price
+      h:
+        type: integer
+        example: 173.21
+        description: High price
+      v:
+        type: integer
+        example: 1800
+        description: Total Volume of all trades ( total shares exchanged )
+      k:
+        type: integer
+        example: 4
+        description: Transactions ( 1 transaction contains X shares exchanged )
+      t:
+        type: integer
+        example: 1517529605000
+        description: Timestamp of this aggregation
+
+
+  Company:
+    type: object
+    required: [ name, symbol, exchange, description, updated ]
+    properties:
+      logo:
+        type: string
+        example: https://s3.polygon.io/logos/aapl/logo.png
+        description: URL of the entities logo.
+      exchange:
+        type: string
+        example: Nasdaq Global Select
+        description: Symbols primary exchange
+      name:
+        type: string
+        example: Apple Inc.
+        description: Name of the company/entity
+      symbol:
+        $ref: '#/definitions/StockSymbol'
+      listdate:
+        type: string
+        format: date
+        description: Date this symbol was listed on the exchange.
+      cik:
+        type: string
+        example: "0000320193"
+        description: Official CIK guid used for SEC database / filings.
+      bloomberg:
+        type: string
+        example: EQ0010169500001000
+        description: Bloomberg guid for this symbol
+      figi:
+        type: string
+        description: guid for the OpenFigi project ( https://openfigi.com/ )
+      lei:
+        type: string
+        example: HWUPKR0MPOU8FGXBT394
+        description: Legal Entity Identifier (LEI) guid for symbol ( https://en.wikipedia.org/wiki/Legal_Entity_Identifier )
+      sic:
+        type: number
+        example: 3571
+        description: Standard Industrial Classification (SIC) id for symbol ( https://en.wikipedia.org/wiki/Standard_Industrial_Classification )
+      country:
+        type: string
+        example: us
+        description: Country in which this company is registered
+      industry:
+        type: string
+        example: Computer Hardware
+        description: Industry this company operates in
+      sector:
+        type: string
+        example: Technology
+        description: Sector of the indsutry in which this symbol operates in
+      marketcap:
+        type: number
+        example: 815604985500
+        description: Current market cap for this company
+      employees:
+        type: number
+        example: 116000
+        description: Approximate number of employees
+      phone:
+        type: string
+        example: "(408) 996-1010"
+        description: Phone number for this company. Usually corporate contact number.
+      ceo:
+        type: string
+        example: Tim Cook
+        description: Name of the companies current CEO
+      url:
+        type: string
+        example: http://www.apple.com
+        description: URL of the companies website
+      description:
+        type: string
+        example: |
+          Apple Inc. designs, manufactures, and markets mobile communication and media devices, personal computers, and portable digital music players to consumers...
+        description: A description of the company and what they do/offer
+      similar:
+        type: array
+        example: ['MSFT','IBM','GOOGL']
+        items:
+          $ref: '#/definitions/StockSymbol'
+      tags:
+        type: array
+        example: [ "Technology", "Consumer Electronics", "Computer Hardware" ]
+        items:
+          type: string
+      updated:
+        type: string
+        format: date-time
+        description: Last time this company record was updated.
+
+  Symbol:
+    type: object
+    required: [ symbol, name, type, url, updated, isOTC ]
+    properties:
+      symbol:
+        $ref: '#/definitions/StockSymbol'
+      name:
+        type: string
+        example: Apple Inc
+        description: Name of the item.
+      type:
+        type: string
+        example: cs
+        description: Type of symbol this is. See symbol types.
+      url:
+        type: string
+        example: https://api.polygon.io/v1/meta/symbols/AAPL
+        description: URL of this symbol. Use this to get this symbols endpoints.
+      updated:
+        type: string
+        format: date-time
+        description: Last time this company record was updated.
+      isOTC:
+        type: boolean
+        example: false
+        description: If the symbol is listed on the OTC Markets.
+
+  Dividend:
+    type: object
+    description: Company dividend
+    required: [ symbol, type, exDate, amount ]
+    properties:
+      symbol:
+        $ref: '#/definitions/StockSymbol'
+      type:
+        type: string
+        example: Dividend income
+        description: |
+          Refers to the dividend payment type<br/>
+          - Dividend income<br/>
+          - Interest income<br/>
+          - Stock dividend<br/>
+          - Short term capital gain<br/>
+          - Medium term capital gain<br/>
+          - Long term capital gain<br/>
+          - Unspecified term capital gain<br/>
+      exDate:
+        type: string
+        format: date-time
+        example: "2016-11-03T04:00:00.000Z"
+        description: Execution date of the trade
+      paymentDate:
+        type: string
+        format: date-time
+        example: "2016-11-03T04:00:00.000Z"
+        description: Payment date of the trade
+      recordDate:
+        type: string
+        format: date-time
+        example: "2016-11-03T04:00:00.000Z"
+        description: Record date of the trade
+      declaredDate:
+        type: string
+        format: date-time
+        example: "2016-11-03T04:00:00.000Z"
+        description: Declared date of the trade
+      amount:
+        type: number
+        format: double
+        example: 0.57
+        description: Amount of the dividend
+      qualified:
+        type: string
+        example: Q
+        enum: ['P','Q','N','null']
+        description: |
+          Refers to the dividend income type<br/>
+          - P = Partially qualified income<br/>
+          - Q = Qualified income<br/>
+          - N = Unqualified income<br/>
+          - null = N/A or unknown
+      flag:
+        type: string
+        example: YE
+        description: |
+          Refers to the dividend flag, if set<br/>
+          FI = Final dividend, div ends or instrument ends<br/>
+          LI = Liquidation, instrument liquidates<br/>
+          PR = Proceeds of a sale of rights or shares<br/>
+          RE = Redemption of rights<br/>
+          AC = Accrued dividend<br/>
+          AR = Payment in arrears<br/>
+          AD = Additional payment<br/>
+          EX = Extra payment<br/>
+          SP = Special dividend<br/>
+          YE = Year end<br/>
+          UR = Unknown rate<br/>
+          SU = Regular dividend is suspended
+
+  News:
+    type: object
+    required: [ symbols, title, url, source, summary, timestamp ]
+    properties:
+      symbols:
+        type: array
+        example: ['MSFT', 'AAPL', 'IBM']
+        items:
+          $ref: '#/definitions/StockSymbol'
+      title:
+        type: string
+        example: Goldman in talks to finance iPhones - WSJ
+        description: Name of the article
+      url:
+        type: string
+        example: "https://seekingalpha.com/news/3328826-goldman-talks-finance-iphones-wsj"
+        description: URL of this article
+      source:
+        type: string
+        example: SeekingAlpha
+        description: Source of this article
+      summary:
+        type: string
+        description: Short summary of the article
+        example: "Continuing its push into more traditional areas of consumer finance, Goldman Sachs (NYSE:GS) is reportedly in talks with Apple (NASDAQ:AAPL) to finance iPhone purchases.Buyers theoretically would be a..."
+      image:
+        type: string
+        example: "https://static.seekingalpha.com/assets/og_image_410-b8960ce31ec84f7f12dba11a09fc1849b69b234e0f5f39d7c62f46f8692e58a5.png"
+        description: URL of the image for this article, if found
+      timestamp:
+        type: string
+        format: date-time
+        example: "2018-02-07T12:48:47.000Z"
+        description: Timestamp of the article
+      keywords:
+        type: array
+        example:
+          - financial services
+          - aapl
+          - investing
+          - bsiness news
+          - mobile
+        items:
+          - type: string
+            description: common keywords of this article
+
+  Earning:
+    type: object
+    required: [ symbol, EPSReportDate, EPSReportDateStr ]
+    properties:
+      symbol:
+        type: string
+        example: AAPL
+        description: Stock Symbol
+      EPSReportDate:
+        type: string
+        format: date-time
+        example: "2018-02-01T00:00:00.000Z"
+        description: Report Date
+      EPSReportDateStr:
+        type: string
+        example: "2018-02-01"
+        description: Report date as non date format
+      fiscalPeriod:
+        type: string
+        example: "Q1 2018"
+      fiscalEndDate:
+        type: string
+        format: date-time
+        example: "2017-12-31T00:00:00.000Z"
+      actualEPS:
+        type: number
+        example: 3.89
+      consensusEPS:
+        type: number
+        example: 3.82
+      estimatedEPS:
+        type: number
+        example: 3.82
+      announceTime:
+        type: string
+        example: AMC
+      numberOfEstimates:
+        type: number
+        example: 9
+      EPSSurpriseDollar:
+        type: number
+        example: 0.07
+      yearAgo:
+        type: number
+        example: 3.36
+      yearAgoChangePercent:
+        type: number
+        example: 16
+      estimatedChangePercent:
+        type: number
+        example: 14
+
+  Financial:
+    type: object
+    required: [ symbol, reportDate, reportDateStr ]
+    properties:
+      symbol:
+        type: string
+        example: AAPL
+        description: Stock Symbol
+      reportDate:
+        type: string
+        format: date-time
+        example: "2017-12-31T00:00:00.000Z"
+        description: Report Date
+      reportDateStr:
+        type: string
+        example: "2017-12-31"
+        description: Report date as non date format
+      grossProfit:
+        type: number
+        example: 33912000000
+      costOfRevenue:
+        type: number
+        example: 54381000000
+      operatingRevenue:
+        type: number
+        example: 88293000000
+      totalRevenue:
+        type: number
+        example: 88293000000
+      operatingIncome:
+        type: number
+        example: 26274000000
+      netIncome:
+        type: number
+        example: 20065000000
+      researchAndDevelopment:
+        type: number
+        example: 3407000000
+      operatingExpense:
+        type: number
+        example: 7638000000
+      currentAssets:
+        type: number
+        example: 143810000000
+      totalAssets:
+        type: number
+        example: 406794000000
+      totalLiabilities:
+        type: number
+        example: 266595000000
+      currentCash:
+        type: number
+        example: 27491000000
+      currentDebt:
+        type: number
+        example: 18478000000
+      totalCash:
+        type: number
+        example: 77153000000
+      totalDebt:
+        type: number
+        example: 122400000000
+      shareholderEquity:
+        type: number
+        example: 140199000000
+      cashChange:
+        type: number
+        example: 7202000000
+      cashFlow:
+        type: number
+        example: 28293000000
+      operatingGainsLosses:
+        type: number
+        example: null
+
+  Exchange:
+    type: object
+    required: [ id, type, market, mic, name, tape ]
+    properties:
+      id:
+        type: number
+        example: 2
+        description: ID of the exchange
+      type:
+        type: string
+        example: exchange
+        enum: ['TRF', 'exchange']
+        description: |
+          The type of exchange this is.<br/>
+          - TRF = Trade Reporting Facility<br/>
+          - exchange = Reporting exchange on the tape
+      market:
+        type: string
+        example: equities
+        enum: ['equities', 'indecies']
+        description: Market data type this exchange contains
+      mic:
+        type: string
+        example: XASE
+        description: Market Identification Code
+      name:
+        type: string
+        example: NYSE American (AMEX)
+        description: Name of the exchange
+      tape:
+        type: string
+        example: A
+        description: Tape id of the exchange
+
+  StockSymbol:
+    type: string
+    example: AAPL
+    description: An actual exchange symbol this item is traded under.
+
+  ConditionTypeMap:
+    type: object
+    example:
+      "1": Regular
+      "2": Acquisition
+      "3": AveragePrice
+      "4": AutomaticExecution
+
+  SymbolTypeMap:
+    type: object
+    example:
+      cs: Common Stock
+      adr: American Depository Receipt
+      cef: Closed-End Fund
+      etp: Exchange Traded Product
+      reit: Real Estate Investment Trust
+      mlp: Master Limited Partnership
+      wrt: Equity WRT
+      pub: Public
+      nyrs: New York Registry Shares
+      unit: Unit
+      right: Right
+      trak: Tracking stock or targeted stock
+      ltdp: Limited Partnership
+      rylt: Royalty Trust
+      mf: Mutual Fund
+      pfd: Preferred Stock
+
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
+
+  NotFound:
+    type: object
+    description: The specified resource was not found
+    properties:
+      message:
+        type: string
+
+  Conflict:
+    type: object
+    description: Parameter is invalid or incorrect.
+    properties:
+      message:
+        type: string
+
+  Unauthorized:
+    type: object
+    description: Unauthorized - Check our API Key and account status
+    properties:
+      message:
+        type: string
+
+  MarketStatus:
+    type: object
+    required: [ market, serverTime, exchanges ]
+    properties:
+      market:
+        type: string
+        example: open
+        description: Status of the market as a whole
+        enum: [ open, closed, extended-hours ]
+      serverTime:
+        type: string
+        example: "2018-07-19T08:51:07-04:00"
+        description: Current time of the server
+        format: date-time
+      exchanges:
+        type: object
+        properties:
+          nyse:
+            type: string
+            example: open
+            description: Status of the market as a whole
+            enum: [ open, closed, extended-hours ]
+          nasdaq:
+            type: string
+            example: open
+            description: Status of the market as a whole
+            enum: [ open, closed, extended-hours ]
+          otc:
+            type: string
+            example: extended-hours
+            description: Status of the market as a whole
+            enum: [ open, closed, extended-hours ]
+      currencies:
+        type: object
+        properties:
+          fx:
+            type: string
+            example: open
+            description: Status of the forex market
+            enum: [ open, closed ]
+          crypto:
+            type: string
+            example: open
+            description: Status of the crypto market
+            enum: [ open, closed ]
+
+
+  MarketHoliday:
+    type: object
+    required: [ exchange, name, status, date ]
+    properties:
+      exchange:
+        type: string
+        example: NYSE
+        description: Which market this record is for
+        enum: [ "NYSE", "NASDAQ", "OTC" ]
+      name:
+        type: string
+        example: Thanksgiving Day
+        description: Human readable description of the holiday
+      status:
+        type: string
+        example: early-close
+        description: Status of the market on this holiday
+        enum: [ closed, early-close, late-close, early-open, late-open ]
+      date:
+        type: string
+        example: "2018-11-23T00:00:00.000Z"
+        format: date-time
+        description: Date of this holiday
+      open:
+        type: string
+        example: "2018-11-23T09:30:00.000Z"
+        format: date-time
+        description: Market open time on this holiday ( if it's not closed )
+      close:
+        type: string
+        example: "2018-11-23T13:00:00.000Z"
+        format: date-time
+        description: Market close time on this holiday ( if it's not closed )
+
+  AnalystRatings:
+    type: object
+    required: [ symbol, analysts, change, sell, strongSell, buy, strongBuy, hold, mean, updated ]
+    properties:
+      symbol:
+        type: string
+        example: AAPL
+        description: Symbol which we are requesting ratings
+      analysts:
+        type: number
+        example: 27
+        description: Number of analysts reporting
+      change:
+        type: number
+        example: -0.04
+        description: Change from last month to current
+      strongBuy:
+        description: Strong buy ratings
+        schema:
+          $ref: '#/definitions/RatingSection'
+      buy:
+        description: Moderate buy ratings
+        schema:
+          $ref: '#/definitions/RatingSection'
+      hold:
+        description: Hold ratings
+        schema:
+          $ref: '#/definitions/RatingSection'
+      sell:
+        description: Moderate Sell ratings
+        schema:
+          $ref: '#/definitions/RatingSection'
+      strongSell:
+        description: Strong Sell ratings
+        schema:
+          $ref: '#/definitions/RatingSection'
+      updated:
+        type: string
+        example: "11/10/2018"
+        format: date-time
+        description: Last time the ratings for this symbol were updated.
+
+  RatingSection:
+    type: object
+    required: [ month1, month2, month3, current ]
+    properties:
+      current:
+        type: number
+        example: 0
+        description: Analyst Rating at current month
+      month1:
+        type: number
+        example: 1
+        description: Analyst Ratings at 1 month in the future
+      month2:
+        type: number
+        example: 3
+        description: Analyst Ratings at 2 month in the future
+      month3:
+        type: number
+        example: 4
+        description: Analyst Ratings at 3 month in the future
+      month4:
+        type: number
+        example: 3
+        description: Analyst Ratings at 4 month in the future
+      month5:
+        type: number
+        example: 2
+        description: Analyst Ratings at 5 month in the future
+
+
+
+
+

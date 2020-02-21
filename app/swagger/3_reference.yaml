@@ -1,0 +1,463 @@
+
+
+
+
+
+
+  /v2/reference/tickers:
+    get:
+      summary: Tickers
+      description: |
+        Query all ticker symbols which are supported by Polygon.io. This API includes Indices, Crypto, FX, and Stocks/Equities.
+      parameters:
+        - name: sort
+          in: query
+          description: |
+            Which field to sort by. 
+            For desc place a `-` in front of the field name.
+            
+            **Example:**
+            - `?sort=-ticker` to sort symbols Z-A
+            - `?sort=type` to sort symbols by type
+          required: false
+          type: string
+          default: ticker
+        - name: type
+          in: query
+          description: |
+            If you want the results to only container a certain type.
+            
+            **Example:**
+            - `?type=etp` to get all ETFs
+            - `?type=cs` to get all Common Stock's
+          required: false
+          type: string
+        - name: market
+          in: query
+          description: |
+            Get tickers for a specific market
+            
+            **Example:**
+            - `?market=stocks` to get all stock tickers
+            - `?market=indices` to get all index tickers
+          required: false
+          enum: ["STOCKS","INDICES","CRYPTO","FX","BONDS","MF","MMF"]
+          type: string
+        - name: locale
+          in: query
+          description: |
+            Get tickers for a specific region/locale
+            
+            **Example:**
+            - `?locale=us` to get all US tickers
+            - `?locale=g` to get all Global tickers
+          required: false
+          type: string
+        - name: search
+          in: query
+          description: |
+            Search the name of tickers
+            
+            **Example:**
+            - `?search=microsoft` Search tickers for microsoft
+          required: false
+          type: string
+        - name: perpage
+          in: query
+          description: |
+            How many items to be on each page during pagination. Max 50
+          required: false
+          type: number
+          default: 50
+        - name: page
+          in: query
+          description: |
+            Which page of results to return
+          required: false
+          default: 1
+          type: number
+        - name: active
+          in: query
+          description: |
+            Filter for only active or inactive symbols
+          required: false
+          type: boolean
+      tags:
+        - Reference
+        # - Crypto
+        # - Forex / Currencies
+        # - Stocks / Equities
+      responses:
+        200:
+          description: An array of symbols
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Symbol'
+            example:
+              - ticker: AAPL
+                name: Apple Inc.
+                market: STOCKS
+                locale: US
+                currency: USD
+                active: true
+                primaryExch: NGS
+                type: cs
+                codes:
+                  cik: 0000320193
+                  figiuid: EQ0010169500001000
+                  scfigi: BBG001S5N8V8
+                  cfigi: BBG000B9XRY4
+                  figi: BBG000B9Y5X2
+                updated: "2019-01-15T05:21:28.437Z"
+                url: https://api.polygon.io/v2/reference/tickers/AAPL
+              - ticker: $AEDAUD
+                name: United Arab Emirates dirham - Australian dollar
+                market: FX
+                locale: G
+                currency: AUD
+                active: true
+                primaryExch: FX
+                updated: 2019-01-25
+                attrs:
+                  currencyName: Australian dollar,
+                  currency: AUD,
+                  baseName: United Arab Emirates dirham,
+                  base: AED
+                url: https://api.polygon.io/v2/tickers/$AEDAUD
+        401:
+          $ref: '#/definitions/Unauthorized'
+        404:
+          $ref: '#/definitions/NotFound'
+        409:
+          $ref: '#/definitions/Conflict'
+  
+
+
+  
+  /v2/reference/types:
+    get:
+      summary: Ticker Types
+      description: |
+        Get the mapping of ticker types to descriptions / long names
+      tags:
+        - Reference
+      responses:
+        200:
+          description: An array of types
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: OK
+              results:
+                type: object
+                example:
+                  types:
+                    CS: Common Stock
+                    ADR: American Depository Receipt
+                    NVDR: Non-Voting Depository Receipt
+                    GDR: Global Depositary Receipt
+                  indexTypes:
+                    INDEX: Index
+                    ETF: Exchange Traded Fund (ETF)
+                    ETN: Exchange Traded Note (ETN)
+        401:
+          $ref: '#/definitions/Unauthorized'
+        404:
+          $ref: '#/definitions/NotFound'
+        409:
+          $ref: '#/definitions/Conflict'
+
+  
+  /v1/meta/symbols/{symbol}/company:
+    get:
+      summary: Ticker Details
+      description: |
+        Get the details of the symbol company/entity. These are important details which offer an overview of the entity. Things like name, sector, description, logo and similar companies.
+      parameters:
+        - name: symbol
+          in: path
+          description: |
+            Symbol we want details for
+          required: true
+          type: string
+          default: AAPL
+      tags:
+        - Reference
+      responses:
+        200:
+          description: Company
+          schema:
+            $ref: '#/definitions/Company'
+        401:
+          $ref: '#/definitions/Unauthorized'
+        404:
+          $ref: '#/definitions/NotFound'
+        409:
+          $ref: '#/definitions/Conflict'
+  
+
+  /v1/meta/symbols/{symbol}/news:
+    get:
+      summary: Ticker News
+      description: |
+        Get news articles for this ticker.
+      parameters:
+        - name: symbol
+          in: path
+          description: |
+            Ticker we want details for
+          required: true
+          type: string
+          default: AAPL
+        - name: perpage
+          in: query
+          description: |
+            How many items to be on each page during pagination. Max 50
+          required: false
+          type: number
+          default: 50
+        - name: page
+          in: query
+          description: |
+            Which page of results to return
+          required: false
+          default: 1
+          type: number
+      tags:
+        - Reference
+      responses:
+        200:
+          description: An array of news
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/News'
+        401:
+          $ref: '#/definitions/Unauthorized'
+        404:
+          $ref: '#/definitions/NotFound'
+        409:
+          $ref: '#/definitions/Conflict'
+
+
+
+  
+  /v2/reference/markets:
+    get:
+      summary: Markets
+      description: |
+        Get the list of currently supported markets
+      tags:
+        - Reference
+      responses:
+        200:
+          description: An array of markets
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: OK
+              results:
+                type: array
+                example:
+                  - market: STOCKS
+                    desc: Stocks / Equities / ETFs
+                  - market: INDICES
+                    desc: Indices
+                  - market: MF
+                    desc: Mutual Funds
+        401:
+          $ref: '#/definitions/Unauthorized'
+        404:
+          $ref: '#/definitions/NotFound'
+        409:
+          $ref: '#/definitions/Conflict'
+
+
+
+  
+  /v2/reference/locales:
+    get:
+      summary: Locales
+      description: |
+        Get the list of currently supported locales
+      tags:
+        - Reference
+      responses:
+        200:
+          description: An array of locales
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: OK
+              results:
+                type: array
+                example:
+                  - locale: US
+                    name: United States
+                  - locale: GB
+                    name: Great Britain / UK
+                  - locale: CA
+                    name: Canada
+        401:
+          $ref: '#/definitions/Unauthorized'
+        404:
+          $ref: '#/definitions/NotFound'
+        409:
+          $ref: '#/definitions/Conflict'
+
+
+
+
+
+
+  
+  /v2/reference/splits/{symbol}:
+    get:
+      summary: Stock Splits
+      description: |
+        Get the historical splits for this symbol.
+      parameters:
+        - name: symbol
+          in: path
+          description: |
+            Symbol we want details for
+          required: true
+          type: string
+          default: AAPL
+      tags:
+        - Reference
+      responses:
+        200:
+          description: An array of splits
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: OK
+              count: 
+                type: number
+                example: 1
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Split'
+        401:
+          $ref: '#/definitions/Unauthorized'
+        404:
+          $ref: '#/definitions/NotFound'
+        409:
+          $ref: '#/definitions/Conflict'
+
+
+  
+  /v2/reference/dividends/{symbol}:
+    get:
+      summary: Stock Dividends
+      description: |
+        Get the historical divdends for this ticker.
+      parameters:
+        - name: symbol
+          in: path
+          description: |
+            Symbol we want dividends for
+          required: true
+          type: string
+          default: AAPL
+      tags:
+        - Reference
+      responses:
+        200:
+          description: An array of dividends
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: OK
+              count: 
+                type: number
+                example: 1
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Dividend'
+        401:
+          $ref: '#/definitions/Unauthorized'
+        404:
+          $ref: '#/definitions/NotFound'
+        409:
+          $ref: '#/definitions/Conflict'
+
+
+
+  
+  /v2/reference/financials/{symbol}:
+    get:
+      summary: Stock Financials
+      description: |
+        Get the historical financials for this ticker.
+      parameters:
+        - name: symbol
+          in: path
+          description: |
+            Symbol we want financials for
+          required: true
+          type: string
+          default: AAPL
+        - name: limit
+          in: query
+          description: |
+            Limit the number of results
+          required: false
+          default: 5
+          type: number
+        - name: type
+          in: query
+          description: |
+            Type of reports
+          required: false
+          type: string
+          enum: [ "Y", "YA", "Q", "QA", "T", "TA" ]
+        - name: sort
+          in: query
+          description: |
+            Sort direction
+          required: false
+          type: string
+          enum: [ "reportPeriod", "-reportPeriod", "calendarDate", "-calendarDate" ]
+      tags:
+        - Reference
+      responses:
+        200:
+          description: An array of financials
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: OK
+              count: 
+                type: number
+                example: 1
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Financials'
+        401:
+          $ref: '#/definitions/Unauthorized'
+        404:
+          $ref: '#/definitions/NotFound'
+        409:
+          $ref: '#/definitions/Conflict'
+
+
+
+

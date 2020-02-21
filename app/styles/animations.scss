@@ -1,16 +1,14 @@
-
-
-.input, .textarea {
-	// box-shadow: none;
-	transition: all ease-out .3s;
+.input,
+.textarea {
+  // box-shadow: none;
+  transition: all ease-out 0.3s;
 }
 
-
-@mixin animateIn( $time: .3s ){
-	animation: fadeInUp $time;
-	// transition: all ease-out 0.2s;
+@mixin animateIn($time: 0.3s) {
+  animation: fadeInUp $time;
+  // transition: all ease-out 0.2s;
 }
 
 .shake {
-	animation: wobble 1s;
+  animation: wobble 1s;
 }

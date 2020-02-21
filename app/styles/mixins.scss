@@ -1,48 +1,26 @@
-
-// 
+//
 // LEFT TOP
 // RIGHT TOP
 // RIGHT BOTTOM
 // LEFT BOTTOM
-// 
+//
 
-@mixin angle( $side, $direction ){
-    @if $side == 'bottom' {
-        @if $direction == 'up' {
-            clip-path: polygon(
-                0 0,
-                100% 0,
-                100% calc(100% - 8vw),
-                0 100%,
-            );
-        }
-        @if $direction == 'down' {
-            clip-path: polygon(
-                0 0,
-                100% 0,
-                100% 100%,
-                0 calc(100% - 8vw),
-            );
-        }
+@mixin angle($side, $direction) {
+  @if $side == "bottom" {
+    @if $direction == "up" {
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8vw), 0 100%);
     }
-
-    @if $side == 'top' {
-        @if $direction == 'up' {
-            clip-path: polygon(
-                0 calc(0% + 8vw),
-                100% 0,
-                100% 100%,
-                0 100%,
-            );
-        }
-        @if $direction == 'down' {
-            clip-path: polygon(
-                0 0,
-                100% calc(0% + 8vw),
-                100% 100%,
-                0 100%,
-            );
-        }
+    @if $direction == "down" {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 8vw));
     }
+  }
 
+  @if $side == "top" {
+    @if $direction == "up" {
+      clip-path: polygon(0 calc(0% + 8vw), 100% 0, 100% 100%, 0 100%);
+    }
+    @if $direction == "down" {
+      clip-path: polygon(0 0, 100% calc(0% + 8vw), 100% 100%, 0 100%);
+    }
+  }
 }

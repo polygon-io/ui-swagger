@@ -1,0 +1,361 @@
+
+
+
+
+  Ticker:
+    type: object
+    required: [ ticker, name, market, locale, updated ]
+    properties:
+      ticker:
+        $ref: '#/definitions/StockSymbol'
+      name:
+        type: string
+        example: Apple Inc
+        description: Name of the item.
+      market:
+        type: string
+        example: STOCKS
+        description: The market in which this ticker participates
+      locale:
+        type: string
+        example: US
+        description: Locale of where this ticker is traded
+      currency:
+        type: string
+        example: USD
+        description: Currency this ticker is traded in
+      active:
+        type: boolean
+        example: true
+        description: If the ticker is active. False means the ticker has been delisted
+      primaryExch:
+        type: string
+        example: NGS
+        description: The listing exchange for this ticker
+      url:
+        type: string
+        example: https://api.polygon.io/v2/reference/tickers/AAPL
+        description: URL of this ticker. Use this to get more information about the ticker.
+      updated:
+        type: string
+        format: date-time
+        example: "2019-01-25"
+        description: Last time this ticker record was updated.
+      attrs:
+        type: object
+        description: Additional details about this ticker. No schema.
+      codes:
+        type: object
+        description: Additional details about this ticker. No schema.
+        properties:
+          cik:
+            type: string
+            example: 0000320193
+            description: CIK number for this ticker
+          figi:
+            type: string
+            example: BBG000B9Y5X2
+            description: OpenFIGI number for this ticker
+          cfigi:
+            type: string
+            example: BBG000B9XRY4
+            description: Composite OpenFIGI number for this ticker
+          scfigi:
+            type: string
+            example: BBG001S5N8V8
+            description: Shared Class OpenFIGI number for this ticker
+          figiuid:
+            type: string
+            example: EQ0010169500001000
+            description: Unique OpenFIGI ID number for this ticker
+
+
+  TickerSymbol:
+    type: string
+    example: AAPL
+    description: An actual exchange traded ticker.
+
+  Split:
+    type: object
+    description: Symbol split
+    required: [ ticker, exDate, paymentDate, ratio, tofactor, forfactor ]
+    properties:
+      ticker:
+        $ref: '#/definitions/TickerSymbol'
+      exDate:
+        type: string
+        format: date-time
+        example: "1999-03-28"
+        description: Execution date of the split
+      paymentDate:
+        type: string
+        format: date-time
+        example: "1999-03-28"
+        description: Payment date of the split
+      recordDate:
+        type: string
+        format: date-time
+        example: "1999-03-28"
+        description: Payment date of the split
+      declaredDate:
+        type: string
+        format: date-time
+        example: "1999-03-28"
+        description: Payment date of the split
+      ratio:
+        type: number
+        format: double
+        example: 0.142857
+        description: |
+          refers to the split ratio. The split ratio is an inverse of the number of shares that a holder of the stock would have after the split divided by the number of shares that the holder had before.
+          <br/>
+          For example: Split ratio of .5 = 2 for 1 split.
+      tofactor:
+        type: number
+        example: 7
+        description: |
+          To factor of the split. Used to calculate the split ratio forfactor/tofactor = ratio (eg ½ = 0.5)
+      forfactor:
+        type: number
+        example: 1
+        description: |
+          For factor of the split. Used to calculate the split ratio forfactor/tofactor = ratio (eg ½ = 0.5)
+
+
+  Financials:
+    type: object
+    description: Financials
+    required: [ ticker, exDate, paymentDate, ratio, tofactor, forfactor ]
+    properties:
+      ticker:
+        $ref: '#/definitions/TickerSymbol'
+      period:
+        type: string
+        example: "Q"
+        description: Reporting period.
+        enum: [ "Q", "T", "QA", "TA", "Y", "YA" ]
+      calendarDate:
+        type: string
+        format: date-time
+        example: "2019-03-31"
+      reportPeriod:
+        type: string
+        format: date-time
+        example: "2019-03-31"
+      updated:
+        type: string
+        format: date-time
+        example: "1999-03-28"
+      accumulatedOtherComprehensiveIncome: 
+        type: integer
+      assets: 
+        type: integer
+      assetsAverage: 
+        type: integer
+      assetsCurrent: 
+        type: integer
+      assetTurnover: 
+        type: integer
+      assetsNonCurrent: 
+        type: integer
+      bookValuePerShare: 
+        type: integer
+      capitalExpenditure: 
+        type: integer
+      cashAndEquivalents: 
+        type: integer
+      cashAndEquivalentsUSD: 
+        type: integer
+      costOfRevenue: 
+        type: integer
+      consolidatedIncome: 
+        type: integer
+      currentRatio: 
+        type: integer
+      debtToEquityRatio: 
+        type: integer
+      debt: 
+        type: integer
+      debtCurrent: 
+        type: integer
+      debtNonCurrent: 
+        type: integer
+      debtUSD: 
+        type: integer
+      deferredRevenue: 
+        type: integer
+      depreciationAmortizationAndAccretion: 
+        type: integer
+      deposits: 
+        type: integer
+      dividendYield: 
+        type: integer
+      dividendsPerBasicCommonShare: 
+        type: integer
+      earningBeforeInterestTaxes: 
+        type: integer
+      earningsBeforeInterestTaxesDepreciationAmortization: 
+        type: integer
+      EBITDAMargin: 
+        type: integer
+      earningsBeforeInterestTaxesDepreciationAmortizationUSD: 
+        type: integer
+      earningBeforeInterestTaxesUSD: 
+        type: integer
+      earningsBeforeTax: 
+        type: integer
+      earningsPerBasicShare: 
+        type: integer
+      earningsPerDilutedShare: 
+        type: integer
+      earningsPerBasicShareUSD: 
+        type: integer
+      shareholdersEquity: 
+        type: integer
+      averageEquity: 
+        type: integer
+      shareholdersEquityUSD: 
+        type: integer
+      enterpriseValue: 
+        type: integer
+      enterpriseValueOverEBIT: 
+        type: integer
+      enterpriseValueOverEBITDA: 
+        type: integer
+      freeCashFlow: 
+        type: integer
+      freeCashFlowPerShare: 
+        type: integer
+      foreignCurrencyUSDExchangeRate: 
+        type: integer
+      grossProfit: 
+        type: integer
+      grossMargin: 
+        type: integer
+      goodwillAndIntangibleAssets: 
+        type: integer
+      interestExpense: 
+        type: integer
+      investedCapital: 
+        type: integer
+      investedCapitalAverage: 
+        type: integer
+      inventory: 
+        type: integer
+      investments: 
+        type: integer
+      investmentsCurrent: 
+        type: integer
+      investmentsNonCurrent: 
+        type: integer
+      totalLiabilities: 
+        type: integer
+      currentLiabilities: 
+        type: integer
+      liabilitiesNonCurrent: 
+        type: integer
+      marketCapitalization: 
+        type: integer
+      netCashFlow: 
+        type: integer
+      netCashFlowBusinessAcquisitionsDisposals: 
+        type: integer
+      issuanceEquityShares: 
+        type: integer
+      issuanceDebtSecurities: 
+        type: integer
+      paymentDividendsOtherCashDistributions: 
+        type: integer
+      netCashFlowFromFinancing: 
+        type: integer
+      netCashFlowFromInvesting: 
+        type: integer
+      netCashFlowInvestmentAcquisitionsDisposals: 
+        type: integer
+      netCashFlowFromOperations: 
+        type: integer
+      effectOfExchangeRateChangesOnCash: 
+        type: integer
+      netIncome: 
+        type: integer
+      netIncomeCommonStock: 
+        type: integer
+      netIncomeCommonStockUSD: 
+        type: integer
+      netLossIncomeFromDiscontinuedOperations: 
+        type: integer
+      netIncomeToNonControllingInterests: 
+        type: integer
+      profitMargin: 
+        type: integer
+      operatingExpenses: 
+        type: integer
+      operatingIncome: 
+        type: integer
+      tradeAndNonTradePayables: 
+        type: integer
+      payoutRatio: 
+        type: integer
+      priceToBookValue: 
+        type: integer
+      priceEarnings: 
+        type: integer
+      priceToEarningsRatio: 
+        type: integer
+      propertyPlantEquipmentNet: 
+        type: integer
+      preferredDividendsIncomeStatementImpact: 
+        type: integer
+      sharePriceAdjustedClose: 
+        type: integer
+      priceSales: 
+        type: integer
+      priceToSalesRatio: 
+        type: integer
+      tradeAndNonTradeReceivables: 
+        type: integer
+      accumulatedRetainedEarningsDeficit: 
+        type: integer
+      revenues: 
+        type: integer
+      revenuesUSD: 
+        type: integer
+      researchAndDevelopmentExpense: 
+        type: integer
+      returnOnAverageAssets: 
+        type: integer
+      returnOnAverageEquity: 
+        type: integer
+      returnOnInvestedCapital: 
+        type: integer
+      returnOnSales: 
+        type: integer
+      shareBasedCompensation: 
+        type: integer
+      sellingGeneralAndAdministrativeExpense: 
+        type: integer
+      shareFactor: 
+        type: integer
+      shares: 
+        type: integer
+      weightedAverageShares: 
+        type: integer
+      weightedAverageSharesDiluted: 
+        type: integer
+      salesPerShare: 
+        type: integer
+      tangibleAssetValue: 
+        type: integer
+      taxAssets: 
+        type: integer
+      incomeTaxExpense: 
+        type: integer
+      taxLiabilities: 
+        type: integer
+      tangibleAssetsBookValuePerShare: 
+        type: integer
+      workingCapital: 
+        type: integer
+
+
+

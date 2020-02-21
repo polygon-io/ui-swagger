@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Swagger UI",
   "scripts": {
+    "pretty": "prettier --write '{app,gulpfile.js}/**/*.{js,html,json,scss}'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_ENV=development node_modules/gulp/bin/gulp.js",
     "build": "NODE_ENV=production ./node_modules/gulp/bin/gulp.js build",
@@ -28,7 +29,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.0.1",
-    "axios": "^0.16.2",
+    "axios": "^0.19.1",
     "babel-loader": "^7.1.5",
     "babel-plugin-jsx-control-statements": "^3.2.8",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
@@ -37,10 +38,14 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-flow": "^6.23.0",
-    "gulp-sass": "^4.0.2",
-    "node-sass": "^4.12.0",
     "babel-preset-react": "^6.24.1",
     "friendly-errors-webpack-plugin": "^1.7.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-yaml": "^2.0.4",
+    "husky": "^4.0.0",
+    "lint-staged": "^9.5.0",
+    "node-sass": "^4.13.1",
+    "prettier": "^1.19.1",
     "redux-devtools-extension": "^2.13.5",
     "uglifyjs-webpack-plugin": "^1.3.0"
   },
@@ -79,7 +84,7 @@
     "gulp-sourcemaps": "^1.12.1",
     "history": "^4.7.2",
     "html-loader": "^0.4.5",
-    "http-proxy-middleware": "^0.17.4",
+    "http-proxy-middleware": "^0.20.0",
     "imagemin-webp": "^5.1.0",
     "lodash": "^4.17.10",
     "lodash.isequal": "^4.5.0",
@@ -92,10 +97,13 @@
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-loading": "^0.1.4",
+    "react-markdown": "^4.3.1",
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^5.0.0-alpha.9",
+    "react-scrollspy": "^3.4.2",
+    "react-syntax-highlighter": "^12.2.1",
     "react-transition-group": "^2.4.0",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
@@ -105,7 +113,19 @@
     "request-promise": "^4.2.2",
     "require-dir": "^0.3.2",
     "rimraf": "^2.6.2",
+    "swagger-client": "^3.10.0",
     "webfontloader": "^1.6.28",
     "webpack": "^3.12.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

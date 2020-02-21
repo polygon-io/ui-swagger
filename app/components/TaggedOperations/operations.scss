@@ -1,0 +1,62 @@
+.operation {
+  background-color: #ffffff;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.operation__description {
+  padding: $padding*2;
+  border-bottom: 1px solid #eee;
+}
+
+.operation__samples {
+  background-color: #5c666f;
+  padding: 0;
+  padding-top: $padding*2;
+  margin: 0;
+  border-top: 1px solid #4e575e;
+}
+
+.parameter__box {
+  background-color: #f8f8f9;
+  padding: $padding*2;
+  border: 1px solid #e8eaeb;
+}
+
+.parameter__box:hover {
+  background-color: #f0f0f2;
+}
+
+.parameter__select {
+  width: 100%;
+}
+
+.summary__title {
+  padding-top: $padding*2;
+}
+
+.apiEndpoint__method {
+  margin-right: 1em;
+  text-transform: capitalize;
+}
+
+.apiEndpoint__description {
+  margin-bottom: 1.5em;
+}
+
+.modal__title {
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+}
+
+.apiEndpoint__parameters {
+  margin-bottom: 4em;
+}
+
+.apiEndpoint__responseMessages__table {
+  width: 100%;
+}
+
+.apiEndpoint__try {
+  margin-bottom: 2em;
+}

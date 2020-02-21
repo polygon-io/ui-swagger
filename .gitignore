@@ -1,3 +1,9 @@
 node_modules/
 public/
 .DS_Store
+
+# vim
+*.swp
+
+# intelliJ IDE
+.idea

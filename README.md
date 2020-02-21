@@ -1,6 +1,5 @@
 [![Build Status](http://drone.polygon.io/api/badges/polygon-io/ui-swagger/status.svg)](http://drone.polygon.io/polygon-io/ui-swagger)
 
-
 Swagger UI
 ===
 
