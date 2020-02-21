@@ -31,8 +31,6 @@ steps:
 
   - name: deploy
     image: vallard/drone-kube
-    when:
-      branch: dev
     environment:
       KUBE_SERVER:
         from_secret: KUBE_SERVER
@@ -43,3 +41,4 @@ steps:
     settings:
       template: kube.yml
       namespace: polygon-public
+

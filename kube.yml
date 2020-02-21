@@ -5,21 +5,21 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: ui-swagger-dev
+  name: ui-swagger
   namespace: polygon-public
 spec:
   replicas: 2
   template:
     metadata:
       labels:
-        app: ui-swagger-dev
-        project: ui-swagger-dev
+        app: ui-swagger
+        project: ui-swagger
     spec:
       imagePullSecrets:
         - name: dockerhub
       restartPolicy: Always
       containers:
-        - name: ui-swagger-dev
+        - name: ui-swagger
           image: polygonio/ui-swagger:{{build.branch}}.build-{{build.number}}
           # image: polygonio/ui-swagger:latest
           env:
@@ -59,17 +59,17 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ui-swagger-dev
+  name: ui-swagger
   namespace: polygon-public
   labels:
-    app: ui-swagger-dev
-    project: ui-swagger-dev
+    app: ui-swagger
+    project: ui-swagger
 spec:
   ports:
   - port: 80
     targetPort: http
   selector:
-    app: ui-swagger-dev
-    project: ui-swagger-dev
+    app: ui-swagger
+    project: ui-swagger
 
 

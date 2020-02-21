@@ -1,0 +1,29 @@
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ui-swagger
+  namespace: polygon-public
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    # ingress.kubernetes.io/limit-rps: 20
+    ingress.kubernetes.io/from-to-www-redirect: "true"
+spec:
+  tls:
+    - hosts:
+      - dev.polygon.io
+      secretName: polygon-dev
+  rules:
+  - host: dev.polygon.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ui-swagger-dev
+          servicePort: 80
+
+
+
+
+
