@@ -34,6 +34,7 @@ class AppContainer extends Component {
         <Header />
         <ConnectedSwitch>
           <Route exact path="/" component={RestDocumentation} />
+          <Route exact path="/docs" component={RestDocumentation} />
           <Route component={FourOhFour}></Route>
         </ConnectedSwitch>
         <Footer />

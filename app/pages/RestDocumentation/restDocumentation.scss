@@ -1,10 +1,10 @@
 .restdocumentation--loader {
+  color: $grey-lighter;
   text-align: center;
-  font-size: 10em;
-  padding-top: 1em;
-  color: $primary;
+  padding-top: $padding*4;
   height: 100vh;
 }
 
 #restdocumentation {
+  background-color: $light;
 }

@@ -38,7 +38,7 @@ export class RestDocumentation extends Component {
           <span>
             <i
               key="restdocumentation__loader"
-              className="fas fa-spinner fa-spin is-primary"
+              className="fas fa-circle-notch fa-spin fa-3x"
             ></i>
           </span>
         </div>
