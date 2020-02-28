@@ -10,6 +10,6 @@ module.exports = function(ops) {
       .src(__dirname + "/../../app/swagger/*.yaml")
       .pipe(concat("swagger.yaml"))
       .pipe(yaml({ schema: "DEFAULT_SAFE_SCHEMA" }))
-      .pipe(gulp.dest(__dirname + "/../../public/"));
+      .pipe(gulp.dest(__dirname + "/../../public/docs/"));
   });
 };

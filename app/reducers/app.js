@@ -1,6 +1,6 @@
 const initialState = {
   title: "Polygon.io - Stock Data",
-  definitionLink: "/swagger.json"
+  definitionLink: "/docs/swagger.json"
 };
 
 export default function reducer(state = initialState, action) {
