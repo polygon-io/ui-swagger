@@ -27,21 +27,21 @@ class HeaderComponent extends Component {
       return (
         <div class="field is-grouped">
           <p class="control">
-            <Link to="/login" class="button is-primary">
+            <a href="/login" class="button is-primary">
               <span>Login</span>
-            </Link>
+            </a>
           </p>
           <p class="control">
-            <Link to="/signup" class="button is-primary">
+            <a href="/signup" class="button is-primary">
               <span>Sign Up</span>
-            </Link>
+            </a>
           </p>
         </div>
       );
     }
     return (
       <div class="user-box navbar-item has-dropdown has-text-right">
-        <Link className="navbar-link" to="/dashboard">
+        <a className="navbar-link" href="/dashboard">
           {/*<span class="tag is-purple">Pro</span>*/}
           <span class="name">{this.props.user.profile.name || "Welcome"}</span>
           <figure class="image is-32x32">
@@ -51,14 +51,14 @@ class HeaderComponent extends Component {
               className="is-rounded"
             />
           </figure>
-        </Link>
+        </a>
         <div class="navbar-dropdown" onClick={this.navbarClicked.bind(this)}>
-          <Link class="navbar-item" to="/dashboard">
+          <a class="navbar-item" href="/dashboard">
             Dashboard
-          </Link>
-          <Link class="navbar-item" to="/dashboard/apikeys">
+          </a>
+          <a class="navbar-item" href="/dashboard/apikeys">
             API Keys
-          </Link>
+          </a>
           <a class="navbar-item" href="/docs/#getting-started">
             Documentation
           </a>
@@ -120,86 +120,86 @@ class HeaderComponent extends Component {
 
           <div class={classes.join(" ")} id="navMenu">
             <div class="navbar-start">
-              <Link to="/" className="navbar-item">
+              <a href="/" className="navbar-item">
                 Home
-              </Link>
+              </a>
 
               <div class="navbar-item has-dropdown">
-                <Link to="/products" className="navbar-link">
+                <a href="/products" className="navbar-link">
                   Products
-                </Link>
+                </a>
 
                 <div
                   class="navbar-dropdown"
                   onClick={this.navbarClicked.bind(this)}
                 >
-                  <Link to="/stocks" className="navbar-item">
+                  <a href="/stocks" className="navbar-item">
                     US Stocks
-                  </Link>
-                  <Link to="/currencies" className="navbar-item">
+                  </a>
+                  <a href="/currencies" className="navbar-item">
                     Currencies
-                  </Link>
-                  <Link to="/crypto" className="navbar-item">
+                  </a>
+                  <a href="/crypto" className="navbar-item">
                     Crypto
-                  </Link>
+                  </a>
                   <hr class="navbar-divider"></hr>
-                  <Link to="/enterprise" className="navbar-item">
+                  <a href="/enterprise" className="navbar-item">
                     Enterprise
-                  </Link>
-                  <Link to="/education" className="navbar-item">
+                  </a>
+                  <a href="/education" className="navbar-item">
                     Education
-                  </Link>
-                  <Link to="/open-source" className="navbar-item">
+                  </a>
+                  <a href="/open-source" className="navbar-item">
                     Open Source
-                  </Link>
+                  </a>
                 </div>
               </div>
 
               <div class="navbar-item has-dropdown">
-                <Link to="/getting-started" class="navbar-link">
+                <a href="/getting-started" class="navbar-link">
                   Docs &amp; Resources
-                </Link>
+                </a>
 
                 <div
                   class="navbar-dropdown"
                   onClick={this.navbarClicked.bind(this)}
                 >
-                  <Link to="/sockets" className="navbar-item">
+                  <a href="/sockets" className="navbar-item">
                     WebSockets Docs
-                  </Link>
+                  </a>
                   <a href="/docs/#getting-started" className="navbar-item">
                     RESTful API Docs
                   </a>
 
                   <hr class="navbar-divider"></hr>
-                  <Link to="/getting-started" className="navbar-item">
+                  <a href="/getting-started" className="navbar-item">
                     Getting Started
-                  </Link>
-                  <Link to="/sample-applications" className="navbar-item">
+                  </a>
+                  <a href="/sample-applications" className="navbar-item">
                     Sample Code
-                  </Link>
-                  <Link to="/faqs" className="navbar-item">
+                  </a>
+                  <a href="/faqs" className="navbar-item">
                     FAQs
-                  </Link>
-                  <Link to="/system" className="navbar-item">
+                  </a>
+                  <a href="/system" className="navbar-item">
                     Systems Status &nbsp;{" "}
                     <span class={systemStatusClasses.join(" ")}>
                       <i class="fas fa-circle"></i>
                     </span>
-                  </Link>
-                  <Link
-                    to="/glossary/us/stocks/conditions-indicators"
+                  </a>
+                  <a
+                    href="/glossary/us/stocks/conditions-indicators"
                     className="navbar-item"
                   >
                     Conditions and Indicators
-                  </Link>
+                  </a>
 
-                  <Link
-                    to="/glossary/us/stocks/market-definitions"
+                  <a
+                    href="/glossary/us/stocks/market-definitions"
                     className="navbar-item"
                   >
                     Market Glossary
-                  </Link>
+                  </a>
                 </div>
               </div>
 
@@ -208,31 +208,31 @@ class HeaderComponent extends Component {
                   class="navbar-dropdown"
                   onClick={this.navbarClicked.bind(this)}
                 >
-                  <Link to="/system" className="navbar-item">
+                  <a href="/system" className="navbar-item">
                     System Status
-                  </Link>
-                  <Link to="/support" className="navbar-item">
+                  </a>
+                  <a href="/support" className="navbar-item">
                     Support
-                  </Link>
+                  </a>
                 </div>
               </div>
 
-              <Link to="/pricing" className="navbar-item">
+              <a href="/pricing" className="navbar-item">
                 Pricing
-              </Link>
+              </a>
 
               <div class="navbar-item has-dropdown">
-                <Link to="/company" className="navbar-link">
+                <a href="/company" className="navbar-link">
                   Company
-                </Link>
+                </a>
 
                 <div
                   class="navbar-dropdown"
                   onClick={this.navbarClicked.bind(this)}
                 >
-                  <Link className="navbar-item" to="/about">
+                  <a className="navbar-item" href="/about">
                     About Us
-                  </Link>
+                  </a>
                   <a
                     className="navbar-item"
                     target="_blank"
@@ -240,19 +240,19 @@ class HeaderComponent extends Component {
                   >
                     Blog
                   </a>
-                  <Link to="/careers" class="navbar-item">
+                  <a href="/careers" class="navbar-item">
                     Careers
-                  </Link>
+                  </a>
                   <hr class="navbar-divider"></hr>
-                  <Link className="navbar-item" to="/contact">
+                  <a className="navbar-item" href="/contact">
                     Contact Us
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
 
             <div class="navbar-end">
-              <Link to="/system" class="navbar-item">
+              <a href="/system" class="navbar-item">
                 Systems
                 <span
                   class={
@@ -261,7 +261,7 @@ class HeaderComponent extends Component {
                 >
                   <i class="fas fa-circle"></i>
                 </span>
-              </Link>
+              </a>
               <div class="navbar-item ctas">{this.renderUser()}</div>
             </div>
           </div>
