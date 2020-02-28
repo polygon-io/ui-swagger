@@ -78,13 +78,13 @@ class Footer extends Component {
                   </ul>
                   <ul className="bump-right">
                     <li>
-                      <Link to="/terms">Terms of Service</Link>
+                      <a href="/terms">Terms of Service</a>
                     </li>
                     <li>
-                      <Link to="/privacy">Privacy Policy</Link>
+                      <a href="/privacy">Privacy Policy</a>
                     </li>
                     <li>
-                      <Link to="/eula">EULA</Link>
+                      <a href="/eula">EULA</a>
                     </li>
                   </ul>
                   <br />
@@ -95,54 +95,54 @@ class Footer extends Component {
                     <div className="column is-12-tablet is-6-desktop">
                       <ul>
                         <li>
-                          <Link to="/products">
+                          <a href="/products">
                             <strong>Products</strong>
-                          </Link>
+                          </a>
                           <hr />
                           <ul>
-                            <Link to="/stocks">
+                            <a href="/stocks">
                               <li>Stocks</li>
-                            </Link>
-                            <Link to="/currencies">
+                            </a>
+                            <a href="/currencies">
                               <li>Currencies</li>
-                            </Link>
-                            <Link to="/crypto">
+                            </a>
+                            <a href="/crypto">
                               <li>Crypto</li>
-                            </Link>
+                            </a>
                           </ul>
                           <ul>
-                            <Link to="/enterprise">
+                            <a href="/enterprise">
                               <li>Enterprise</li>
-                            </Link>
-                            <Link to="/education">
+                            </a>
+                            <a href="/education">
                               <li>Education</li>
-                            </Link>
-                            <Link to="/open-source">
+                            </a>
+                            <a href="/open-source">
                               <li>Open Source</li>
-                            </Link>
+                            </a>
                           </ul>
                         </li>
                       </ul>
                       <br />
                       <ul>
                         <li>
-                          <Link to="/company">
+                          <a href="/company">
                             <strong>Company</strong>
-                          </Link>
+                          </a>
                           <hr />
                           <ul>
-                            <Link to="/about">
+                            <a href="/about">
                               <li>About Us</li>
-                            </Link>
+                            </a>
                             <a target="_blank" href="https://polygon.io/blog/">
                               <li>Blog</li>
                             </a>
-                            <Link to="/careers">
+                            <a href="/careers">
                               <li>Careers</li>
-                            </Link>
-                            <Link to="/contact">
+                            </a>
+                            <a href="/contact">
                               <li>Contact Us</li>
-                            </Link>
+                            </a>
                           </ul>
                         </li>
                       </ul>
@@ -151,9 +151,9 @@ class Footer extends Component {
                     <div className="column company-column is-offset-1-desktop is-11-tablet is-5-desktop">
                       <ul>
                         <li>
-                          <Link to="/getting-started">
+                          <a href="/getting-started">
                             <strong>Docs &amp; Resources</strong>
-                          </Link>
+                          </a>
                           <hr />
                           <ul>
                             <a href="/sockets">
@@ -162,33 +162,33 @@ class Footer extends Component {
                             <a href="/docs/#getting-started">
                               <li>RESTful API Docs</li>
                             </a>
-                            <Link to="/getting-started">
+                            <a href="/getting-started">
                               <li>Getting Started</li>
-                            </Link>
-                            <Link to="/sample-applications">
+                            </a>
+                            <a href="/sample-applications">
                               <li>Sample Code</li>
-                            </Link>
-                            <Link to="/faqs">
+                            </a>
+                            <a href="/faqs">
                               <li>FAQs</li>
-                            </Link>
-                            <Link to="/system">
+                            </a>
+                            <a href="/system">
                               <li>System Status</li>
-                            </Link>
+                            </a>
 
                             <li>&nbsp;</li>
                           </ul>
                         </li>
 
                         <li>
-                          <Link to="/pricing">
+                          <a href="/pricing">
                             <strong>Pricing</strong>
-                          </Link>
+                          </a>
                         </li>
                         <hr />
                         <ul>
-                          <Link to="/pricing">
+                          <a href="/pricing">
                             <li>View Pricing</li>
-                          </Link>
+                          </a>
                         </ul>
                       </ul>
                     </div>
