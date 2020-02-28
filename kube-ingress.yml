@@ -9,18 +9,27 @@ metadata:
     kubernetes.io/tls-acme: "true"
     # ingress.kubernetes.io/limit-rps: 20
     ingress.kubernetes.io/from-to-www-redirect: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   tls:
     - hosts:
-      - dev.polygon.io
-      secretName: polygon-dev
+      - www.polygon.io
+      - polygon.io
+      secretName: polygon-swagger-ui
   rules:
-  - host: dev.polygon.io
+  - host: polygon.io
     http:
       paths:
-      - path: /
+      - path: /docs(/|$)(.*)
         backend:
-          serviceName: ui-swagger-dev
+          serviceName: ui-swagger
+          servicePort: 80
+  - host: www.polygon.io
+    http:
+      paths:
+      - path: /docs(/|$)(.*)
+        backend:
+          serviceName: ui-swagger
           servicePort: 80
 
 

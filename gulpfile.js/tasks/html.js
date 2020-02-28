@@ -20,11 +20,11 @@ module.exports = function(ops) {
       .src(paths.src)
       .pipe(
         htmlreplace({
-          css: `/styles/build.${BUILD_NUM}.css`,
+          css: `/docs/styles/build.${BUILD_NUM}.css`,
           js: {
             src: [
               // `/js/vendors.bundle.${BUILD_NUM}.js`,
-              `/js/app.bundle.build.${BUILD_NUM}.js`
+              `/docs/js/app.bundle.build.${BUILD_NUM}.js`
             ],
             tpl: '"%s",'
           }

@@ -104,7 +104,7 @@ class HeaderComponent extends Component {
         <div className="container navbar__container">
           <div class="navbar-brand">
             <a class="navbar-item" href="/">
-              <img class="logo-img" src="/images/logo_white.svg" />
+              <img class="logo-img" src="/docs/images/logo_white.svg" />
             </a>
 
             <a

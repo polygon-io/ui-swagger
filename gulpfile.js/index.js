@@ -15,7 +15,7 @@ var config = {
   uiPort: 5005,
   tasks: {
     sass: {
-      dest: "styles",
+      dest: "docs/styles",
       paths: ["app/styles", "node_modules/", "node_modules/font-awesome/scss"],
       artifacts: {
         app: {
@@ -25,7 +25,7 @@ var config = {
     },
     webpack: {
       src: "",
-      dest: "",
+      dest: "docs/",
       artifacts: {
         app: "./app"
       },
@@ -67,18 +67,18 @@ var config = {
     },
     images: {
       src: ["app/images/**/*.+(png|jpg|gif|jpeg)"],
-      dest: "images"
+      dest: "docs/images"
     },
     webp: {
       src: ["app/images/**/*.+(png|jpg|gif|jpeg)"],
-      dest: "images"
+      dest: "docs/images"
     },
     fonts: {
       src: [
         // 'node_modules/font-awesome/fonts/**/*',
         "app/fonts/*"
       ],
-      dest: "fonts"
+      dest: "docs/fonts"
     },
     icons: {
       template: "app/images/icons/template.css",
@@ -86,7 +86,7 @@ var config = {
         // 'node_modules/font-awesome/fonts/**/*',
         "app/images/icons/*.svg"
       ],
-      dest: "icons"
+      dest: "docs/icons"
     },
     svgs: {
       src: [
@@ -94,7 +94,7 @@ var config = {
         "app/images/*.svg",
         "app/images/**/*.svg"
       ],
-      dest: "images"
+      dest: "docs/images"
     }
   }
 };
