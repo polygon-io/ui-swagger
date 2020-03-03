@@ -51,7 +51,7 @@ steps:
   - name: deploy
     image: vallard/drone-kube
     settings:
-      namespace: polygon
+      namespace: polygon-public
       template: kube.yml
     environment:
       KUBE_CA:
