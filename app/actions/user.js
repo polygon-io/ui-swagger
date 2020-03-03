@@ -27,6 +27,17 @@ export function fetchUser() {
           payload: res.data
         });
       })
+      .then(() => {
+        return axios.get("auth/account/apikey");
+      })
+      .then(res => {
+        return dispatch({
+          type: "UPDATE_USER",
+          payload: {
+            apiKey: res.data[0].key
+          }
+        });
+      })
       .catch(err => {
         dispatch({
           type: "FETCH_USER_FAILED",
