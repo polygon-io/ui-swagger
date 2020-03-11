@@ -9,6 +9,15 @@ import { TaggedOperations } from "../TaggedOperations";
   user: store.user
 }))
 export class SwaggerUI extends React.Component {
+  componentDidMount() {
+    const anchoredElement = document.getElementById(
+      window.location.hash.replace("#", "")
+    );
+    if (anchoredElement) {
+      anchoredElement.scrollIntoView();
+    }
+  }
+
   render() {
     const { swaggerClient } = this.props;
     const { paths } = swaggerClient.spec;
