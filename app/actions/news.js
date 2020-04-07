@@ -13,7 +13,6 @@ export function fetchNews() {
     dispatch({ type: "FETCHING_NEWS", payload: {} });
     return PublicAPI.get("v1/company/news")
       .then(res => {
-        console.log("Got user:", res.data);
         return dispatch({
           type: "FETCH_NEWS_FULFILLED",
           payload: res.data

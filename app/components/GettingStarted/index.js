@@ -6,7 +6,6 @@ export class GettingStarted extends React.Component {
       <section className="columns">
         <span className="anchor" id="getting-started"></span>
         <div className="operation getting-started column is-half">
-
           <h2 className="title is-2 gettingStarted__title">Getting Started</h2>
 
           <div className="getting-started-summary content">
@@ -14,9 +13,7 @@ export class GettingStarted extends React.Component {
             <p>
               Restful API endpoints are listed on the left menu of this page.
             </p>
-            <p>
-              These can be called passing your API key in the query string:
-            </p>
+            <p>These can be called passing your API key in the query string:</p>
             <pre>
               <code>
                 https://api.polygon.io/v1/last/stocks/AAPL?apiKey=YOURKEY
@@ -24,14 +21,13 @@ export class GettingStarted extends React.Component {
             </pre>
             <h3 className="title is-3">Examples</h3>
             <p>
-              For example code, visit our github, feel free to put in a
-              pull request to add more examples.
+              For example code, visit our github, feel free to put in a pull
+              request to add more examples.
             </p>
-            <a
-              href="https://github.com/Polygon-io"
-              target="_blank"
-            >
-              <button className="button is-primary">Polygon.io on GitHub</button>
+            <a href="https://github.com/Polygon-io" target="_blank">
+              <button className="button is-primary">
+                Polygon.io on GitHub
+              </button>
             </a>
             <h3 className="title is-3">Streaming Clients</h3>
             <p>
@@ -48,7 +44,9 @@ export class GettingStarted extends React.Component {
                 href="https://github.com/Polygon-io/client-examples"
                 target="_blank"
               >
-                <button className="button is-white is-text">Streaming Client Examples</button>
+                <button className="button is-white is-text">
+                  Streaming Client Examples
+                </button>
               </a>
             </p>
 
