@@ -2,6 +2,7 @@ import React from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneLight as highlightTheme } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
+
 export const TryResponseModal = ({
   isActive = false,
   close,
