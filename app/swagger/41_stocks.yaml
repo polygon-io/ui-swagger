@@ -749,7 +749,7 @@
  
   /v2/aggs/ticker/{ticker}/range/{multiplier}/{timespan}/{from}/{to}:
     get:
-      summary: Aggregates
+      summary: Aggregates ( Bars )
       description: |
         Get aggregates for a date range, in custom time window sizes.
         
@@ -758,10 +758,9 @@
         - Currencies&#58; **C&#58;EURUSD**
         - Crypto&#58; **X&#58;BTCUSD**
       tags:
-        - Stocks / Equities
-        - Forex / Currencies
-        # - Indices
-        - Crypto
+        - "Stocks / Equities"
+        - "Forex / Currencies"
+        - "Crypto"
       parameters: 
       - name: ticker
         in: path
@@ -814,7 +813,7 @@
  
   /v2/aggs/grouped/locale/{locale}/market/{market}/{date}:
     get:
-      summary: Grouped Daily
+      summary: Grouped Daily ( Bars )
       description: |
         Get the daily OHLC for entire markets.
 

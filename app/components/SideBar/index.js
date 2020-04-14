@@ -23,9 +23,9 @@ export const SideBar = ({ orderedOperations, dispatch, user }) => {
   return (
     <aside className="menu">
       <div className="sidebar is-hidden-mobile">
-        <p className="menu-label title is-5">API KEY</p>
+        <p className="menu-label title is-5">API Key</p>
         <div>{apiKeyComponent}</div>
-        <p className="menu-label title is-5">API REFERENCE</p>
+        <p className="menu-label title is-5">API Reference</p>
         <Scrollspy
           items={["getting-started"]}
           currentClassName="sidebar__method--current"

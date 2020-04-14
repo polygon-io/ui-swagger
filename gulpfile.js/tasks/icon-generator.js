@@ -43,7 +43,7 @@ module.exports = function(ops) {
                 consolidate("lodash", {
                   glyphs: glyphs,
                   fontName: "poly",
-                  fontPath: "/icons/",
+                  fontPath: "/docs/icons/",
                   className: "pi"
                 })
               )

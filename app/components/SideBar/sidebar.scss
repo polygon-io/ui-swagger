@@ -7,6 +7,18 @@
   padding: $padding*2;
   padding-bottom: $padding*6;
   background-color: $light;
+  min-width: 300px;
+
+  .menu-list {
+    a {
+      padding: 0.25em;
+    }
+  }
+
+  .menu-label {
+    text-transform: none;
+  }
+
 }
 
 .padding-top-2 {

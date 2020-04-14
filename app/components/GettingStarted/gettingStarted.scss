@@ -1,9 +1,50 @@
 .getting-started {
   padding: 2em;
   border-bottom: 1px solid #eee;
+  width: 100% !important;
 }
 
 .gettingStarted__title {
   padding-bottom: .5em;
   padding-top: 1em;
+}
+
+.getting-started-wrapper {
+  .operation__samples {
+    display: none;
+  }
+}
+
+
+
+.sampleapplications {
+
+  .card {
+      border: 1px solid $white;
+
+     &:hover {
+      border: 1px solid $primary;
+     }
+      
+  }
+
+  .icon {
+      margin-right: .5rem;
+  }
+
+  .samples-body {
+      padding-top: 0;
+  }
+
+  .sampleImg {
+      text-align: center;
+      background: $light;
+      padding: $padding*3 $padding*3 $padding*2 $padding*3;
+      .pi {
+          font-size: 3rem;
+          color: $primary;
+      }
+      
+  }
+
 }
