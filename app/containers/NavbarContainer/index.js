@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Navbar } from "polygon-ui-kit";
+import { Navbar } from "@polygon.io/ui-components";
 
 @connect(store => ({
   location: store.location,

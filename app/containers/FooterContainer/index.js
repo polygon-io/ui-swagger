@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Footer } from "polygon-ui-kit";
+import { Footer } from "@polygon.io/ui-components";
 import { connect } from "react-redux";
 
 import actions from "../../actions";
