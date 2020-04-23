@@ -217,7 +217,7 @@ export class GettingStarted extends React.Component {
 									</div>
 								</a>
 
-								<a href="https://github.com/vladlukin/client-jvm" target="_blank" className="column is-12-mobile is-6-tablet is-4-desktop">
+								<a href="https://github.com/polygon-io/client-jvm" target="_blank" className="column is-12-mobile is-6-tablet is-4-desktop">
 									<div class="card">
 										<div className="sampleImg">
 											<span className="pi pi-kotlin"></span>
@@ -236,7 +236,7 @@ export class GettingStarted extends React.Component {
 											</div>
 										</div>
 										<footer class="card-footer">
-											<a href="https://github.com/vladlukin/client-jvm" target="_blank" className="card-footer-item">
+											<a href="https://github.com/polygon-io/client-jvm" target="_blank" className="card-footer-item">
 												<span class="icon has-text-link"><i class="fab fa-github"></i></span> JVM Library on Github
 											</a>
 										</footer>
