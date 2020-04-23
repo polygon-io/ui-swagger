@@ -5,7 +5,7 @@ export class GettingStarted extends React.Component {
     return (
       <section className="columns getting-started-wrapper">
         <span className="anchor" id="getting-started"></span>
-        <div className="operation getting-started column is-half">
+        <div className="getting-started column is-half has-background-white">
 
           <h2 className="title is-2 gettingStarted__title">Getting Started</h2>
 
@@ -217,7 +217,7 @@ export class GettingStarted extends React.Component {
 									</div>
 								</a>
 
-								<a href="#" className="column is-12-mobile is-6-tablet is-4-desktop">
+								<a href="https://github.com/vladlukin/client-jvm" target="_blank" className="column is-12-mobile is-6-tablet is-4-desktop">
 									<div class="card">
 										<div className="sampleImg">
 											<span className="pi pi-kotlin"></span>
@@ -236,8 +236,8 @@ export class GettingStarted extends React.Component {
 											</div>
 										</div>
 										<footer class="card-footer">
-											<a href="#" className="card-footer-item has-text-grey">
-												<span class="icon has-text-grey"><i class="fab fa-github"></i></span> Coming Soon...
+											<a href="https://github.com/vladlukin/client-jvm" target="_blank" className="card-footer-item">
+												<span class="icon has-text-link"><i class="fab fa-github"></i></span> JVM Library on Github
 											</a>
 										</footer>
 									</div>
