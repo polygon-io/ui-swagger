@@ -2,6 +2,11 @@
   padding: 2em;
   border-bottom: 1px solid #eee;
   width: 100% !important;
+
+  .container {
+    margin: 0;
+  }
+
 }
 
 .gettingStarted__title {
@@ -15,8 +20,6 @@
   }
 }
 
-
-
 .sampleapplications {
 
   .card {
@@ -24,6 +27,10 @@
 
      &:hover {
       border: 1px solid $primary;
+     }
+
+     .is-block {
+       line-height: 1;
      }
       
   }
