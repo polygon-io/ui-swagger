@@ -12,8 +12,14 @@ class ApiEndpoint extends React.Component {
     showTryResponseModal: false,
     parameters: {},
     tryResponseModal: {},
-    loading: false
+    loading: false,
+    isUserLoggedIn: false
   };
+
+  componentDidMount() {
+    // set local state for user loggedin status
+    this.setState({ isUserLoggedIn: this.props.user.isLoggedIn });
+  }
 
   setParameter = (parameter, value) => {
     this.setState({
@@ -185,6 +191,7 @@ class ApiEndpoint extends React.Component {
           isActive={this.state.showTryResponseModal}
           close={this.closeResponseModal}
           summary={summary}
+          isLoggedIn={this.state.isUserLoggedIn}
           {...this.state.tryResponseModal}
         />
       </section>
