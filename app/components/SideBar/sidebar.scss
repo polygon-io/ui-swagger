@@ -18,7 +18,12 @@
   .menu-label {
     text-transform: none;
   }
+}
 
+.sidebar__log-in-btn-group {
+  a + a {
+    margin-left: 8px;
+  }
 }
 
 .padding-top-2 {

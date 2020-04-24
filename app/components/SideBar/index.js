@@ -13,12 +13,18 @@ export const SideBar = ({ orderedOperations, dispatch, user }) => {
   const apiKeyComponent = user.isLoggedIn ? (
     <span>Using your API key</span>
   ) : (
-    <input
-      id="apikey"
-      className="input is-small"
-      type="text"
-      onChange={debouncedSetApiKey}
-    />
+    <div className="sidebar__log-in-btn-group">
+      <a href="/Login" className="button">
+        Login
+      </a>
+      <a
+        href="/signup?next=/dashboard/billing/plan"
+        className="button is-primary"
+      >
+        Get your API Key
+      </a>
+      <p>This is some text that needs to be updated</p>
+    </div>
   );
   return (
     <aside className="menu">
