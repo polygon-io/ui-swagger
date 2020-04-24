@@ -2,7 +2,6 @@ import React from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneLight as highlightTheme } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
-
 export const TryResponseModal = ({
   isActive = false,
   close,
@@ -11,7 +10,8 @@ export const TryResponseModal = ({
   responseCode,
   responseHeaders,
   summary,
-  error
+  error,
+  isLoggedIn
 }) => {
   highlightTheme.hljs.background = "";
   document.onkeydown = function(evt) {
@@ -47,6 +47,7 @@ export const TryResponseModal = ({
       </div>
     );
   }
+
   return (
     <div className={`modal ${isActive ? "is-active" : ""}`}>
       <div className="modal-background" onClick={close}></div>
@@ -62,7 +63,19 @@ export const TryResponseModal = ({
             onClick={close}
           ></button>
         </header>
-        <section className="modal-card-body">
+        <section className="modal-card-body modal-card-body--try-modal">
+          <div
+            className={`modal-card__overlay-btn-wpr ${
+              isLoggedIn ? "" : "active"
+            }`}
+          >
+            <div className="modal-card__overlay-btn-container">
+              <a href="/login" className="button is-primary">
+                LOGIN TO TEST ENDPOINT
+              </a>
+            </div>
+          </div>
+
           <h5 className="title is-5 modal__title">REQUEST URL</h5>
           <div>
             <pre>{requestUrl}</pre>
