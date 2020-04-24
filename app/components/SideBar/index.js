@@ -14,7 +14,7 @@ export const SideBar = ({ orderedOperations, dispatch, user }) => {
     <span>Using your API key</span>
   ) : (
     <div className="sidebar__log-in-btn-group">
-      {/* <a href="/Login" className="button">
+      {/* <a href="/login" className="button">
         Login
       </a> */}
       <a
@@ -23,7 +23,10 @@ export const SideBar = ({ orderedOperations, dispatch, user }) => {
       >
         Get your API Key
       </a>
-      <p>This is some text that needs to be updated</p>
+      <p className="mt-8">
+        <a href="/signup?next=/dashboard/billing/plan">Sign up</a> or{" "}
+        <a href="/login">Login</a> to get started.
+      </p>
     </div>
   );
   return (
