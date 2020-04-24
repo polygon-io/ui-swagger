@@ -2,7 +2,6 @@ import React from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneLight as highlightTheme } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
-
 export const TryResponseModal = ({
   isActive = false,
   close,
@@ -47,6 +46,7 @@ export const TryResponseModal = ({
       </div>
     );
   }
+
   return (
     <div className={`modal ${isActive ? "is-active" : ""}`}>
       <div className="modal-background" onClick={close}></div>
@@ -62,16 +62,38 @@ export const TryResponseModal = ({
             onClick={close}
           ></button>
         </header>
-        <section className="modal-card-body">
+        <section className="modal-card-body modal-card-body--try-modal">
           <h5 className="title is-5 modal__title">REQUEST URL</h5>
           <div>
             <pre>{requestUrl}</pre>
           </div>
           <h5 className="title is-5 modal__title">RESPONSE BODY</h5>
-          <div>
+          <div className="modal__response-body-wpr">
             <SyntaxHighlighter language="json" style={highlightTheme}>
               {JSON.stringify(responseBody, null, 2) || ""}
             </SyntaxHighlighter>
+            {responseCode == 403 ? (
+              <div className="modal__error-link-button-wpr">
+                <a
+                  href="/signup?next=/dashboard/billing/plan"
+                  className="button is-primary modal__error-link-button"
+                >
+                  View Products
+                </a>
+              </div>
+            ) : (
+              <div className="modal__error-link-button-wpr">
+                <a href="/Login" className="button">
+                  Login
+                </a>
+                <a
+                  href="/signup?next=/dashboard/billing/plan"
+                  className="button is-primary"
+                >
+                  Get your API Key
+                </a>
+              </div>
+            )}
           </div>
           <h5 className="title is-5 modal__title">RESPONSE CODE</h5>
           <div>
