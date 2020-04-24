@@ -91,3 +91,39 @@ pre {
 pre {
   border-radius: 3px;
 }
+
+// -------------------------------
+// Modal overlay button stylings
+// -------------------------------
+
+// Helper classes
+.polygon_centering-abs {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-card-body--try-modal {
+  position: relative;
+}
+
+.modal-card__overlay-btn-wpr {
+  display: none; // hide on load
+
+  @extend .polygon_centering-abs;
+  z-index: 1;
+
+  height: 100%;
+  width: 100%;
+  background-color: rgba(10, 10, 10, 1);
+
+  &.active {
+    display: block;
+  }
+}
+
+.modal-card__overlay-btn-container {
+  @extend .polygon_centering-abs;
+  z-index: 1;
+}
