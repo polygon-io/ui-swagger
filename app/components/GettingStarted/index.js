@@ -1,11 +1,15 @@
 import React from "react";
 
 export class GettingStarted extends React.Component {
+  redirectTo(url) {
+    window.open(url, "_blank");
+  }
+
   render() {
     return (
       <section className="columns getting-started-wrapper">
         <span className="anchor" id="getting-started"></span>
-        <div className="operation getting-started column is-half">
+        <div className="getting-started column is-half has-background-white">
           <h2 className="title is-2 gettingStarted__title">Getting Started</h2>
 
           <div className="getting-started-summary content">
@@ -108,9 +112,12 @@ export class GettingStarted extends React.Component {
 
             <div className="container sampleapplications">
               <div className="columns is-multiline">
-                <a
-                  href="https://github.com/polygon-io/client-python"
-                  target="_blank"
+                <div
+                  onClick={() =>
+                    this.redirectTo(
+                      "https://github.com/polygon-io/client-python"
+                    )
+                  }
                   className="column is-12-mobile is-6-tablet is-4-desktop"
                 >
                   <div class="card">
@@ -133,6 +140,7 @@ export class GettingStarted extends React.Component {
                       <a
                         href="https://github.com/polygon-io/client-python"
                         target="_blank"
+                        onClick={e => e.stopPropagation()}
                         className="card-footer-item"
                       >
                         <span class="icon has-text-link">
@@ -142,11 +150,12 @@ export class GettingStarted extends React.Component {
                       </a>
                     </footer>
                   </div>
-                </a>
+                </div>
 
-                <a
-                  href="https://github.com/polygon-io/client-js"
-                  target="_blank"
+                <div
+                  onClick={() =>
+                    this.redirectTo("https://github.com/polygon-io/client-js")
+                  }
                   className="column is-12-mobile is-6-tablet is-4-desktop"
                 >
                   <div class="card">
@@ -170,6 +179,7 @@ export class GettingStarted extends React.Component {
                       <a
                         href="https://github.com/polygon-io/client-js"
                         target="_blank"
+                        onClick={e => e.stopPropagation()}
                         className="card-footer-item"
                       >
                         <span class="icon has-text-link">
@@ -179,11 +189,14 @@ export class GettingStarted extends React.Component {
                       </a>
                     </footer>
                   </div>
-                </a>
+                </div>
 
-                <a
-                  href="https://github.com/polygon-io/client-golang"
-                  target="_blank"
+                <div
+                  onClick={() =>
+                    this.redirectTo(
+                      "https://github.com/polygon-io/client-golang"
+                    )
+                  }
                   className="column is-12-mobile is-6-tablet is-4-desktop"
                 >
                   <div class="card">
@@ -206,6 +219,7 @@ export class GettingStarted extends React.Component {
                       <a
                         href="https://github.com/polygon-io/client-golang"
                         target="_blank"
+                        onClick={e => e.stopPropagation()}
                         className="card-footer-item"
                       >
                         <span class="icon has-text-link">
@@ -215,11 +229,12 @@ export class GettingStarted extends React.Component {
                       </a>
                     </footer>
                   </div>
-                </a>
+                </div>
 
-                <a
-                  href="https://github.com/polygon-io/client-php"
-                  target="_blank"
+                <div
+                  onClick={() =>
+                    this.redirectTo("https://github.com/polygon-io/client-php")
+                  }
                   className="column is-12-mobile is-6-tablet is-4-desktop"
                 >
                   <div class="card">
@@ -242,6 +257,7 @@ export class GettingStarted extends React.Component {
                       <a
                         href="https://github.com/polygon-io/client-php"
                         target="_blank"
+                        onClick={e => e.stopPropagation()}
                         className="card-footer-item"
                       >
                         <span class="icon has-text-link">
@@ -251,10 +267,12 @@ export class GettingStarted extends React.Component {
                       </a>
                     </footer>
                   </div>
-                </a>
+                </div>
 
-                <a
-                  href="#"
+                <div
+                  onClick={() =>
+                    this.redirectTo("https://github.com/polygon-io/client-jvm")
+                  }
                   className="column is-12-mobile is-6-tablet is-4-desktop"
                 >
                   <div class="card">
@@ -274,19 +292,27 @@ export class GettingStarted extends React.Component {
                       </div>
                     </div>
                     <footer class="card-footer">
-                      <a href="#" className="card-footer-item has-text-grey">
-                        <span class="icon has-text-grey">
+                      <a
+                        href="https://github.com/polygon-io/client-jvm"
+                        target="_blank"
+                        onClick={e => e.stopPropagation()}
+                        className="card-footer-item"
+                      >
+                        <span class="icon has-text-link">
                           <i class="fab fa-github"></i>
                         </span>{" "}
-                        Coming Soon...
+                        JVM Library on Github
                       </a>
                     </footer>
                   </div>
-                </a>
+                </div>
 
-                <a
-                  href="https://github.com/Polygon-io/client-examples"
-                  target="_blank"
+                <div
+                  onClick={() =>
+                    this.redirectTo(
+                      "https://github.com/Polygon-io/client-examples"
+                    )
+                  }
                   className="column is-12-mobile is-6-tablet is-4-desktop"
                 >
                   <div class="card">
@@ -307,6 +333,7 @@ export class GettingStarted extends React.Component {
                         <a
                           href="https://github.com/Polygon-io/client-examples/blob/master/websockets/nodejs/index.js"
                           target="_blank"
+                          onClick={e => e.stopPropagation()}
                           className="is-block"
                         >
                           <span class="icon has-text-link">
@@ -317,6 +344,7 @@ export class GettingStarted extends React.Component {
                         <a
                           href="https://github.com/Polygon-io/client-examples/blob/master/websockets/golang/main.go"
                           target="_blank"
+                          onClick={e => e.stopPropagation()}
                           className="is-block"
                         >
                           <span class="icon has-text-link">
@@ -327,6 +355,7 @@ export class GettingStarted extends React.Component {
                         <a
                           href="https://github.com/Polygon-io/client-examples/blob/master/websockets/cs/example.cs"
                           target="_blank"
+                          onClick={e => e.stopPropagation()}
                           className="is-block"
                         >
                           <span class="icon has-text-link">
@@ -337,6 +366,7 @@ export class GettingStarted extends React.Component {
                         <a
                           href="https://github.com/polygon-io/client-python/blob/master/websocket-example.py"
                           target="_blank"
+                          onClick={e => e.stopPropagation()}
                           className="is-block"
                         >
                           <span class="icon has-text-link">
@@ -350,6 +380,7 @@ export class GettingStarted extends React.Component {
                       <a
                         href="https://github.com/Polygon-io/client-examples"
                         target="_blank"
+                        onClick={e => e.stopPropagation()}
                         className="card-footer-item"
                       >
                         <span class="icon has-text-link">
@@ -359,7 +390,7 @@ export class GettingStarted extends React.Component {
                       </a>
                     </footer>
                   </div>
-                </a>
+                </div>
               </div>
             </div>
           </div>
