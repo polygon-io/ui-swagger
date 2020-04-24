@@ -71,7 +71,7 @@ export const TryResponseModal = ({
           >
             <div className="modal-card__overlay-btn-container">
               <a href="/login" className="button is-primary">
-                LOGIN TO TEST ENDPOINT
+                Get your API Key
               </a>
             </div>
           </div>
