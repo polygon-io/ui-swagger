@@ -22,7 +22,7 @@ export const TryResponseModal = ({
 
   const showResponseCodeErrorBtn = () => {
     switch (responseCode) {
-      case 401:
+      case 403:
         return (
           <div className="modal__error-link-button-wpr">
             <a href="/Login" className="button">
@@ -36,7 +36,7 @@ export const TryResponseModal = ({
             </a>
           </div>
         );
-      case 403:
+      case 401:
         return (
           <div className="modal__error-link-button-wpr">
             <a
