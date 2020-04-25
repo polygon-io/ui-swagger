@@ -19,6 +19,39 @@ export const TryResponseModal = ({
       close();
     }
   };
+
+  const showResponseCodeErrorBtn = () => {
+    switch (responseCode) {
+      case 403:
+        return (
+          <div className="modal__error-link-button-wpr">
+            <a href="/Login" className="button">
+              Login
+            </a>
+            <a
+              href="/signup?next=/dashboard/billing/plan"
+              className="button is-primary"
+            >
+              Get your API Key
+            </a>
+          </div>
+        );
+      case 401:
+        return (
+          <div className="modal__error-link-button-wpr">
+            <a
+              href="/signup?next=/dashboard/billing/plan"
+              className="button is-primary modal__error-link-button"
+            >
+              View Products
+            </a>
+          </div>
+        );
+      default:
+        return "";
+    }
+  };
+
   if (error) {
     return (
       <div className={`modal ${isActive ? "is-active" : ""}`}>
@@ -72,28 +105,7 @@ export const TryResponseModal = ({
             <SyntaxHighlighter language="json" style={highlightTheme}>
               {JSON.stringify(responseBody, null, 2) || ""}
             </SyntaxHighlighter>
-            {responseCode == 403 ? (
-              <div className="modal__error-link-button-wpr">
-                <a
-                  href="/signup?next=/dashboard/billing/plan"
-                  className="button is-primary modal__error-link-button"
-                >
-                  View Products
-                </a>
-              </div>
-            ) : (
-              <div className="modal__error-link-button-wpr">
-                {/* <a href="/Login" className="button">
-                  Login
-                </a> */}
-                {/* <a
-                  href="/signup?next=/dashboard/billing/plan"
-                  className="button is-primary"
-                >
-                  Get your API Key
-                </a> */}
-              </div>
-            )}
+            {showResponseCodeErrorBtn()}
           </div>
           <h5 className="title is-5 modal__title">RESPONSE CODE</h5>
           <div>
