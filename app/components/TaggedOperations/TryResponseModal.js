@@ -83,15 +83,15 @@ export const TryResponseModal = ({
               </div>
             ) : (
               <div className="modal__error-link-button-wpr">
-                <a href="/Login" className="button">
+                {/* <a href="/Login" className="button">
                   Login
-                </a>
-                <a
+                </a> */}
+                {/* <a
                   href="/signup?next=/dashboard/billing/plan"
                   className="button is-primary"
                 >
                   Get your API Key
-                </a>
+                </a> */}
               </div>
             )}
           </div>
