@@ -48,14 +48,10 @@ var config = {
           use: {
             loader: "babel-loader", // 'babel-loader' is also a legal name to reference
             options: {
-              presets: ["es2015", "react"],
+              presets: ["@babel/preset-env", "@babel/react"],
               plugins: [
-                "syntax-dynamic-import",
-                "jsx-control-statements",
-                "transform-object-rest-spread",
-                "transform-class-properties",
-                "transform-decorators-legacy",
-                "react-html-attrs"
+                ["@babel/plugin-proposal-decorators", { legacy: true }],
+                ["@babel/plugin-proposal-class-properties", { loose: true }]
               ]
             }
           }

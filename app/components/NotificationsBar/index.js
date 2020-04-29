@@ -39,8 +39,8 @@ class NotificationsBar extends Component {
         enter
         exit
       >
-        <article class="global-alert message is-danger">
-          <div class="message-body">
+        <article className="global-alert message is-danger">
+          <div className="message-body">
             <div className="columns">
               <div className="column">
                 {this.props.notifications.error || "Unknown Error"}
@@ -48,7 +48,7 @@ class NotificationsBar extends Component {
               <div className="column is-narrow vcenter">
                 <FontAwesomeIcon
                   onClick={this.close.bind(this)}
-                  class="delete"
+                  className="delete"
                   icon={["far", "times-circle"]}
                 />
               </div>

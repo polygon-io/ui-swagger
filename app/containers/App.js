@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route, Switch, withRouter } from "react-router-dom";
 import actions from "../actions/index";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "./NavbarContainer";
+import Footer from "./FooterContainer";
 import NotificationsBar from "../components/NotificationsBar";
 
 // Pages:

@@ -36,7 +36,10 @@ export class RestDocumentation extends Component {
       return (
         <div id="restdocumentation" className="page restdocumentation--loader">
           <span>
-            <i key="restdocumentation__loader" className="fas fa-circle-notch fa-spin fa-3x" ></i>
+            <i
+              key="restdocumentation__loader"
+              className="fas fa-circle-notch fa-spin fa-3x"
+            ></i>
           </span>
         </div>
       );
