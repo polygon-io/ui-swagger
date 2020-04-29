@@ -120,31 +120,31 @@ export class GettingStarted extends React.Component {
                   }
                   className="column is-12-mobile is-6-tablet is-4-desktop"
                 >
-                  <div class="card">
+                  <div className="card">
                     <div className="sampleImg">
                       <span className="pi pi-python"></span>
                     </div>
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-content">
-                          <p class="title is-4">Python</p>
-                          <p class="subtitle is-6">Client Library</p>
+                    <div className="card-content">
+                      <div className="media">
+                        <div className="media-content">
+                          <p className="title is-4">Python</p>
+                          <p className="subtitle is-6">Client Library</p>
                         </div>
                       </div>
 
-                      <div class="content">
+                      <div className="content">
                         A python client library for accessing Polygon's APIs.
                       </div>
                     </div>
-                    <footer class="card-footer">
+                    <footer className="card-footer">
                       <a
                         href="https://github.com/polygon-io/client-python"
                         target="_blank"
                         onClick={e => e.stopPropagation()}
                         className="card-footer-item"
                       >
-                        <span class="icon has-text-link">
-                          <i class="fab fa-github"></i>
+                        <span className="icon has-text-link">
+                          <i className="fab fa-github"></i>
                         </span>{" "}
                         Python Library on Github
                       </a>
@@ -158,32 +158,32 @@ export class GettingStarted extends React.Component {
                   }
                   className="column is-12-mobile is-6-tablet is-4-desktop"
                 >
-                  <div class="card">
+                  <div className="card">
                     <div className="sampleImg">
                       <span className="pi pi-javascript"></span>
                     </div>
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-content">
-                          <p class="title is-4">JavaScript</p>
-                          <p class="subtitle is-6">Client Library</p>
+                    <div className="card-content">
+                      <div className="media">
+                        <div className="media-content">
+                          <p className="title is-4">JavaScript</p>
+                          <p className="subtitle is-6">Client Library</p>
                         </div>
                       </div>
 
-                      <div class="content">
+                      <div className="content">
                         A javascript client library for accessing Polygon's
                         APIs.
                       </div>
                     </div>
-                    <footer class="card-footer">
+                    <footer className="card-footer">
                       <a
                         href="https://github.com/polygon-io/client-js"
                         target="_blank"
                         onClick={e => e.stopPropagation()}
                         className="card-footer-item"
                       >
-                        <span class="icon has-text-link">
-                          <i class="fab fa-github"></i>
+                        <span className="icon has-text-link">
+                          <i className="fab fa-github"></i>
                         </span>{" "}
                         JavaScript Library on Github
                       </a>
@@ -199,31 +199,31 @@ export class GettingStarted extends React.Component {
                   }
                   className="column is-12-mobile is-6-tablet is-4-desktop"
                 >
-                  <div class="card">
+                  <div className="card">
                     <div className="sampleImg">
                       <span className="pi pi-golang"></span>
                     </div>
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-content">
-                          <p class="title is-4">GoLang</p>
-                          <p class="subtitle is-6">Client Library</p>
+                    <div className="card-content">
+                      <div className="media">
+                        <div className="media-content">
+                          <p className="title is-4">GoLang</p>
+                          <p className="subtitle is-6">Client Library</p>
                         </div>
                       </div>
 
-                      <div class="content">
+                      <div className="content">
                         A GoLang client library for accessing Polygon's APIs.
                       </div>
                     </div>
-                    <footer class="card-footer">
+                    <footer className="card-footer">
                       <a
                         href="https://github.com/polygon-io/client-golang"
                         target="_blank"
                         onClick={e => e.stopPropagation()}
                         className="card-footer-item"
                       >
-                        <span class="icon has-text-link">
-                          <i class="fab fa-github"></i>
+                        <span className="icon has-text-link">
+                          <i className="fab fa-github"></i>
                         </span>{" "}
                         GoLang Library on Github
                       </a>
@@ -237,31 +237,31 @@ export class GettingStarted extends React.Component {
                   }
                   className="column is-12-mobile is-6-tablet is-4-desktop"
                 >
-                  <div class="card">
+                  <div className="card">
                     <div className="sampleImg">
                       <span className="pi pi-php"></span>
                     </div>
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-content">
-                          <p class="title is-4">PHP</p>
-                          <p class="subtitle is-6">Client Library</p>
+                    <div className="card-content">
+                      <div className="media">
+                        <div className="media-content">
+                          <p className="title is-4">PHP</p>
+                          <p className="subtitle is-6">Client Library</p>
                         </div>
                       </div>
 
-                      <div class="content">
+                      <div className="content">
                         A PHP client library for accessing Polygon's APIs.
                       </div>
                     </div>
-                    <footer class="card-footer">
+                    <footer className="card-footer">
                       <a
                         href="https://github.com/polygon-io/client-php"
                         target="_blank"
                         onClick={e => e.stopPropagation()}
                         className="card-footer-item"
                       >
-                        <span class="icon has-text-link">
-                          <i class="fab fa-github"></i>
+                        <span className="icon has-text-link">
+                          <i className="fab fa-github"></i>
                         </span>{" "}
                         PHP Library on Github
                       </a>
@@ -275,31 +275,31 @@ export class GettingStarted extends React.Component {
                   }
                   className="column is-12-mobile is-6-tablet is-4-desktop"
                 >
-                  <div class="card">
+                  <div className="card">
                     <div className="sampleImg">
                       <span className="pi pi-kotlin"></span>
                     </div>
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-content">
-                          <p class="title is-4">Kotlin</p>
-                          <p class="subtitle is-6">Client Library</p>
+                    <div className="card-content">
+                      <div className="media">
+                        <div className="media-content">
+                          <p className="title is-4">Kotlin</p>
+                          <p className="subtitle is-6">Client Library</p>
                         </div>
                       </div>
 
-                      <div class="content">
+                      <div className="content">
                         A Kotlin client library for accessing Polygon's APIs.
                       </div>
                     </div>
-                    <footer class="card-footer">
+                    <footer className="card-footer">
                       <a
                         href="https://github.com/polygon-io/client-jvm"
                         target="_blank"
                         onClick={e => e.stopPropagation()}
                         className="card-footer-item"
                       >
-                        <span class="icon has-text-link">
-                          <i class="fab fa-github"></i>
+                        <span className="icon has-text-link">
+                          <i className="fab fa-github"></i>
                         </span>{" "}
                         JVM Library on Github
                       </a>
@@ -315,16 +315,16 @@ export class GettingStarted extends React.Component {
                   }
                   className="column is-12-mobile is-6-tablet is-4-desktop"
                 >
-                  <div class="card">
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-content">
-                          <p class="title is-4">WebSocket Examples</p>
-                          <p class="subtitle is-6">Sample Code</p>
+                  <div className="card">
+                    <div className="card-content">
+                      <div className="media">
+                        <div className="media-content">
+                          <p className="title is-4">WebSocket Examples</p>
+                          <p className="subtitle is-6">Sample Code</p>
                         </div>
                       </div>
 
-                      <div class="content">
+                      <div className="content">
                         <p>
                           Examples of how to connect and use Polygon.io
                           real-time WebScokets in different languages.
@@ -336,8 +336,8 @@ export class GettingStarted extends React.Component {
                           onClick={e => e.stopPropagation()}
                           className="is-block"
                         >
-                          <span class="icon has-text-link">
-                            <i class="fab fa-github"></i>
+                          <span className="icon has-text-link">
+                            <i className="fab fa-github"></i>
                           </span>
                           NodeJs
                         </a>
@@ -347,8 +347,8 @@ export class GettingStarted extends React.Component {
                           onClick={e => e.stopPropagation()}
                           className="is-block"
                         >
-                          <span class="icon has-text-link">
-                            <i class="fab fa-github"></i>
+                          <span className="icon has-text-link">
+                            <i className="fab fa-github"></i>
                           </span>
                           GoLang
                         </a>
@@ -358,8 +358,8 @@ export class GettingStarted extends React.Component {
                           onClick={e => e.stopPropagation()}
                           className="is-block"
                         >
-                          <span class="icon has-text-link">
-                            <i class="fab fa-github"></i>
+                          <span className="icon has-text-link">
+                            <i className="fab fa-github"></i>
                           </span>
                           C#
                         </a>
@@ -369,22 +369,22 @@ export class GettingStarted extends React.Component {
                           onClick={e => e.stopPropagation()}
                           className="is-block"
                         >
-                          <span class="icon has-text-link">
-                            <i class="fab fa-github"></i>
+                          <span className="icon has-text-link">
+                            <i className="fab fa-github"></i>
                           </span>
                           Python
                         </a>
                       </div>
                     </div>
-                    <footer class="card-footer">
+                    <footer className="card-footer">
                       <a
                         href="https://github.com/Polygon-io/client-examples"
                         target="_blank"
                         onClick={e => e.stopPropagation()}
                         className="card-footer-item"
                       >
-                        <span class="icon has-text-link">
-                          <i class="fab fa-github"></i>
+                        <span className="icon has-text-link">
+                          <i className="fab fa-github"></i>
                         </span>{" "}
                         WebSocket Examples on Github
                       </a>
