@@ -70,26 +70,16 @@ var config = {
       dest: "docs/images"
     },
     fonts: {
-      src: [
-        // 'node_modules/font-awesome/fonts/**/*',
-        "app/fonts/*"
-      ],
+      src: ["app/fonts/*"],
       dest: "docs/fonts"
     },
     icons: {
       template: "app/images/icons/template.css",
-      src: [
-        // 'node_modules/font-awesome/fonts/**/*',
-        "app/images/icons/*.svg"
-      ],
+      src: ["app/images/icons/*.svg"],
       dest: "docs/icons"
     },
     svgs: {
-      src: [
-        // 'node_modules/font-awesome/fonts/**/*',
-        "app/images/*.svg",
-        "app/images/**/*.svg"
-      ],
+      src: ["app/images/*.svg", "app/images/**/*.svg"],
       dest: "docs/images"
     }
   }
