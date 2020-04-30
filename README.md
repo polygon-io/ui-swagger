@@ -40,7 +40,7 @@ This will:
 - minify all javascript files
 - optimize all image files
 - minify css files
-- remove all `console.log` in the code
+- remove all `console.log` in the code!
 
 
 
