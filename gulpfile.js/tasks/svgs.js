@@ -1,16 +1,14 @@
 module.exports = function(ops) {
   var gulp = ops.gulp;
   var config = ops.config;
-  var env = ops.env;
 
   var browserSync = ops.browserSync;
 
   if (!config.tasks.svgs) return;
 
-  var lodash = require("lodash");
-  var path = require("path");
-  var notify = require("gulp-notify");
-  var changed = require("gulp-changed");
+  var lodash = require('lodash');
+  var path = require('path');
+  var changed = require('gulp-changed');
 
   var sources = lodash.map(config.tasks.svgs.src, function(src) {
     return path.join(src);
@@ -31,9 +29,9 @@ module.exports = function(ops) {
     return stream;
   };
 
-  gulp.task("svgs", svgsTask);
-  gulp.task("svgs:watch", ["svgs"], function() {
-    return gulp.watch(paths.src, ["svgs"]);
+  gulp.task('svgs', svgsTask);
+  gulp.task('svgs:watch', ['svgs'], function() {
+    return gulp.watch(paths.src, ['svgs']);
   });
   return svgsTask;
 };

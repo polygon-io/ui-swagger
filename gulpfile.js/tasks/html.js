@@ -1,11 +1,9 @@
-const path = require("path");
-const notify = require("gulp-notify");
-const htmlreplace = require("gulp-html-replace");
+const path = require('path');
+const htmlreplace = require('gulp-html-replace');
 
 module.exports = function(ops) {
   const gulp = ops.gulp;
   const config = ops.config;
-  const env = ops.env;
   var browserSync = ops.browserSync;
 
   var paths = {
@@ -15,17 +13,14 @@ module.exports = function(ops) {
 
   var htmlTask = function() {
     var PROD = Boolean.parse(process.env.prod);
-    let BUILD_NUM = process.env.DRONE_BUILD_NUMBER || "XX";
+    let BUILD_NUM = process.env.DRONE_BUILD_NUMBER || 'XX';
     var stream = gulp
       .src(paths.src)
       .pipe(
         htmlreplace({
           css: `/docs/styles/build.${BUILD_NUM}.css`,
           js: {
-            src: [
-              // `/js/vendors.bundle.${BUILD_NUM}.js`,
-              `/docs/js/app.bundle.build.${BUILD_NUM}.js`
-            ],
+            src: [`/docs/js/app.bundle.build.${BUILD_NUM}.js`],
             tpl: '"%s",'
           }
         })
@@ -37,9 +32,9 @@ module.exports = function(ops) {
     return stream;
   };
 
-  gulp.task("html", htmlTask);
-  gulp.task("html:watch", ["html"], function() {
-    return gulp.watch(paths.src, ["html"]);
+  gulp.task('html', htmlTask);
+  gulp.task('html:watch', ['html'], function() {
+    return gulp.watch(paths.src, ['html']);
   });
 
   return htmlTask;

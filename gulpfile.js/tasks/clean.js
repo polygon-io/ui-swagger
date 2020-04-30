@@ -1,12 +1,10 @@
-var clean = require("rimraf");
-var path = require("path");
-var notify = require("gulp-notify");
+var clean = require('rimraf');
 
 module.exports = function(ops) {
   var gulp = ops.gulp;
   var config = ops.config;
 
-  gulp.task("clean", function(cb) {
+  gulp.task('clean', function(cb) {
     clean(config.dest, cb);
   });
 };

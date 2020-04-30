@@ -1,16 +1,14 @@
 module.exports = function(ops) {
   var gulp = ops.gulp;
   var config = ops.config;
-  var env = ops.env;
   var browserSync = ops.browserSync;
 
   if (!config.tasks.images) return;
 
-  var lodash = require("lodash");
-  var imagemin = require("gulp-imagemin");
-  var path = require("path");
-  var notify = require("gulp-notify");
-  var changed = require("gulp-changed");
+  var lodash = require('lodash');
+  var imagemin = require('gulp-imagemin');
+  var path = require('path');
+  var changed = require('gulp-changed');
 
   var sources = lodash.map(config.tasks.images.src, function(src) {
     return path.join(src);
@@ -33,19 +31,16 @@ module.exports = function(ops) {
           interlaced: true
         })
       ); // Optimize
-    } else {
-      // stream = stream.pipe(imagemin({
-      // 	optimizationLevel: 0, // if dev, dont spend time crunching images
-      // })) // Optimize
     }
+
     stream = stream.pipe(gulp.dest(paths.dest));
     if (!PROD) stream = stream.pipe(browserSync.stream());
     return stream;
   };
 
-  gulp.task("images", imagesTask);
-  gulp.task("images:watch", ["images"], function() {
-    return gulp.watch(paths.src, ["images"]);
+  gulp.task('images', imagesTask);
+  gulp.task('images:watch', ['images'], function() {
+    return gulp.watch(paths.src, ['images']);
   });
   return imagesTask;
 };

@@ -1,16 +1,14 @@
 module.exports = function(ops) {
   var gulp = ops.gulp;
   var config = ops.config;
-  var env = ops.env;
 
   var browserSync = ops.browserSync;
 
   if (!config.tasks.fonts) return;
 
-  var lodash = require("lodash");
-  var path = require("path");
-  var notify = require("gulp-notify");
-  var changed = require("gulp-changed");
+  var lodash = require('lodash');
+  var path = require('path');
+  var changed = require('gulp-changed');
 
   var sources = lodash.map(config.tasks.fonts.src, function(src) {
     return path.join(src);
@@ -31,9 +29,9 @@ module.exports = function(ops) {
     return stream;
   };
 
-  gulp.task("fonts", fontsTask);
-  gulp.task("fonts:watch", ["fonts"], function() {
-    return gulp.watch(paths.src, ["fonts"]);
+  gulp.task('fonts', fontsTask);
+  gulp.task('fonts:watch', ['fonts'], function() {
+    return gulp.watch(paths.src, ['fonts']);
   });
   return fontsTask;
 };
