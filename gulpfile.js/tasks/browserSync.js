@@ -1,8 +1,4 @@
-const notify = require("gulp-notify");
-const lodash = require("lodash");
-const proxy = require("proxy-middleware");
-const historyApiFallback = require("connect-history-api-fallback");
-const url = require("url");
+const historyApiFallback = require('connect-history-api-fallback');
 
 module.exports = function(ops) {
   var gulp = ops.gulp;
@@ -22,10 +18,10 @@ module.exports = function(ops) {
   var browserSyncTask = function(cb) {
     browserSync.init(settings);
 
-    gulp.watch([config.dest + "/**/*.html"]).on("change", browserSync.reload);
+    gulp.watch([config.dest + '/**/*.html']).on('change', browserSync.reload);
   };
 
-  gulp.task("browserSync", browserSyncTask);
+  gulp.task('browserSync', browserSyncTask);
 
   return browserSyncTask;
 };
