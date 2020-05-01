@@ -18,6 +18,12 @@
   .menu-label {
     text-transform: none;
   }
+
+  .sidebar_fetch-spinner {
+    svg {
+      margin-right: $padding/2;
+    }
+  }
 }
 
 .padding-top-2 {

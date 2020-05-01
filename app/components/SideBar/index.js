@@ -1,22 +1,16 @@
 import React from "react";
-import { debounce } from "lodash";
 import Scrollspy from "react-scrollspy";
 
-import { update as updateUser } from "../../actions/user";
 import { SidebarOperationsSection } from "./OperationSection";
 
-export const SideBar = ({ orderedOperations, dispatch, user }) => {
-  const setApiKey = event => {
-    dispatch(updateUser({ apiKey: document.getElementById("apikey").value }));
-  };
-  const debouncedSetApiKey = debounce(setApiKey, 300);
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+
+export const SideBar = ({ orderedOperations, user }) => {
   const apiKeyComponent = user.isLoggedIn ? (
     <span>Using your API key</span>
   ) : (
     <div className="sidebar__log-in-btn-group">
-      {/* <a href="/login" className="button">
-        Login
-      </a> */}
       <a
         href="/signup?next=/dashboard/billing/plan"
         className="button is-primary"
@@ -29,11 +23,19 @@ export const SideBar = ({ orderedOperations, dispatch, user }) => {
       </p>
     </div>
   );
+
   return (
     <aside className="menu">
       <div className="sidebar is-hidden-mobile">
         <p className="menu-label title is-5">API Key</p>
-        <div>{apiKeyComponent}</div>
+        {user.fetched ? (
+          <div>{apiKeyComponent}</div>
+        ) : (
+          <div className="sidebar_fetch-spinner">
+            <FontAwesomeIcon icon={faCircleNotch} className="fa-spin" />
+            Loading...
+          </div>
+        )}
         <p className="menu-label title is-5">API Reference</p>
         <Scrollspy
           items={["getting-started"]}
