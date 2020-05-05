@@ -35,6 +35,7 @@ module.exports = function(ops) {
 
 		// Default DEV settings:
 		var options = {
+			mode: 'none',
 			context: context,
 			entry: config.tasks.webpack.artifacts,
 			target: 'web',
