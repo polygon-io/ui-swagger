@@ -98,6 +98,155 @@
 
 
 
+  /v2/aggs/ticker/{ticker}/prev:
+    get:
+      summary: Previous Close
+      description: |
+        Get the previous day close for the specified ticker
+      tags:
+        - Stocks / Equities
+        - Forex / Currencies
+        - Crypto
+      parameters: 
+      - name: ticker
+        in: path
+        description: Ticker symbol of the request
+        required: true
+        type: string
+        default: AAPL
+      - name: unadjusted
+        in: query
+        description: |
+          Set to true if the results should NOT be adjusted for splits.
+        required: false
+        type: boolean
+      responses:
+        200:
+          description: Previous day OHLC for ticker
+          schema:
+            $ref: "#/definitions/AggResponse"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+            
+ 
+  /v2/aggs/ticker/{ticker}/range/{multiplier}/{timespan}/{from}/{to}:
+    get:
+      summary: Aggregates ( Bars )
+      description: |
+        Get aggregates for a date range, in custom time window sizes.
+        
+        Some tickers require a prefix, see examples below&#58;
+        - Stocks&#58; **AAPL**
+        - Currencies&#58; **C&#58;EURUSD**
+        - Crypto&#58; **X&#58;BTCUSD**
+      tags:
+        - "Stocks / Equities"
+        - "Forex / Currencies"
+        - "Crypto"
+      parameters: 
+      - name: ticker
+        in: path
+        description: Ticker symbol of the request
+        required: true
+        type: string
+        default: AAPL
+      - name: multiplier
+        in: path
+        description: Size of the timespan multiplier
+        required: true
+        type: number
+        default: 1
+      - name: timespan
+        in: path
+        description: Size of the time window
+        required: true
+        type: string
+        default: day
+        enum: [ minute, hour, day, week, month, quarter, year ]
+      - name: from
+        in: path
+        description: From date
+        required: true
+        type: string
+        default: "2019-01-01"
+      - name: to
+        in: path
+        description: To date
+        required: true
+        type: string
+        default: "2019-02-01"
+      - name: unadjusted
+        in: query
+        description: |
+          Set to true if the results should NOT be adjusted for splits.
+        required: false
+        type: boolean
+      responses:
+        200:
+          description: Previous day OHLC for ticker
+          schema:
+            $ref: "#/definitions/AggResponse"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+ 
+  /v2/aggs/grouped/locale/{locale}/market/{market}/{date}:
+    get:
+      summary: Grouped Daily ( Bars )
+      description: |
+        Get the daily OHLC for entire markets.
+
+        ### *** Warning, may cause browser to hang ***
+        The response size is large, and sometimes will cause the browser prettyprint to crash.
+      tags:
+        - Stocks / Equities
+        - Forex / Currencies
+        - Crypto
+      parameters: 
+      - name: locale
+        in: path
+        description: Locale of the aggregates ( See 'Locales' API )
+        required: true
+        type: string
+        default: US
+        enum: [ GLOBAL,US,GB,CA,NL,GR,SP,DE,BE,DK,FI,IE,PT,IN,MX,FR,CN,CH,SE ]
+      - name: market
+        in: path
+        description: Market of the aggregates ( See 'Markets' API )
+        required: true
+        type: string
+        default: STOCKS
+        enum: [ STOCKS, CRYPTO, BONDS, MF, MMF, INDICES, FX ]
+      - name: date
+        in: path
+        description: To date
+        required: true
+        type: string
+        default: "2019-02-01"
+      - name: unadjusted
+        in: query
+        description: |
+          Set to true if the results should NOT be adjusted for splits.
+        required: false
+        type: boolean
+      responses:
+        200:
+          description: Previous day OHLC for ticker
+          schema:
+            $ref: "#/definitions/AggResponse"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+
   # /v1/meta/symbol-types:
   #   get:
   #     summary: Symbol Type Map
@@ -696,175 +845,4 @@
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-
-
-
-
-
-
-
-
-
- 
-  /v2/aggs/ticker/{ticker}/prev:
-    get:
-      summary: Previous Close
-      description: |
-        Get the previous day close for the specified ticker
-      tags:
-        - Stocks / Equities
-        - Forex / Currencies
-        # - Indices
-        - Crypto
-      parameters: 
-      - name: ticker
-        in: path
-        description: Ticker symbol of the request
-        required: true
-        type: string
-        default: AAPL
-      - name: unadjusted
-        in: query
-        description: |
-          Set to true if the results should NOT be adjusted for splits.
-        required: false
-        type: boolean
-      responses:
-        200:
-          description: Previous day OHLC for ticker
-          schema:
-            $ref: "#/definitions/AggResponse"
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
-
-
-
-
-
-
-
-
- 
-  /v2/aggs/ticker/{ticker}/range/{multiplier}/{timespan}/{from}/{to}:
-    get:
-      summary: Aggregates ( Bars )
-      description: |
-        Get aggregates for a date range, in custom time window sizes.
-        
-        Some tickers require a prefix, see examples below&#58;
-        - Stocks&#58; **AAPL**
-        - Currencies&#58; **C&#58;EURUSD**
-        - Crypto&#58; **X&#58;BTCUSD**
-      tags:
-        - "Stocks / Equities"
-        - "Forex / Currencies"
-        - "Crypto"
-      parameters: 
-      - name: ticker
-        in: path
-        description: Ticker symbol of the request
-        required: true
-        type: string
-        default: AAPL
-      - name: multiplier
-        in: path
-        description: Size of the timespan multiplier
-        required: true
-        type: number
-        default: 1
-      - name: timespan
-        in: path
-        description: Size of the time window
-        required: true
-        type: string
-        default: day
-        enum: [ minute, hour, day, week, month, quarter, year ]
-      - name: from
-        in: path
-        description: From date
-        required: true
-        type: string
-        default: "2019-01-01"
-      - name: to
-        in: path
-        description: To date
-        required: true
-        type: string
-        default: "2019-02-01"
-      - name: unadjusted
-        in: query
-        description: |
-          Set to true if the results should NOT be adjusted for splits.
-        required: false
-        type: boolean
-      responses:
-        200:
-          description: Previous day OHLC for ticker
-          schema:
-            $ref: "#/definitions/AggResponse"
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
-
-
- 
-  /v2/aggs/grouped/locale/{locale}/market/{market}/{date}:
-    get:
-      summary: Grouped Daily ( Bars )
-      description: |
-        Get the daily OHLC for entire markets.
-
-        ### *** Warning, may cause browser to hang ***
-        The response size is large, and sometimes will cause the browser prettyprint to crash.
-      tags:
-        - Stocks / Equities
-        - Forex / Currencies
-        # - Indices
-        - Crypto
-      parameters: 
-      - name: locale
-        in: path
-        description: Locale of the aggregates ( See 'Locales' API )
-        required: true
-        type: string
-        default: US
-        enum: [ GLOBAL,US,GB,CA,NL,GR,SP,DE,BE,DK,FI,IE,PT,IN,MX,FR,CN,CH,SE ]
-      - name: market
-        in: path
-        description: Market of the aggregates ( See 'Markets' API )
-        required: true
-        type: string
-        default: STOCKS
-        enum: [ STOCKS, CRYPTO, BONDS, MF, MMF, INDICES, FX ]
-      - name: date
-        in: path
-        description: To date
-        required: true
-        type: string
-        default: "2019-02-01"
-      - name: unadjusted
-        in: query
-        description: |
-          Set to true if the results should NOT be adjusted for splits.
-        required: false
-        type: boolean
-      responses:
-        200:
-          description: Previous day OHLC for ticker
-          schema:
-            $ref: "#/definitions/AggResponse"
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
-
-
-
-
-
-
-
 
