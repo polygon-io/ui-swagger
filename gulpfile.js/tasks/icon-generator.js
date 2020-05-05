@@ -1,67 +1,68 @@
 module.exports = function(ops) {
-  var gulp = ops.gulp;
-  var config = ops.config;
-  var env = ops.env;
+	var gulp = ops.gulp;
+	var config = ops.config;
+	var env = ops.env;
 
-  var browserSync = ops.browserSync;
+	var browserSync = ops.browserSync;
 
-  if (!config.tasks.icons) return;
+	if (!config.tasks.icons) return;
 
-  var lodash = require("lodash");
-  var path = require("path");
-  var async = require("async");
-  var notify = require("gulp-notify");
-  var changed = require("gulp-changed");
-  var iconfont = require("gulp-iconfont");
-  var consolidate = require("gulp-consolidate");
+	var lodash = require('lodash');
+	var path = require('path');
+	var async = require('async');
+	var notify = require('gulp-notify');
+	var changed = require('gulp-changed');
+	var iconfont = require('gulp-iconfont');
+	var consolidate = require('gulp-consolidate');
 
-  var sources = lodash.map(config.tasks.icons.src, function(src) {
-    return path.join(src);
-  });
+	var sources = lodash.map(config.tasks.icons.src, function(src) {
+		return path.join(src);
+	});
 
-  var paths = {
-    src: sources,
-    dest: path.join(config.dest, config.tasks.icons.dest)
-  };
+	var paths = {
+		src: sources,
+		dest: path.join(config.dest, config.tasks.icons.dest),
+	};
 
-  var iconsTask = function(cb) {
-    var iconStream = gulp.src(paths.src).pipe(
-      iconfont({
-        fontName: "poly",
-        normalize: true,
-        fontHeight: 1001
-      })
-    );
+	var iconsTask = function(cb) {
+		var iconStream = gulp.src(paths.src).pipe(
+			iconfont({
+				fontName: 'poly',
+				formats: ['ttf', 'eot', 'woff2', 'woff', 'svg'],
+				normalize: true,
+				fontHeight: 1001,
+			})
+		);
 
-    async.parallel(
-      [
-        function handleGlyphs(cb) {
-          iconStream.on("glyphs", function(glyphs, options) {
-            gulp
-              .src(config.tasks.icons.template)
-              .pipe(
-                consolidate("lodash", {
-                  glyphs: glyphs,
-                  fontName: "poly",
-                  fontPath: "/docs/icons/",
-                  className: "pi"
-                })
-              )
-              .pipe(gulp.dest(paths.dest))
-              .on("finish", cb);
-          });
-        },
-        function handleFonts(cb) {
-          iconStream.pipe(gulp.dest(paths.dest)).on("finish", cb);
-        }
-      ],
-      cb
-    );
-  };
+		async.parallel(
+			[
+				function handleGlyphs(cb) {
+					iconStream.on('glyphs', function(glyphs, options) {
+						gulp
+							.src(config.tasks.icons.template)
+							.pipe(
+								consolidate('lodash', {
+									glyphs: glyphs,
+									fontName: 'poly',
+									fontPath: '/docs/icons/',
+									className: 'pi',
+								})
+							)
+							.pipe(gulp.dest(paths.dest))
+							.on('finish', cb);
+					});
+				},
+				function handleFonts(cb) {
+					iconStream.pipe(gulp.dest(paths.dest)).on('finish', cb);
+				},
+			],
+			cb
+		);
+	};
 
-  gulp.task("icons", iconsTask);
-  gulp.task("icons:watch", ["icons"], function() {
-    return gulp.watch(paths.src, ["icons"]);
-  });
-  return iconsTask;
+	gulp.task('icons', iconsTask);
+	gulp.task('icons:watch', ['icons'], function() {
+		return gulp.watch(paths.src, ['icons']);
+	});
+	return iconsTask;
 };
