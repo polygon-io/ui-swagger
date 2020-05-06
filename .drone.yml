@@ -80,7 +80,6 @@ steps:
         Author: {{ build.author }}
         <{{ build.link }}|Visit build page ↗>
 
-
 trigger:
   branch:
     - master
