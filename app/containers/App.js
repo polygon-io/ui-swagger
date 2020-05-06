@@ -37,7 +37,7 @@ class AppContainer extends Component {
 					<Route component={FourOhFour}></Route>
 				</ConnectedSwitch>
 				<Footer />
-				<NotificationsBar />
+				{this.props.notifications.open ? <NotificationsBar /> : ''}
 			</div>
 		);
 	}
