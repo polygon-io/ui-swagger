@@ -21,12 +21,11 @@ const ConnectedSwitch = connect((store) => ({
 }))
 class AppContainer extends Component {
 	componentDidMount() {
-		this.props.dispatch(actions.systemstatus.load());
-	}
-	componentWillMount() {
 		this.props
 			.dispatch(actions.user.fetchUser())
-			.catch((err) => console.log('User not logged in...'));
+			.catch(() => console.log('User not logged in... '));
+
+		this.props.dispatch(actions.systemstatus.load());
 	}
 	render() {
 		return (
