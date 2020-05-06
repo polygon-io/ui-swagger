@@ -64,6 +64,23 @@ steps:
       branch:
         - master
 
+  - name: slack
+    image: plugins/slack
+    settings:
+      webhook: https://hooks.slack.com/services/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
+      channel: monitoringalerts
+      template: >
+        {{#if build.pull }}
+          *{{#success build.status}}✔{{ else }}✘{{/success}} {{ uppercasefirst build.status }}*: <https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ build.pull }}|Pull Request #{{ build.pull }}>
+        {{else}}
+          *{{#success build.status}}✔{{ else }}✘{{/success}} {{ uppercasefirst build.status }}: Build #{{ build.number }}* (type: `{{ build.event }}`)
+        {{/if}}
+        Commit: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
+        Branch: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{ build.branch }}>
+        Author: {{ build.author }}
+        <{{ build.link }}|Visit build page ↗>
+
+
 trigger:
   branch:
     - master
