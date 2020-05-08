@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { SideBar } from '../SideBar';
-import { GettingStarted } from '../GettingStarted';
+import GettingStarted from '../GettingStarted';
 import { TaggedOperations } from '../TaggedOperations';
 
 @connect((store) => ({
-	user: store.user,
+	user: store.user
 }))
 export class SwaggerUI extends React.Component {
 	componentDidMount() {
@@ -35,14 +35,14 @@ export class SwaggerUI extends React.Component {
 							operations: {
 								[path]: {
 									path,
-									...operations,
-								},
-							},
+									...operations
+								}
+							}
 						};
 					} else {
 						carry[tag].operations[path] = {
 							path,
-							...operations,
+							...operations
 						};
 					}
 				});
