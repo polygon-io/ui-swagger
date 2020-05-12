@@ -12,7 +12,8 @@ import { TaggedOperations } from "../TaggedOperations";
 }))
 export class SwaggerUI extends React.Component {
   state = {
-    orderedOperations: []
+    orderedOperations: [],
+    swaggerClient: {}
   };
 
   componentDidMount() {
@@ -28,6 +29,7 @@ export class SwaggerUI extends React.Component {
 
       this.setState({
         ...this.state,
+        swaggerClient: swaggerClient,
         orderedOperations: Object.values(
           Object.entries(paths).reduce((carry, item) => {
             const [path, operations] = item;
@@ -71,6 +73,7 @@ export class SwaggerUI extends React.Component {
           <GettingStarted id="getting-started" />
           <TaggedOperations
             orderedOperations={this.state.orderedOperations}
+            swaggerCli={this.state.swaggerClient}
             {...this.props}
           />
         </div>
