@@ -39,16 +39,16 @@ class ApiEndpoint extends React.Component {
     });
   };
 
-  tryOperation = (tag, path, swaggerClient) => {
+  tryOperation = (tag, path, swaggerCli) => {
     // Check for data point
-    if (swaggerClient.apis[tag][toHTMLId(path)]) {
+    if (swaggerCli.apis[tag][toHTMLId(path)]) {
       this.setState({
         ...this.state,
         loading: true,
         buildModal: true
       });
 
-      swaggerClient.apis[tag][toHTMLId(path)](this.state.parameters, {
+      swaggerCli.apis[tag][toHTMLId(path)](this.state.parameters, {
         securities: {
           authorized: {
             apiKey: this.props.user.apiKey
@@ -160,7 +160,7 @@ class ApiEndpoint extends React.Component {
                 <button
                   className="button is-primary"
                   onClick={() =>
-                    this.tryOperation(props.tag, id, this.props.swaggerClient)
+                    this.tryOperation(props.tag, id, props.swaggerCli)
                   }
                 >
                   {this.state.loading ? "LOADING..." : "TRY"}
@@ -216,8 +216,15 @@ class ApiEndpoint extends React.Component {
   }
 }
 
-export const ApiEndpoints = ({ tag, taggedOperations, ...props }) => {
+export const ApiEndpoints = ({
+  tag,
+  taggedOperations,
+  swaggerCli,
+  ...props
+}) => {
   const operations = Object.values(taggedOperations.operations);
+
+  console.log(swaggerCli);
 
   return (
     <section>
@@ -228,6 +235,7 @@ export const ApiEndpoints = ({ tag, taggedOperations, ...props }) => {
             key={`operation_${toHTMLId(operation.path)}`}
             operation={operation}
             tag={tag}
+            swaggerCli={swaggerCli}
             {...props}
           />
         ))}
