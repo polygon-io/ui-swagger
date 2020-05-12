@@ -1,15 +1,18 @@
 import React from "react";
-
-import { toHTMLId } from "../../helpers/utils";
 import { ApiEndpoints } from "./ApiEndpoints";
+import Spinner from "../../helpers/spinner";
 
 export const TaggedOperations = ({ orderedOperations, ...props }) => {
-  return orderedOperations.map(taggedOperations => (
-    <ApiEndpoints
-      key={`operations_${toHTMLId(taggedOperations.tag)}`}
-      tag={taggedOperations.tag}
-      taggedOperations={taggedOperations}
-      {...props}
-    />
-  ));
+  return orderedOperations.length > 0 ? (
+    orderedOperations.map((taggedOperations, i) => (
+      <ApiEndpoints
+        key={i}
+        tag={taggedOperations.tag}
+        taggedOperations={taggedOperations}
+        {...props}
+      />
+    ))
+  ) : (
+    <Spinner />
+  );
 };
