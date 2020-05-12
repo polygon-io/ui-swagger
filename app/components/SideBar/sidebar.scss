@@ -1,40 +1,40 @@
 .sidebar {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 3.25rem;
-  overflow: scroll;
-  height: 100vh;
-  padding: $padding * 2;
-  padding-bottom: $padding * 6;
-  background-color: $light;
-  min-width: 300px;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 3.25rem;
+	overflow: scroll;
+	height: 100vh;
+	padding: $padding * 2;
+	padding-bottom: $padding * 6;
+	background-color: $light;
+	min-width: 370px;
 
-  .menu-list {
-    a {
-      padding: 0.25em;
-    }
-  }
+	.menu-list {
+		a {
+			padding: 0.25em;
+		}
+	}
 
-  .menu-label {
-    text-transform: none;
-  }
+	.menu-label {
+		text-transform: none;
+	}
 
-  .sidebar_fetch-spinner {
-    svg {
-      margin-right: $padding/2;
-    }
-  }
+	.sidebar_fetch-spinner {
+		svg {
+			margin-right: $padding/2;
+		}
+	}
 }
 
 .padding-top-2 {
-  padding-top: 2em;
+	padding-top: 2em;
 }
 
 .sidebar__method {
-  margin-right: 1em;
+	margin-right: 1em;
 }
 
 .sidebar__method--current {
-  background-color: $white;
-  width: 100%;
+	background-color: $white;
+	width: 100%;
 }
