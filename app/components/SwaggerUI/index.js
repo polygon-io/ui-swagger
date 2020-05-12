@@ -17,13 +17,6 @@ export class SwaggerUI extends React.Component {
   };
 
   componentDidMount() {
-    const anchoredElement = document.getElementById(
-      window.location.hash.replace("#", "")
-    );
-    if (anchoredElement) {
-      anchoredElement.scrollIntoView();
-    }
-
     new SwaggerClient(this.props.app.definitionLink).then(swaggerClient => {
       const { paths } = swaggerClient.spec;
 
@@ -62,6 +55,16 @@ export class SwaggerUI extends React.Component {
   }
 
   render() {
+    // check url for anchor hash
+    const anchoredElement = document.getElementById(
+      window.location.hash.replace("#", "")
+    );
+
+    // if url hash is found, scroll to target
+    if (anchoredElement) {
+      anchoredElement.scrollIntoView();
+    }
+
     return (
       <div className="columns">
         <SideBar
