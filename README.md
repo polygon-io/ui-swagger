@@ -42,12 +42,3 @@ This will:
 - minify css files
 - remove all `console.log` in the code!
 
-
-
-
-
-License
-----
-
-[MIT License](http://en.wikipedia.org/wiki/MIT_License)
-
