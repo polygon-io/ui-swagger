@@ -1,23 +1,19 @@
 [![Build Status](http://drone.polygon.io/api/badges/polygon-io/ui-swagger/status.svg)](http://drone.polygon.io/polygon-io/ui-swagger)
 
-Swagger UI
-===
+# Swagger UI
 
-Requirements:
----
+## Requirements:
 
 - [NodeJS](https://nodejs.org/en/download/) ( Version 9.3 )
- - We recommend using [Node Version Manager](https://github.com/creationix/nvm)
+- We recommend using [Node Version Manager](https://github.com/creationix/nvm)
 - Gulp: `npm install -g gulp`
 
-To Get Started:
----
+## To Get Started:
 
 - Check out the repo locally
 - run `npm install` inside the directory. (You only have to do this once)
 
-Running the project:
----
+## Running the project:
 
 Inside the directory run:
 
@@ -25,9 +21,7 @@ Inside the directory run:
 npm run dev
 ```
 
-
-Building for prod:
----
+## Building for prod:
 
 To build the project, which puts all built files into `public/` run the following:
 
@@ -41,4 +35,3 @@ This will:
 - optimize all image files
 - minify css files
 - remove all `console.log` in the code!
-

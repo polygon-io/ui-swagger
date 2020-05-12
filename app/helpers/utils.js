@@ -14,4 +14,4 @@ export function humanFileSize(bytes, si = true) {
   return bytes.toFixed(1) + " " + units[u];
 }
 
-export const toHTMLId = path => path.replace(/\/| |{|}/g, "_");
+export const toHTMLId = path => path.replace(/\/| |{|}|-/g, "_");

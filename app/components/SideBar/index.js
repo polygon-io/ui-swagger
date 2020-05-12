@@ -3,6 +3,8 @@ import Scrollspy from "react-scrollspy";
 
 import { SidebarOperationsSection } from "./OperationSection";
 
+import Spinner from "../../helpers/spinner";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
@@ -47,14 +49,18 @@ export const SideBar = ({ orderedOperations, user }) => {
             </li>
           </ul>
         </Scrollspy>
-        {orderedOperations.map(taggedOperations => {
-          return (
-            <SidebarOperationsSection
-              key={`section_${taggedOperations.tag}`}
-              taggedOperations={taggedOperations}
-            />
-          );
-        })}
+        {orderedOperations.length > 0 ? (
+          orderedOperations.map(taggedOperations => {
+            return (
+              <SidebarOperationsSection
+                key={`section_${taggedOperations.tag}`}
+                taggedOperations={taggedOperations}
+              />
+            );
+          })
+        ) : (
+          <Spinner />
+        )}
       </div>
     </aside>
   );
