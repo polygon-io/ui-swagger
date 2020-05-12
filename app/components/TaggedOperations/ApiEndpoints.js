@@ -13,7 +13,8 @@ class ApiEndpoint extends React.Component {
     parameters: {},
     tryResponseModal: {},
     loading: false,
-    isUserLoggedIn: false
+    isUserLoggedIn: false,
+    buildModal: false
   };
 
   componentDidMount() {
@@ -39,35 +40,24 @@ class ApiEndpoint extends React.Component {
   };
 
   tryOperation = (tag, path, swaggerClient) => {
-    this.setState({
-      ...this.state,
-      loading: true
-    });
-    swaggerClient.apis[tag][toHTMLId(path)](this.state.parameters, {
-      securities: {
-        authorized: {
-          apiKey: this.props.user.apiKey
-        }
-      }
-    })
-      .then(response => {
-        const requestUrl = response.url;
-        const responseCode = response.statusCode; // status code
-        const responseBody = response.body; // JSON object or undefined
-        const responseHeaders = response.headers; // header hash
+    // Check for data point
+    if (swaggerClient.apis[tag][toHTMLId(path)]) {
+      this.setState({
+        ...this.state,
+        loading: true,
+        buildModal: true
+      });
 
-        this.openResponseModal({
-          requestUrl,
-          responseBody,
-          responseCode,
-          responseHeaders
-        });
+      swaggerClient.apis[tag][toHTMLId(path)](this.state.parameters, {
+        securities: {
+          authorized: {
+            apiKey: this.props.user.apiKey
+          }
+        }
       })
-      .catch(error => {
-        if (error.response) {
-          const { response } = error;
+        .then(response => {
           const requestUrl = response.url;
-          const responseCode = response.status; // status code
+          const responseCode = response.statusCode; // status code
           const responseBody = response.body; // JSON object or undefined
           const responseHeaders = response.headers; // header hash
 
@@ -77,10 +67,33 @@ class ApiEndpoint extends React.Component {
             responseCode,
             responseHeaders
           });
-        } else {
-          this.openResponseModal({ error });
-        }
-      });
+        })
+        .catch(error => {
+          if (error.response) {
+            const { response } = error;
+            const requestUrl = response.url;
+            const responseCode = response.status; // status code
+            const responseBody = response.body; // JSON object or undefined
+            const responseHeaders = response.headers; // header hash
+
+            this.setState({
+              buildModal: true
+            });
+
+            this.openResponseModal({
+              requestUrl,
+              responseBody,
+              responseCode,
+              responseHeaders
+            });
+          } else {
+            this.openResponseModal({ error });
+          }
+        });
+    } else {
+      // TODO: Need fallback here
+      console.log("Tag / Path not found...");
+    }
   };
 
   openResponseModal = ({
@@ -152,6 +165,17 @@ class ApiEndpoint extends React.Component {
                 >
                   {this.state.loading ? "LOADING..." : "TRY"}
                 </button>
+                {this.state.buildModal ? (
+                  <TryResponseModal
+                    isActive={this.state.showTryResponseModal}
+                    close={this.closeResponseModal}
+                    summary={summary}
+                    isLoggedIn={this.state.isUserLoggedIn}
+                    {...this.state.tryResponseModal}
+                  />
+                ) : (
+                  ""
+                )}
               </div>
               <div className="column is-narrow">
                 <div className="select">
@@ -187,13 +211,6 @@ class ApiEndpoint extends React.Component {
         <section className="column operation__samples is-half-desktop">
           <SampleResponse responses={responses} {...props} />
         </section>
-        <TryResponseModal
-          isActive={this.state.showTryResponseModal}
-          close={this.closeResponseModal}
-          summary={summary}
-          isLoggedIn={this.state.isUserLoggedIn}
-          {...this.state.tryResponseModal}
-        />
       </section>
     );
   }
@@ -201,6 +218,7 @@ class ApiEndpoint extends React.Component {
 
 export const ApiEndpoints = ({ tag, taggedOperations, ...props }) => {
   const operations = Object.values(taggedOperations.operations);
+
   return (
     <section>
       <span className="anchor" id={toHTMLId(tag)}></span>
