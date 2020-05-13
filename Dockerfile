@@ -1,7 +1,7 @@
-FROM pagespeed/nginx-pagespeed:stable-edge-ngx1.15
+FROM nginx:stable
 
 # Copy Nginx Config
-# COPY .nginx.conf /etc/nginx/nginx.conf
+COPY .nginx.conf /etc/nginx/nginx.conf
 
 # Copy Built App
-COPY ./public/ /usr/share/nginx/html/
+COPY ./public/ /ui/public/
