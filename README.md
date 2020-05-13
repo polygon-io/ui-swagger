@@ -8,6 +8,10 @@
 - We recommend using [Node Version Manager](https://github.com/creationix/nvm)
 - Gulp: `npm install -g gulp`
 
+## Making Doc Changes
+
+The docs are built from swagger YAML files, which are located: `app/swagger/`. Changes to those files will update the documentation which is generated on the page.
+
 ## To Get Started:
 
 - Check out the repo locally
