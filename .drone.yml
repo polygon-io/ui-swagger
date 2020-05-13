@@ -8,17 +8,17 @@ platform:
   arch: amd64
 
 steps:
-- name: build
-  image: node:9.2.0
-  commands:
-  - npm i
-  - npm run build
+  - name: build
+    image: node:9.2.0
+    commands:
+      - npm i
+      - npm run build
 
 trigger:
   branch:
-  - master
+    - master
   event:
-  - pull_request
+    - pull_request
 
 ---
 kind: pipeline
@@ -30,60 +30,63 @@ platform:
   arch: amd64
 
 steps:
-- name: build
-  image: node:9.2.0
-  commands:
-  - npm i
-  - npm run build
+  - name: build
+    image: node:9.2.0
+    commands:
+      - npm i
+      - npm run build
 
-- name: docker
-  image: plugins/docker
-  settings:
-    password:
-      from_secret: dockerhub_password
-    repo: polygonio/ui-swagger
-    tag:
-    - ${DRONE_BRANCH/master/latest}
-    - ${DRONE_BRANCH}.build-${DRONE_BUILD_NUMBER}
-    username:
-      from_secret: dockerhub_username
+  - name: docker
+    image: plugins/docker
+    settings:
+      password:
+        from_secret: dockerhub_password
+      repo: polygonio/ui-swagger
+      tag:
+        - ${DRONE_BRANCH/master/latest}
+        - ${DRONE_BRANCH}.build-${DRONE_BUILD_NUMBER}
+      username:
+        from_secret: dockerhub_username
 
-- name: deploy
-  image: vallard/drone-kube
-  settings:
-    namespace: polygon-public
-    template: kube.yml
-  environment:
-    KUBE_CA:
-      from_secret: KUBE_CA
-    KUBE_SERVER:
-      from_secret: KUBE_SERVER
-    KUBE_TOKEN:
-      from_secret: KUBE_TOKEN
-  when:
-    branch:
-    - master
+  - name: deploy
+    image: vallard/drone-kube
+    settings:
+      namespace: polygon-public
+      template: kube.yml
+    environment:
+      KUBE_CA:
+        from_secret: KUBE_CA
+      KUBE_SERVER:
+        from_secret: KUBE_SERVER
+      KUBE_TOKEN:
+        from_secret: KUBE_TOKEN
+    when:
+      branch:
+        - master
 
-- name: slack
-  image: plugins/slack
-  settings:
-    channel: drone-ui-deploy
-    template: "{{#if build.pull }}\n  *{{#success build.status}}✔{{ else }}✘{{/success}} {{ uppercasefirst build.status }}*: <https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ build.pull }}|Pull Request #{{ build.pull }}>\n{{else}}\n  *{{#success build.status}}✔{{ else }}✘{{/success}} {{ uppercasefirst build.status }}: Build #{{ build.number }}* (type: `{{ build.event }}`)\n{{/if}} Commit: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}> Branch: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{ build.branch }}> Author: {{ build.author }} <{{ build.link }}|Visit build page ↗>\n"
-    webhook:
-      from_secret: slack_webhook
-  when:
-    status:
-    - failure
-    - success
+  - name: slack
+    image: plugins/slack
+    when:
+      status:
+        - failure
+        - success
+    settings:
+      channel: drone-ui-deploy
+      template: >
+        {{#if build.pull }}
+          *{{#success build.status}}✔{{ else }}✘{{/success}} {{ uppercasefirst build.status }}*: <https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ build.pull }}|Pull Request #{{ build.pull }}>
+        {{else}}
+          *{{#success build.status}}✔{{ else }}✘{{/success}} {{ uppercasefirst build.status }}: Build #{{ build.number }}* (type: `{{ build.event }}`)
+        {{/if}}
+        Commit: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
+        Branch: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{ build.branch }}>
+        Author: {{ build.author }}
+        <{{ build.link }}|Visit build page ↗>
+      webhook:
+        from_secret: slack_webhook
 
 trigger:
   branch:
-  - master
+    - master
   event:
-  - push
-
----
-kind: signature
-hmac: 0a9deb4784e552d7b54a42700db538f9ee04dfaa631815443c1dccd00d994d6e
-
-...
+    - push
