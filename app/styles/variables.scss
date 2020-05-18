@@ -1,8 +1,8 @@
-$fa-font-path: "fonts/";
-$family-sans-serif: "Google Sans", sans-serif;
-$title-family: "Google Sans", sans-serif;
-$font-family: "Google Sans", sans-serif;
-$body-family: "Google Sans", sans-serif;
+$fa-font-path: 'fonts/';
+$family-sans-serif: 'Google Sans', sans-serif;
+$title-family: 'Google Sans', sans-serif;
+$font-family: 'Google Sans', sans-serif;
+$body-family: 'Google Sans', sans-serif;
 $primary: #5f5cff;
 $link: #5f5cff;
 $success: #33e190;
@@ -12,13 +12,13 @@ $grey-dark: hsl(0%, 0%, 42%);
 
 $body-size: 15px;
 
-$size-1:  2rem;
-$size-2:  1.8rem;
-$size-3:  1.4rem;
-$size-4:  1.2rem;
-$size-5:  1rem;
-$size-6: .90rem;
-$size-7: .85rem;
+$size-1: 2rem;
+$size-2: 1.8rem;
+$size-3: 1.4rem;
+$size-4: 1.2rem;
+$size-5: 1rem;
+$size-6: 0.9rem;
+$size-7: 0.85rem;
 
 $body-line-height: 1.75rem;
 
@@ -33,22 +33,8 @@ $padding: 1rem;
 
 $bg: #f4f7fb;
 
-// LEGACY ( Front v1 UI )
-// $text-color: #6881a9;
-
 $button-padding-vertical: 0.75rem;
 $button-padding-horizontal: 3rem;
-
-// $button-background-color: transparent;
-// $button-border-color: $primary;
-// $button-color: $primary;
-
-// $button-hover-color: #fff;
-// $button-text-hover-background-color: $primary;
-// $button-hover-border-color: $primary;
-
-// $button-disabled-opacity: 0.75;
-// $button-disabled-background-color: $bg;
 
 // Inputs:
 $input-shadow: none;
