@@ -186,8 +186,12 @@
         type: boolean
       - name: sory
         in: query
+        default: asc
+        enum:
+          - asc
+          - desc
         description: |
-          either (asc)ending or (desc)ending based on timestamp. Defaults to (asc)ending
+          sort by timestamp
       responses:
         200:
           description: Previous day OHLC for ticker
