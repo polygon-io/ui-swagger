@@ -9,7 +9,7 @@ platform:
 
 steps:
   - name: build
-    image: node:9.2.1
+    image: node:9.2.10
     commands:
       - npm i
       - npm run build
