@@ -184,6 +184,14 @@
           Set to true if the results should NOT be adjusted for splits.
         required: false
         type: boolean
+      - name: sory
+        in: query
+        default: asc
+        enum:
+          - asc
+          - desc
+        description: |
+          sort by timestamp
       responses:
         200:
           description: Previous day OHLC for ticker
