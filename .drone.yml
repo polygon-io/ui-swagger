@@ -9,7 +9,7 @@ platform:
 
 steps:
   - name: build
-    image: node:9.2.0
+    image: node:9.2.1
     commands:
       - npm i
       - npm run build
@@ -94,5 +94,3 @@ trigger:
 ---
 kind: signature
 hmac: 2ddbb43f40e5194c0cb74dfcc25626d4b916ac292d9768309c8f3c3cc5d3cc38
-
-...
