@@ -90,3 +90,9 @@ trigger:
     - master
   event:
     - push
+
+---
+kind: signature
+hmac: 2ddbb43f40e5194c0cb74dfcc25626d4b916ac292d9768309c8f3c3cc5d3cc38
+
+...
