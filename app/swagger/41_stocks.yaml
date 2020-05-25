@@ -184,6 +184,10 @@
           Set to true if the results should NOT be adjusted for splits.
         required: false
         type: boolean
+      - name: sory
+        in: query
+        description: |
+          either (asc)ending or (desc)ending based on timestamp. Defaults to (asc)ending
       responses:
         200:
           description: Previous day OHLC for ticker
