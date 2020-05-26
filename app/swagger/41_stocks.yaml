@@ -184,7 +184,7 @@
           Set to true if the results should NOT be adjusted for splits.
         required: false
         type: boolean
-      - name: sory
+      - name: sort
         in: query
         default: asc
         enum:
