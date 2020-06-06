@@ -291,7 +291,7 @@
   #       default: AAPL
   #     - name: date
   #       in: path
-  #       description: Date/Day of the historic ticks to retreive
+  #       description: Date/Day of the historic ticks to retrieve
   #       required: true
   #       type: string
   #       format: date
@@ -369,7 +369,7 @@
         default: AAPL
       - name: date
         in: path
-        description: Date/Day of the historic ticks to retreive ( YYYY-MM-DD )
+        description: Date/Day of the historic ticks to retrieve ( YYYY-MM-DD )
         required: true
         type: string
         format: date
@@ -447,7 +447,7 @@
   #       default: AAPL
   #     - name: date
   #       in: path
-  #       description: Date/Day of the historic ticks to retreive
+  #       description: Date/Day of the historic ticks to retrieve
   #       required: true
   #       type: string
   #       format: date
@@ -527,7 +527,7 @@
         default: AAPL
       - name: date
         in: path
-        description: Date/Day of the historic ticks to retreive ( YYYY-MM-DD )
+        description: Date/Day of the historic ticks to retrieve ( YYYY-MM-DD )
         required: true
         type: string
         format: date

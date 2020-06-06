@@ -5,7 +5,7 @@
     get:
       summary: Historic Forex Ticks
       description: |
-        Get historic ticks for a currency pair. Example for **USD/JPY** the from would be **USD** and to would be **JPY**. The date formatted like **2017-6-22**
+        Get historic ticks for a currency pair. Example for **USD/JPY** thefrom would be **USD** and to would be **JPY**. The date formatted like **2017-6-22**
       tags:
         - Forex / Currencies
       parameters: 
@@ -23,7 +23,7 @@
         default: USD
       - name: date
         in: path
-        description: Date/Day of the historic ticks to retreive
+        description: Date/Day of the historic ticks to retrieve
         required: true
         type: string
         format: date
