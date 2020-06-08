@@ -678,7 +678,7 @@
         default: AAPL
       - name: date
         in: path
-        description: Date of the requested open/close
+        description: Date of the requested open/close ( YYYY-MM-DD format )
         required: true
         type: string
         format: date
