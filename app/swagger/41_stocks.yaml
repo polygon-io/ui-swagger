@@ -682,7 +682,7 @@
         required: true
         type: string
         format: date
-        default: "2018-3-2"
+        default: "2020-06-03"
       responses:
         200:
           description: Open Close of this symbol
