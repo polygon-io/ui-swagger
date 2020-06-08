@@ -687,19 +687,7 @@
         200:
           description: Open Close of this symbol
           schema:
-            type: object
-            required: [ status, symbol, last ]
-            properties:
-              symbol:
-                type: string
-                example: AAPL
-                description: Symbol that was evaluated from the request
-              open:
-                $ref: "#/definitions/HistTrade"
-              close:
-                $ref: "#/definitions/HistTrade"
-              afterHours:
-                $ref: "#/definitions/HistTrade"
+            $ref: "#/definitions/StocksOpenClose"
         default:
           description: Unexpected error
           schema:
