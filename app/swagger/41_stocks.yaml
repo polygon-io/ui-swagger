@@ -678,28 +678,16 @@
         default: AAPL
       - name: date
         in: path
-        description: Date of the requested open/close
+        description: Date of the requested open/close ( YYYY-MM-DD format )
         required: true
         type: string
         format: date
-        default: "2018-3-2"
+        default: "2020-06-03"
       responses:
         200:
           description: Open Close of this symbol
           schema:
-            type: object
-            required: [ status, symbol, last ]
-            properties:
-              symbol:
-                type: string
-                example: AAPL
-                description: Symbol that was evaluated from the request
-              open:
-                $ref: "#/definitions/HistTrade"
-              close:
-                $ref: "#/definitions/HistTrade"
-              afterHours:
-                $ref: "#/definitions/HistTrade"
+            $ref: "#/definitions/StocksOpenClose"
         default:
           description: Unexpected error
           schema:
