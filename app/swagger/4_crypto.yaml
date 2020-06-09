@@ -185,7 +185,7 @@
         default: USD
       - name: date
         in: path
-        description: Date/Day of the historic ticks to retreive
+        description: Date/Day of the historic ticks to retrieve
         required: true
         type: string
         format: date
