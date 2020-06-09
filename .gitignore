@@ -7,3 +7,4 @@ public/
 
 # intelliJ IDE
 .idea
+.vscode/
