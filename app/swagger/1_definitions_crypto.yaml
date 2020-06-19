@@ -9,10 +9,12 @@
     properties:
       price:
         type: integer
+        format: double
         example: 9349.44
         description: Trade Price
       size:
         type: integer
+        format: double
         example: 0.03
         description: Size of the trade
       exchange:
@@ -38,10 +40,12 @@
     properties:
       p:
         type: integer
+        format: double
         example: 9349.44
         description: Trade Price
       s:
         type: integer
+        format: double
         example: 0.03
         description: Size of the trade
       x:
@@ -113,10 +117,12 @@
         $ref: "#/definitions/CryptoSnapshotAgg"
       todaysChange:
         type: integer
+        format: double
         example: .001
         description: Value of the change from previous day
       todaysChangePerc:
         type: integer
+        format: double
         example: 2.55
         description: Percentage change since previous day
       updated:
@@ -133,6 +139,7 @@
     properties:
       p:
         type: integer
+        format: double
         example: 0.2907
         description: Price of this book level
       x:
@@ -165,14 +172,17 @@
           $ref: "#/definitions/CryptoSnapshotBookItem"
       bidCount:
         type: integer
+        format: double
         example: 1242.001
         description: Combined total number of bids in the book
       askCount:
         type: integer
+        format: double
         example: 1242.001
         description: Combined total number of asks in the book
       spread:
         type: integer
+        format: double
         example: .001
         description: Difference between the best bid and the best ask price accross exchanges
       updated:
@@ -190,22 +200,27 @@
     properties:
       c:
         type: integer
+        format: double
         example: 0.2907
         description: Close price
       h:
         type: integer
+        format: double
         example: 0.2947
         description: High price
       l:
         type: integer
+        format: double
         example: 0.2901
         description: Low price
       o:
         type: integer
+        format: double
         example: 0.2905
         description: Open price
       v:
         type: integer
+        format: double
         example: 1432.2907
         description: Volume
 

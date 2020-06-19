@@ -69,10 +69,12 @@
         $ref: "#/definitions/StocksSnapshotAgg"
       todaysChange:
         type: integer
+        format: double
         example: .001
         description: Value of the change from previous day
       todaysChangePerc:
         type: integer
+        format: double
         example: 2.55
         description: Percentage change since previous day
       updated:
@@ -89,6 +91,7 @@
     properties:
       p:
         type: integer
+        format: double
         example: 0.2907
         description: Price of this book level
       x:
@@ -119,18 +122,22 @@
         description: Ticker symbol requested
       open:
         type: integer
+        format: double
         example: 352.89
         description: Official open price
       high:
         type: integer
+        format: double
         example: 352.89
         description: Official high price
       low:
         type: integer
+        format: double
         example: 352.89
         description: Official low price
       close:
         type: integer
+        format: double
         example: 352.89
         description: Official close price
       volume:
@@ -143,6 +150,7 @@
         description: Open price in pre-market trading
       afterHours:
         type: integer
+        format: double
         example: 350.24
         description: Close price after hours trading
 
@@ -170,14 +178,17 @@
           $ref: "#/definitions/StocksSnapshotBookItem"
       bidCount:
         type: integer
+        format: double
         example: 1242.001
         description: Combined total number of bids in the book
       askCount:
         type: integer
+        format: double
         example: 1242.001
         description: Combined total number of asks in the book
       spread:
         type: integer
+        format: double
         example: .001
         description: Difference between the best bid and the best ask price accross exchanges
       updated:
@@ -233,6 +244,7 @@
           example: 14
       p:
         type: integer
+        format: double
         example: 223.001
         description: Price of the trade
       z:
@@ -285,6 +297,7 @@
       
       p:
         type: integer
+        format: double
         example: 223.001
         description: BID Price
       x:
@@ -298,6 +311,7 @@
       
       P:
         type: integer
+        format: double
         example: 223.001
         description: ASK Price
       X:
@@ -326,23 +340,27 @@
     properties:
       c:
         type: integer
+        format: double
         example: 0.2907
         description: Close price
       h:
         type: integer
+        format: double
         example: 0.2947
         description: High price
       l:
         type: integer
+        format: double
         example: 0.2901
         description: Low price
       o:
         type: integer
+        format: double
         example: 0.2905
         description: Open price
       v:
         type: integer
-        example: 1432.2907
+        example: 1432
         description: Volume
 
 
@@ -353,6 +371,7 @@
     properties:
       p:
         type: integer
+        format: double
         example: 120.00
         description: Bid Price
       s:
@@ -361,6 +380,7 @@
         description: Bid size in lots
       P:
         type: integer
+        format: double
         example: 121.00
         description: Ask Price
       S:
@@ -388,18 +408,22 @@
         example: 31315282
       o:
         type: integer
+        format: double
         description: Open
         example: 102.87
       c:
         type: integer
+        format: double
         description: Close
         example: 103.74
       h:
         type: integer
+        format: double
         description: High
         example: 103.82
       l:
         type: integer
+        format: double
         description: Low
         example: 102.65
       t:

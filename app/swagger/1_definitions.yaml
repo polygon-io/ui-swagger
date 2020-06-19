@@ -169,18 +169,22 @@ definitions:
     properties:
       o:
         type: integer
+        format: double
         example: 173.15
         description: Open price
       c:
         type: integer
+        format: double
         example: 173.20
         description: Close price
       l:
         type: integer
+        format: double
         example: 173.15
         description: Low price
       h:
         type: integer
+        format: double
         example: 173.21
         description: High price
       v:
@@ -461,12 +465,15 @@ definitions:
         example: "2017-12-31T00:00:00.000Z"
       actualEPS:
         type: number
+        format: double
         example: 3.89
       consensusEPS:
         type: number
+        format: double
         example: 3.82
       estimatedEPS:
         type: number
+        format: double
         example: 3.82
       announceTime:
         type: string
@@ -476,15 +483,19 @@ definitions:
         example: 9
       EPSSurpriseDollar:
         type: number
+        format: double
         example: 0.07
       yearAgo:
         type: number
+        format: double
         example: 3.36
       yearAgoChangePercent:
         type: number
+        format: double
         example: 16
       estimatedChangePercent:
         type: number
+        format: double
         example: 14
 
   Financial:
@@ -756,6 +767,7 @@ definitions:
         description: Number of analysts reporting
       change:
         type: number
+        format: double
         example: -0.04
         description: Change from last month to current
       strongBuy:
