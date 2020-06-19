@@ -30,7 +30,6 @@
         example: 0.78131
         format: double
         description: Price of the trade
-        format: double
       exchange:
         type: integer
         example: 20
