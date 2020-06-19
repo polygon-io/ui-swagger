@@ -6,10 +6,12 @@
     properties:
       a:
         type: integer
+        format: double
         example: 0.80392
         description: Ask price
       b:
         type: integer
+        format: double
         example: 0.80392
         description: Bid price
       t:
@@ -26,6 +28,7 @@
       price:
         type: integer
         example: 0.78131
+        format: double
         description: Price of the trade
         format: double
       exchange:
@@ -67,18 +70,22 @@
     properties:
       o:
         type: integer
+        format: double
         example: 0.81151
         description: Open price
       c:
         type: integer
+        format: double
         example: 0.81287
         description: Close price
       l:
         type: integer
+        format: double
         example: 0.81
         description: Low price
       h:
         type: integer
+        format: double
         example: 0.8141
         description: High price
       v:
@@ -111,10 +118,12 @@
         $ref: "#/definitions/ForexSnapshotAgg"
       todaysChange:
         type: integer
+        format: double
         example: .001
         description: Value of the change from previous day
       todaysChangePerc:
         type: integer
+        format: double
         example: 2.55
         description: Percentage change since previous day
       updated:
@@ -132,18 +141,22 @@
     properties:
       c:
         type: integer
+        format: double
         example: 0.2907
         description: Close price
       h:
         type: integer
+        format: double
         example: 0.2947
         description: High price
       l:
         type: integer
+        format: double
         example: 0.2901
         description: Low price
       o:
         type: integer
+        format: double
         example: 0.2905
         description: Open price
       v:

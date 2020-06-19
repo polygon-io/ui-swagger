@@ -137,10 +137,12 @@
                 description: To currency symbol
               initialAmount:
                 type: number
+                format: double
                 example: 100.00
                 description: The amount we are to convert
               converted:
                 type: number
+                format: double
                 example: 78.76
                 description: To currency symbol
               lastTrade:
