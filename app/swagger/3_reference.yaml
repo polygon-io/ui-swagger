@@ -270,6 +270,8 @@
                     desc: Indices
                   - market: MF
                     desc: Mutual Funds
+                items:
+                  type: string
         401:
           $ref: '#/definitions/Unauthorized'
         404:
@@ -305,6 +307,8 @@
                     name: Great Britain / UK
                   - locale: CA
                     name: Canada
+                items:
+                  type: string
         401:
           $ref: '#/definitions/Unauthorized'
         404:
