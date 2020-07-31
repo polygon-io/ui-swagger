@@ -8,12 +8,12 @@
     required: [ price, size, exchange, conditions, timestamp ]
     properties:
       price:
-        type: integer
+        type: number
         format: double
         example: 9349.44
         description: Trade Price
       size:
-        type: integer
+        type: number
         format: double
         example: 0.03
         description: Size of the trade
@@ -39,12 +39,12 @@
     required: [ p, s, x, c, t ]
     properties:
       p:
-        type: integer
+        type: number
         format: double
         example: 9349.44
         description: Trade Price
       s:
-        type: integer
+        type: number
         format: double
         example: 0.03
         description: Size of the trade
@@ -70,7 +70,7 @@
     required: [ id, type, market, name, url ]
     properties:
       id:
-        type: number
+        type: integer
         example: 2
         description: ID of the exchange
       type:
@@ -116,12 +116,12 @@
       prevDay:
         $ref: "#/definitions/CryptoSnapshotAgg"
       todaysChange:
-        type: integer
+        type: number
         format: double
         example: .001
         description: Value of the change from previous day
       todaysChangePerc:
-        type: integer
+        type: number
         format: double
         example: 2.55
         description: Percentage change since previous day
@@ -138,7 +138,7 @@
     required: [ p, x ]
     properties:
       p:
-        type: integer
+        type: number
         format: double
         example: 0.2907
         description: Price of this book level
@@ -171,17 +171,17 @@
         items:
           $ref: "#/definitions/CryptoSnapshotBookItem"
       bidCount:
-        type: integer
+        type: number
         format: double
         example: 1242.001
         description: Combined total number of bids in the book
       askCount:
-        type: integer
+        type: number
         format: double
         example: 1242.001
         description: Combined total number of asks in the book
       spread:
-        type: integer
+        type: number
         format: double
         example: .001
         description: Difference between the best bid and the best ask price accross exchanges
@@ -199,27 +199,27 @@
     required: [ c, h, l, o, v ]
     properties:
       c:
-        type: integer
+        type: number
         format: double
         example: 0.2907
         description: Close price
       h:
-        type: integer
+        type: number
         format: double
         example: 0.2947
         description: High price
       l:
-        type: integer
+        type: number
         format: double
         example: 0.2901
         description: Low price
       o:
-        type: integer
+        type: number
         format: double
         example: 0.2905
         description: Open price
       v:
-        type: integer
+        type: number
         format: double
         example: 1432.2907
         description: Volume

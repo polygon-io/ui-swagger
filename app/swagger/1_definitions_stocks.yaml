@@ -25,10 +25,10 @@
         example: 12
         description: The exchange this trade happened on
       p:
-        type: integer
+        type: number
+        format: double
         example: 172.17
         description: Price of the trade
-        format: double
       s:
         type: integer
         example: 50
@@ -68,12 +68,12 @@
       prevDay:
         $ref: "#/definitions/StocksSnapshotAgg"
       todaysChange:
-        type: integer
+        type: number
         format: double
         example: .001
         description: Value of the change from previous day
       todaysChangePerc:
-        type: integer
+        type: number
         format: double
         example: 2.55
         description: Percentage change since previous day
@@ -90,7 +90,7 @@
     required: [ p, x ]
     properties:
       p:
-        type: integer
+        type: number
         format: double
         example: 0.2907
         description: Price of this book level
@@ -121,22 +121,22 @@
         example: "NVDA"
         description: Ticker symbol requested
       open:
-        type: integer
+        type: number
         format: double
         example: 352.89
         description: Official open price
       high:
-        type: integer
+        type: number
         format: double
         example: 352.89
         description: Official high price
       low:
-        type: integer
+        type: number
         format: double
         example: 352.89
         description: Official low price
       close:
-        type: integer
+        type: number
         format: double
         example: 352.89
         description: Official close price
@@ -149,7 +149,7 @@
         example: 355
         description: Open price in pre-market trading
       afterHours:
-        type: integer
+        type: number
         format: double
         example: 350.24
         description: Close price after hours trading
@@ -177,17 +177,17 @@
         items:
           $ref: "#/definitions/StocksSnapshotBookItem"
       bidCount:
-        type: integer
+        type: number
         format: double
         example: 1242.001
         description: Combined total number of bids in the book
       askCount:
-        type: integer
+        type: number
         format: double
         example: 1242.001
         description: Combined total number of asks in the book
       spread:
-        type: integer
+        type: number
         format: double
         example: .001
         description: Difference between the best bid and the best ask price accross exchanges
@@ -243,7 +243,7 @@
           description: Condition code
           example: 14
       p:
-        type: integer
+        type: number
         format: double
         example: 223.001
         description: Price of the trade
@@ -296,7 +296,7 @@
           example: 2
       
       p:
-        type: integer
+        type: number
         format: double
         example: 223.001
         description: BID Price
@@ -310,7 +310,7 @@
         description: BID Size ( In round lots )
       
       P:
-        type: integer
+        type: number
         format: double
         example: 223.001
         description: ASK Price
@@ -339,22 +339,22 @@
     required: [ c, h, l, o, v ]
     properties:
       c:
-        type: integer
+        type: number
         format: double
         example: 0.2907
         description: Close price
       h:
-        type: integer
+        type: number
         format: double
         example: 0.2947
         description: High price
       l:
-        type: integer
+        type: number
         format: double
         example: 0.2901
         description: Low price
       o:
-        type: integer
+        type: number
         format: double
         example: 0.2905
         description: Open price
@@ -370,7 +370,7 @@
     required: [ p, s, P, S, t ]
     properties:
       p:
-        type: integer
+        type: number
         format: double
         example: 120.00
         description: Bid Price
@@ -379,7 +379,7 @@
         example: 5
         description: Bid size in lots
       P:
-        type: integer
+        type: number
         format: double
         example: 121.00
         description: Ask Price
@@ -407,27 +407,27 @@
         description: Volume
         example: 31315282
       o:
-        type: integer
+        type: number
         format: double
         description: Open
         example: 102.87
       c:
-        type: integer
+        type: number
         format: double
         description: Close
         example: 103.74
       h:
-        type: integer
+        type: number
         format: double
         description: High
         example: 103.82
       l:
-        type: integer
+        type: number
         format: double
         description: Low
         example: 102.65
       t:
-        type: number
+        type: integer
         description: Unix Msec Timestamp ( Start of Aggregate window )
         example: 1549314000000
       "n":
@@ -456,11 +456,11 @@
         description: If this response was adjusted for splits
         example: true
       queryCount:
-        type: number
-        description: Number of aggregate ( min or day ) used to generate the response
+        type: integer
+        description: Number of aggregate (min or day) used to generate the response
         example: 55
       resultsCount:
-        type: number
+        type: integer
         description: Total number of results generated
         example: 2
       results:

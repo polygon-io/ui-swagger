@@ -14,10 +14,10 @@ definitions:
     required: [ price, size, exchange, cond1, cond2, cond3, cond4, timestamp ]
     properties:
       price:
-        type: integer
+        type: number
+        format: double
         example: 159.59
         description: Price of the trade
-        format: double
       size:
         type: integer
         example: 20
@@ -52,10 +52,10 @@ definitions:
     required: [ askprice, asksize, askexchange, bidprice, bidsize, bidexchange, timestamp ]
     properties:
       askprice:
-        type: integer
+        type: number
+        format: double
         example: 159.59
         description: Ask Price
-        format: double
       asksize:
         type: integer
         example: 2
@@ -65,10 +65,10 @@ definitions:
         example: 11
         description: Exchange the ask happened on
       bidprice:
-        type: integer
+        type: number
+        format: double
         example: 159.45
         description: Bid Price
-        format: double
       bidsize:
         type: integer
         example: 20
@@ -111,10 +111,10 @@ definitions:
         example: 12
         description: The exchange this trade happened on
       price:
-        type: integer
+        type: number
+        format: double
         example: 172.17
         description: Price of the trade
-        format: double
       size:
         type: integer
         example: 50
@@ -141,15 +141,15 @@ definitions:
         example: 12
         description: Ask Exchange
       aP:
-        type: integer
+        type: number
+        format: double
         example: 173.15
         description: Ask Price
-        format: "double"
       bP:
-        type: integer
+        type: number
+        format: double
         example: 173.13
         description: Bid Price
-        format: "double"
       bS:
         type: integer
         example: 25
@@ -168,22 +168,22 @@ definitions:
     required: [ o, c, l, h, v, k, t ]
     properties:
       o:
-        type: integer
+        type: number
         format: double
         example: 173.15
         description: Open price
       c:
-        type: integer
+        type: number
         format: double
         example: 173.20
         description: Close price
       l:
-        type: integer
+        type: number
         format: double
         example: 173.15
         description: Low price
       h:
-        type: integer
+        type: number
         format: double
         example: 173.21
         description: High price
@@ -239,7 +239,7 @@ definitions:
         example: HWUPKR0MPOU8FGXBT394
         description: Legal Entity Identifier (LEI) guid for symbol ( https://en.wikipedia.org/wiki/Legal_Entity_Identifier )
       sic:
-        type: number
+        type: integer
         example: 3571
         description: Standard Industrial Classification (SIC) id for symbol ( https://en.wikipedia.org/wiki/Standard_Industrial_Classification )
       country:
@@ -255,11 +255,11 @@ definitions:
         example: Technology
         description: Sector of the indsutry in which this symbol operates in
       marketcap:
-        type: number
+        type: integer
         example: 815604985500
         description: Current market cap for this company
       employees:
-        type: number
+        type: integer
         example: 116000
         description: Approximate number of employees
       phone:
@@ -479,7 +479,7 @@ definitions:
         type: string
         example: AMC
       numberOfEstimates:
-        type: number
+        type: integer
         example: 9
       EPSSurpriseDollar:
         type: number
@@ -516,58 +516,58 @@ definitions:
         example: "2017-12-31"
         description: Report date as non date format
       grossProfit:
-        type: number
+        type: integer
         example: 33912000000
       costOfRevenue:
-        type: number
+        type: integer
         example: 54381000000
       operatingRevenue:
-        type: number
+        type: integer
         example: 88293000000
       totalRevenue:
-        type: number
+        type: integer
         example: 88293000000
       operatingIncome:
-        type: number
+        type: integer
         example: 26274000000
       netIncome:
-        type: number
+        type: integer
         example: 20065000000
       researchAndDevelopment:
-        type: number
+        type: integer
         example: 3407000000
       operatingExpense:
-        type: number
+        type: integer
         example: 7638000000
       currentAssets:
-        type: number
+        type: integer
         example: 143810000000
       totalAssets:
-        type: number
+        type: integer
         example: 406794000000
       totalLiabilities:
-        type: number
+        type: integer
         example: 266595000000
       currentCash:
-        type: number
+        type: integer
         example: 27491000000
       currentDebt:
-        type: number
+        type: integer
         example: 18478000000
       totalCash:
-        type: number
+        type: integer
         example: 77153000000
       totalDebt:
-        type: number
+        type: integer
         example: 122400000000
       shareholderEquity:
-        type: number
+        type: integer
         example: 140199000000
       cashChange:
-        type: number
+        type: integer
         example: 7202000000
       cashFlow:
-        type: number
+        type: integer
         example: 28293000000
       operatingGainsLosses:
         type: number
