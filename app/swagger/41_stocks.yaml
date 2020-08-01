@@ -157,7 +157,7 @@
         in: path
         description: Size of the timespan multiplier
         required: true
-        type: number
+        type: integer
         default: 1
       - name: timespan
         in: path

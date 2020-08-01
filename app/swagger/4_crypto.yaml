@@ -79,12 +79,12 @@
                 type: object
                 properties:
                   avg:
-                    type: int
+                    type: number
                     format: double
                     description: Average of the trades analyzed
                     example: 9348.727
                   tradesAveraged:
-                    type: int
+                    type: integer
                     description: Number of trades that were analyzed to get the average.
                     example: 10
         default:
@@ -141,12 +141,12 @@
                 format: date
                 example: 2018-5-9
               open:
-                type: int
+                type: number
                 format: double
                 description: Opening trade price
                 example: 9228.1801
               close:
-                type: int
+                type: number
                 format: double
                 description: Closing trade price
                 example: 9300.40000001

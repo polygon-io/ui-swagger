@@ -67,7 +67,7 @@
           description: |
             How many items to be on each page during pagination. Max 50
           required: false
-          type: number
+          type: integer
           default: 50
         - name: page
           in: query
@@ -75,7 +75,7 @@
             Which page of results to return
           required: false
           default: 1
-          type: number
+          type: integer
         - name: active
           in: query
           description: |
@@ -217,7 +217,7 @@
           description: |
             How many items to be on each page during pagination. Max 50
           required: false
-          type: number
+          type: integer
           default: 50
         - name: page
           in: query
@@ -225,7 +225,7 @@
             Which page of results to return
           required: false
           default: 1
-          type: number
+          type: integer
       tags:
         - Reference
       responses:
@@ -347,7 +347,7 @@
                 type: string
                 example: OK
               count: 
-                type: number
+                type: integer
                 example: 1
               results:
                 type: array
@@ -387,7 +387,7 @@
                 type: string
                 example: OK
               count: 
-                type: number
+                type: integer
                 example: 1
               results:
                 type: array
@@ -422,7 +422,7 @@
             Limit the number of results
           required: false
           default: 5
-          type: number
+          type: integer
         - name: type
           in: query
           description: |
@@ -449,7 +449,7 @@
                 type: string
                 example: OK
               count: 
-                type: number
+                type: integer
                 example: 1
               results:
                 type: array
