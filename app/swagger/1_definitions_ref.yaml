@@ -1,7 +1,3 @@
-
-
-
-
   Ticker:
     type: object
     required: [ ticker, name, market, locale, updated ]
@@ -111,12 +107,12 @@
           <br/>
           For example: Split ratio of .5 = 2 for 1 split.
       tofactor:
-        type: number
+        type: integer
         example: 7
         description: |
           To factor of the split. Used to calculate the split ratio forfactor/tofactor = ratio (eg ½ = 0.5)
       forfactor:
-        type: number
+        type: integer
         example: 1
         description: |
           For factor of the split. Used to calculate the split ratio forfactor/tofactor = ratio (eg ½ = 0.5)
@@ -146,215 +142,235 @@
         type: string
         format: date-time
         example: "1999-03-28"
-      accumulatedOtherComprehensiveIncome: 
+      accumulatedOtherComprehensiveIncome:
         type: integer
-      assets: 
+      assets:
         type: integer
-      assetsAverage: 
+      assetsAverage:
         type: integer
-      assetsCurrent: 
+      assetsCurrent:
         type: integer
-      assetTurnover: 
+      assetTurnover:
         type: integer
-      assetsNonCurrent: 
+      assetsNonCurrent:
         type: integer
-      bookValuePerShare: 
+      bookValuePerShare:
+        type: number
+        format: double
+      capitalExpenditure:
         type: integer
-      capitalExpenditure: 
+      cashAndEquivalents:
         type: integer
-      cashAndEquivalents: 
+      cashAndEquivalentsUSD:
         type: integer
-      cashAndEquivalentsUSD: 
+      costOfRevenue:
         type: integer
-      costOfRevenue: 
+      consolidatedIncome:
         type: integer
-      consolidatedIncome: 
+      currentRatio:
+        type: number
+        format: double
+      debtToEquityRatio:
+        type: number
+        format: double
+      debt:
         type: integer
-      currentRatio: 
+      debtCurrent:
         type: integer
-      debtToEquityRatio: 
+      debtNonCurrent:
         type: integer
-      debt: 
+      debtUSD:
         type: integer
-      debtCurrent: 
+      deferredRevenue:
         type: integer
-      debtNonCurrent: 
+      depreciationAmortizationAndAccretion:
         type: integer
-      debtUSD: 
+      deposits:
         type: integer
-      deferredRevenue: 
+      dividendYield:
         type: integer
-      depreciationAmortizationAndAccretion: 
+      dividendsPerBasicCommonShare:
         type: integer
-      deposits: 
+      earningBeforeInterestTaxes:
         type: integer
-      dividendYield: 
+      earningsBeforeInterestTaxesDepreciationAmortization:
         type: integer
-      dividendsPerBasicCommonShare: 
+      EBITDAMargin:
+        type: number
+        format: double
+      earningsBeforeInterestTaxesDepreciationAmortizationUSD:
         type: integer
-      earningBeforeInterestTaxes: 
+      earningBeforeInterestTaxesUSD:
         type: integer
-      earningsBeforeInterestTaxesDepreciationAmortization: 
+      earningsBeforeTax:
         type: integer
-      EBITDAMargin: 
+      earningsPerBasicShare:
+        type: number
+        format: double
+      earningsPerDilutedShare:
+        type: number
+        format: double
+      earningsPerBasicShareUSD:
+        type: number
+        format: double
+      shareholdersEquity:
         type: integer
-      earningsBeforeInterestTaxesDepreciationAmortizationUSD: 
+      averageEquity:
         type: integer
-      earningBeforeInterestTaxesUSD: 
+      shareholdersEquityUSD:
         type: integer
-      earningsBeforeTax: 
+      enterpriseValue:
         type: integer
-      earningsPerBasicShare: 
+      enterpriseValueOverEBIT:
         type: integer
-      earningsPerDilutedShare: 
+      enterpriseValueOverEBITDA:
+        type: number
+        format: double
+      freeCashFlow:
         type: integer
-      earningsPerBasicShareUSD: 
+      freeCashFlowPerShare:
+        type: number
+        format: double
+      foreignCurrencyUSDExchangeRate:
         type: integer
-      shareholdersEquity: 
+      grossProfit:
         type: integer
-      averageEquity: 
+      grossMargin:
+        type: number
+        format: double
+      goodwillAndIntangibleAssets:
         type: integer
-      shareholdersEquityUSD: 
+      interestExpense:
         type: integer
-      enterpriseValue: 
+      investedCapital:
         type: integer
-      enterpriseValueOverEBIT: 
+      investedCapitalAverage:
         type: integer
-      enterpriseValueOverEBITDA: 
+      inventory:
         type: integer
-      freeCashFlow: 
+      investments:
         type: integer
-      freeCashFlowPerShare: 
+      investmentsCurrent:
         type: integer
-      foreignCurrencyUSDExchangeRate: 
+      investmentsNonCurrent:
         type: integer
-      grossProfit: 
+      totalLiabilities:
         type: integer
-      grossMargin: 
+      currentLiabilities:
         type: integer
-      goodwillAndIntangibleAssets: 
+      liabilitiesNonCurrent:
         type: integer
-      interestExpense: 
+      marketCapitalization:
         type: integer
-      investedCapital: 
+      netCashFlow:
         type: integer
-      investedCapitalAverage: 
+      netCashFlowBusinessAcquisitionsDisposals:
         type: integer
-      inventory: 
+      issuanceEquityShares:
         type: integer
-      investments: 
+      issuanceDebtSecurities:
         type: integer
-      investmentsCurrent: 
+      paymentDividendsOtherCashDistributions:
         type: integer
-      investmentsNonCurrent: 
+      netCashFlowFromFinancing:
         type: integer
-      totalLiabilities: 
+      netCashFlowFromInvesting:
         type: integer
-      currentLiabilities: 
+      netCashFlowInvestmentAcquisitionsDisposals:
         type: integer
-      liabilitiesNonCurrent: 
+      netCashFlowFromOperations:
         type: integer
-      marketCapitalization: 
+      effectOfExchangeRateChangesOnCash:
         type: integer
-      netCashFlow: 
+      netIncome:
         type: integer
-      netCashFlowBusinessAcquisitionsDisposals: 
+      netIncomeCommonStock:
         type: integer
-      issuanceEquityShares: 
+      netIncomeCommonStockUSD:
         type: integer
-      issuanceDebtSecurities: 
+      netLossIncomeFromDiscontinuedOperations:
         type: integer
-      paymentDividendsOtherCashDistributions: 
+      netIncomeToNonControllingInterests:
         type: integer
-      netCashFlowFromFinancing: 
+      profitMargin:
+        type: number
+        format: double
+      operatingExpenses:
         type: integer
-      netCashFlowFromInvesting: 
+      operatingIncome:
         type: integer
-      netCashFlowInvestmentAcquisitionsDisposals: 
+      tradeAndNonTradePayables:
         type: integer
-      netCashFlowFromOperations: 
+      payoutRatio:
         type: integer
-      effectOfExchangeRateChangesOnCash: 
+      priceToBookValue:
+        type: number
+        format: double
+      priceEarnings:
+        type: number
+        format: double
+      priceToEarningsRatio:
+        type: number
+        format: double
+      propertyPlantEquipmentNet:
         type: integer
-      netIncome: 
+      preferredDividendsIncomeStatementImpact:
         type: integer
-      netIncomeCommonStock: 
+      sharePriceAdjustedClose:
+        type: number
+        format: double
+      priceSales:
+        type: number
+        format: double
+      priceToSalesRatio:
+        type: number
+        format: double
+      tradeAndNonTradeReceivables:
         type: integer
-      netIncomeCommonStockUSD: 
+      accumulatedRetainedEarningsDeficit:
         type: integer
-      netLossIncomeFromDiscontinuedOperations: 
+      revenues:
         type: integer
-      netIncomeToNonControllingInterests: 
+      revenuesUSD:
         type: integer
-      profitMargin: 
+      researchAndDevelopmentExpense:
         type: integer
-      operatingExpenses: 
+      returnOnAverageAssets:
         type: integer
-      operatingIncome: 
+      returnOnAverageEquity:
         type: integer
-      tradeAndNonTradePayables: 
+      returnOnInvestedCapital:
         type: integer
-      payoutRatio: 
+      returnOnSales:
+        type: number
+        format: double
+      shareBasedCompensation:
         type: integer
-      priceToBookValue: 
+      sellingGeneralAndAdministrativeExpense:
         type: integer
-      priceEarnings: 
+      shareFactor:
         type: integer
-      priceToEarningsRatio: 
+      shares:
         type: integer
-      propertyPlantEquipmentNet: 
+      weightedAverageShares:
         type: integer
-      preferredDividendsIncomeStatementImpact: 
+      weightedAverageSharesDiluted:
         type: integer
-      sharePriceAdjustedClose: 
+      salesPerShare:
+        type: number
+        format: double
+      tangibleAssetValue:
         type: integer
-      priceSales: 
+      taxAssets:
         type: integer
-      priceToSalesRatio: 
+      incomeTaxExpense:
         type: integer
-      tradeAndNonTradeReceivables: 
+      taxLiabilities:
         type: integer
-      accumulatedRetainedEarningsDeficit: 
-        type: integer
-      revenues: 
-        type: integer
-      revenuesUSD: 
-        type: integer
-      researchAndDevelopmentExpense: 
-        type: integer
-      returnOnAverageAssets: 
-        type: integer
-      returnOnAverageEquity: 
-        type: integer
-      returnOnInvestedCapital: 
-        type: integer
-      returnOnSales: 
-        type: integer
-      shareBasedCompensation: 
-        type: integer
-      sellingGeneralAndAdministrativeExpense: 
-        type: integer
-      shareFactor: 
-        type: integer
-      shares: 
-        type: integer
-      weightedAverageShares: 
-        type: integer
-      weightedAverageSharesDiluted: 
-        type: integer
-      salesPerShare: 
-        type: integer
-      tangibleAssetValue: 
-        type: integer
-      taxAssets: 
-        type: integer
-      incomeTaxExpense: 
-        type: integer
-      taxLiabilities: 
-        type: integer
-      tangibleAssetsBookValuePerShare: 
-        type: integer
-      workingCapital: 
+      tangibleAssetsBookValuePerShare:
+        type: number
+        format: double
+      workingCapital:
         type: integer
 
 
