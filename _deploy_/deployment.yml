@@ -1,5 +1,4 @@
 
-
 # App UI
 # -------------------------------
 apiVersion: extensions/v1beta1
@@ -8,7 +7,7 @@ metadata:
   name: ui-swagger
   namespace: polygon-public
 spec:
-  replicas: 2
+  replicas: {{replica_count}}
   template:
     metadata:
       labels:
@@ -20,8 +19,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: ui-swagger
-          image: polygonio/ui-swagger:{{build.branch}}.build-{{build.number}}
-          # image: polygonio/ui-swagger:latest
+          image: polygonio/ui-swagger:{{commit}}
           env:
             - name: PORT
               value: '80'
@@ -51,25 +49,3 @@ spec:
             requests:
               cpu: .25
               memory: .5G
-
-
---- 
-
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: ui-swagger
-  namespace: polygon-public
-  labels:
-    app: ui-swagger
-    project: ui-swagger
-spec:
-  ports:
-  - port: 80
-    targetPort: http
-  selector:
-    app: ui-swagger
-    project: ui-swagger
-
-

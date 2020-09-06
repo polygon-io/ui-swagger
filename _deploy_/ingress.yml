@@ -7,23 +7,23 @@ metadata:
   namespace: polygon-public
   annotations:
     kubernetes.io/tls-acme: "true"
-    # ingress.kubernetes.io/limit-rps: 20
-    ingress.kubernetes.io/from-to-www-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/ingress.class: "nginx"
 spec:
   tls:
     - hosts:
-      - www.polygon.io
-      - polygon.io
-      secretName: polygon-swagger-ui
+      - "{{zone}}polygon.io"
+      - "www.{{zone}}polygon.io"
+      secretName: polygon-ui-tls
   rules:
-  - host: polygon.io
+  - host: "{{zone}}polygon.io"
     http:
       paths:
       - path: /docs
         backend:
           serviceName: ui-swagger
           servicePort: 80
-  - host: www.polygon.io
+  - host: "www.{{zone}}polygon.io"
     http:
       paths:
       - path: /docs

@@ -48,21 +48,51 @@ steps:
     username:
       from_secret: dockerhub_username
 
-- name: deploy
-  image: vallard/drone-kube
+- name: service-staging
+  pull: always
+  image: polygonio/drone-kube
   settings:
-    namespace: polygon-public
-    template: kube.yml
-  environment:
-    KUBE_CA:
-      from_secret: KUBE_CA
-    KUBE_SERVER:
-      from_secret: KUBE_SERVER
-    KUBE_TOKEN:
-      from_secret: KUBE_TOKEN
-  when:
-    branch:
-    - master
+    ca:
+      from_secret: KUBE_CA_STAGING
+    namespace: polygon
+    server:
+      from_secret: KUBE_SERVER_STAGING
+    template: _deploy_/service.yml
+    token:
+      from_secret: KUBE_TOKEN_STAGING
+
+- name: ingress-staging
+  pull: always
+  image: polygonio/drone-kube
+  settings:
+    ca:
+      from_secret: KUBE_CA_STAGING
+    namespace: polygon
+    server:
+      from_secret: KUBE_SERVER_STAGING
+    template: _deploy_/ingress.yml
+    token:
+      from_secret: KUBE_TOKEN_STAGING
+    zone: staging.
+    additional_annotations: 
+      nginx.ingress.kubernetes.io/server-snippet: 'add_header X-Robots-Tag "noindex, nofollow";'
+
+- name: deploy-staging
+  pull: always
+  image: polygonio/drone-kube
+  settings:
+    ca:
+      from_secret: KUBE_CA_STAGING
+    commit: staging-${DRONE_COMMIT}
+    namespace: polygon
+    number: ${DRONE_BUILD_NUMBER}
+    replica_count: 1
+    server:
+      from_secret: KUBE_SERVER_STAGING
+    template: _deploy_/deployment.yml
+    token:
+      from_secret: KUBE_TOKEN_STAGING
+    zone: staging.
 
 - name: slack
   image: plugins/slack
@@ -82,8 +112,74 @@ trigger:
   event:
   - push
 
----
-kind: signature
-hmac: 0a9deb4784e552d7b54a42700db538f9ee04dfaa631815443c1dccd00d994d6e
 
-...
+---
+kind: pipeline
+type: docker
+name: build and deploy to prod
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+
+  - name: service-prod
+    pull: always
+    image: polygonio/drone-kube
+    settings:
+      ca:
+        from_secret: KUBE_CA
+      namespace: polygon-public
+      server:
+        from_secret: KUBE_SERVER
+      template: _deploy_/service.yml
+      token:
+        from_secret: KUBE_TOKEN
+
+  - name: ingress-prod
+    pull: always
+    image: polygonio/drone-kube
+    settings:
+      ca:
+        from_secret: KUBE_CA
+      namespace: polygon-public
+      server:
+        from_secret: KUBE_SERVER
+      template: _deploy_/ingress.yml
+      token:
+        from_secret: KUBE_TOKEN
+
+  - name: deploy-prod
+    pull: always
+    image: polygonio/drone-kube
+    settings:
+      ca:
+        from_secret: KUBE_CA
+      commit: ${DRONE_COMMIT}
+      namespace: polygon-public
+      number: ${DRONE_BUILD_NUMBER}
+      replica_count: 3
+      server:
+        from_secret: KUBE_SERVER
+      template: _deploy_/deployment.yml
+      token:
+        from_secret: KUBE_TOKEN
+
+  - name: slack
+    image: plugins/slack
+    settings:
+      channel: drone-ui-deploy
+      template: "{{#if build.pull }}\n  *{{#success build.status}}✔{{ else }}✘{{/success}} {{ uppercasefirst build.status }}*: <https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ build.pull }}|Pull Request #{{ build.pull }}>\n{{else}}\n  *{{#success build.status}}✔{{ else }}✘{{/success}} {{ uppercasefirst build.status }}: Build #{{ build.number }}* (type: `{{ build.event }}`)\n{{/if}} Commit: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}> Branch: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{ build.branch }}> Author: {{ build.author }} <{{ build.link }}|Visit build page ↗>\n"
+      webhook:
+        from_secret: slack_webhook
+    when:
+      status:
+      - failure
+      - success
+
+trigger:
+  event:
+  - tag
+  ref:
+  - refs/tags/production-*
