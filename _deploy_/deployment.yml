@@ -8,6 +8,10 @@ metadata:
   namespace: polygon-public
 spec:
   replicas: {{replica_count}}
+  selector:
+    matchLabels:
+      app: ui-swagger
+      project: ui-swagger
   template:
     metadata:
       labels:
