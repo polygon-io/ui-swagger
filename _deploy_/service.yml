@@ -1,0 +1,17 @@
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: ui-swagger
+  namespace: polygon-public
+  labels:
+    app: ui-swagger
+    project: ui-swagger
+spec:
+  ports:
+  - port: 80
+    targetPort: http
+  selector:
+    app: ui-swagger
+    project: ui-swagger
+
