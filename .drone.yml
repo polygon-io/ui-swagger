@@ -54,7 +54,7 @@ steps:
   settings:
     ca:
       from_secret: KUBE_CA_STAGING
-    namespace: polygon
+    namespace: polygon-public
     server:
       from_secret: KUBE_SERVER_STAGING
     template: _deploy_/service.yml
@@ -67,7 +67,7 @@ steps:
   settings:
     ca:
       from_secret: KUBE_CA_STAGING
-    namespace: polygon
+    namespace: polygon-public
     server:
       from_secret: KUBE_SERVER_STAGING
     template: _deploy_/ingress.yml
@@ -84,7 +84,7 @@ steps:
     ca:
       from_secret: KUBE_CA_STAGING
     commit: staging-${DRONE_COMMIT}
-    namespace: polygon
+    namespace: polygon-public
     number: ${DRONE_BUILD_NUMBER}
     replica_count: 1
     server:
