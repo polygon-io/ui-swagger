@@ -44,7 +44,7 @@ steps:
     repo: polygonio/ui-swagger
     tag:
     - ${DRONE_BRANCH/master/latest}
-    - ${DRONE_BRANCH}.build-${DRONE_BUILD_NUMBER}
+    - ${DRONE_COMMIT}
     username:
       from_secret: dockerhub_username
 
@@ -83,7 +83,7 @@ steps:
   settings:
     ca:
       from_secret: KUBE_CA_STAGING
-    commit: staging-${DRONE_COMMIT}
+    commit: ${DRONE_COMMIT}
     namespace: polygon-public
     number: ${DRONE_BUILD_NUMBER}
     replica_count: 1
