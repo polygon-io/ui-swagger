@@ -12,6 +12,12 @@ export const AxiosV2 = axios.create({
 	withCredentials: true
 });
 
+export const AxiosAccountServices = axios.create({
+	baseURL: `${window.API_BASE}accountservices/v1`,
+	timeout: 20000,
+	withCredentials: true
+});
+
 export const PublicAPI = axios.create({
 	baseURL: `${window.window.PUB_API_BASE}`,
 	timeout: 20000
