@@ -2,6 +2,9 @@
 
 # Swagger UI
 
+Swagger-based application for documentation on Polygon.io's APIs.  <a href="https://polygon.io">Get a free Stock Data API Key</a>
+See it in action here: <a href="https://polygon.io/docs/#getting-started">View the Polygon.io API Docs</a>
+
 ## Requirements:
 
 - [NodeJS](https://nodejs.org/en/download/) ( Version 9.3 )
