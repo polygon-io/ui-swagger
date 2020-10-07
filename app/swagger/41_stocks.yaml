@@ -746,6 +746,8 @@
         The response size is large, and sometimes will cause the browser prettyprint to crash.
       tags:
         - Stocks / Equities
+      parameters:
+        - $ref: '#/definitions/TickersQueryParam'
       responses:
         200:
           description: Get current state for all tickers

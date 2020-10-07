@@ -825,7 +825,12 @@ definitions:
         example: 2
         description: Analyst Ratings at 5 month in the future
 
-
-
-
+  TickersQueryParam:
+    name: tickers
+    in: query
+    description: Comma separated list of tickers to get snapshots for.
+    required: false
+    type: array
+    items:
+      type: string
 
