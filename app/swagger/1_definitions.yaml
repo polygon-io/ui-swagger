@@ -828,7 +828,7 @@ definitions:
   TickersQueryParam:
     name: tickers
     in: query
-    description: List of tickers to get snapshots from
+    description: Comma separated list of tickers to get snapshots for.
     required: false
     type: array
     items:
