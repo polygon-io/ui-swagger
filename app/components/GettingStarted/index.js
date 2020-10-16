@@ -249,7 +249,7 @@ const GettingStarted = () => {
 										<div className="content">
 											<p>
 												Examples of how to connect and use Polygon.io real-time
-												WebScokets in different languages.
+												WebSockets in different languages.
 											</p>
 
 											<a
