@@ -3,46 +3,37 @@
     required: [ ticker, name, market, locale, updated ]
     properties:
       ticker:
-        $ref: '#/definitions/StockSymbol'
+        type: string
+        example: AAPL
+        description: The symbol this ticker is traded as.
       name:
         type: string
         example: Apple Inc
         description: Name of the item.
       market:
         type: string
-        example: STOCKS
-        description: The market in which this ticker participates
+        example: STOCKS, INDICES, MF
+        description: Market of this item.
       locale:
         type: string
-        example: US
-        description: Locale of where this ticker is traded
+        example: G, US, GB, CA
+        enum: [ GLOBAL, US, GB, CA, NL, GR, SP, DE, BE, DK, FI, IE, PT, IN, MX, FR, CN, CH, SE ]
+        description: Locale of where this ticker is traded.
       currency:
         type: string
-        example: USD
-        description: Currency this ticker is traded in
+        example: USD, EUR, GBP
+        description: Currency this ticker is traded in.
       active:
         type: boolean
-        example: true
-        description: If the ticker is active. False means the ticker has been delisted
+        example: USD, EUR, GBP
+        description: Whether the ticker is active. Inactive means the ticker has been delisted.
       primaryExch:
         type: string
-        example: NGS
+        example: NYE, FX, NGS
         description: The listing exchange for this ticker
-      url:
-        type: string
-        example: https://api.polygon.io/v2/reference/tickers/AAPL
-        description: URL of this ticker. Use this to get more information about the ticker.
-      updated:
-        type: string
-        format: date-time
-        example: "2019-01-25"
-        description: Last time this ticker record was updated.
-      attrs:
-        type: object
-        description: Additional details about this ticker. No schema.
       codes:
         type: object
-        description: Additional details about this ticker. No schema.
+        description: Additional meta information for this ticker. This is not a fixed and therefore not stable contract.
         properties:
           cik:
             type: string
@@ -50,52 +41,51 @@
             description: CIK number for this ticker
           figi:
             type: string
-            example: BBG000B9Y5X2
+            example: BBG006M6ZMY4
             description: OpenFIGI number for this ticker
           cfigi:
             type: string
-            example: BBG000B9XRY4
+            example: BBG000LF7Z07
             description: Composite OpenFIGI number for this ticker
           scfigi:
             type: string
-            example: BBG001S5N8V8
+            example: BBG001S5TD05
             description: Shared Class OpenFIGI number for this ticker
           figiuid:
             type: string
-            example: EQ0010169500001000
+            example: EQ0000000001846988
             description: Unique OpenFIGI ID number for this ticker
-
-
-  TickerSymbol:
-    type: string
-    example: AAPL
-    description: An actual exchange traded ticker.
+      url:
+        type: string
+        example: https://api.polygon.io/v1/meta/symbols/AAPL
+        description: URL of this symbol. Use this to get this symbols endpoints.
+      updated:
+        type: string
+        description: Last time this company record was updated.
 
   Split:
     type: object
     description: Symbol split
-    required: [ ticker, exDate, paymentDate, ratio, tofactor, forfactor ]
+    required: [ ticker, exDate, paymentDate, ratio ]
     properties:
       ticker:
-        $ref: '#/definitions/TickerSymbol'
+        type: string
+        example: AAPL
+        description: An actual exchange traded ticker.
       exDate:
         type: string
-        format: date-time
         example: "1999-03-28"
         description: Execution date of the split
       paymentDate:
         type: string
-        format: date-time
         example: "1999-03-28"
         description: Payment date of the split
       recordDate:
         type: string
-        format: date-time
         example: "1999-03-28"
         description: Payment date of the split
       declaredDate:
         type: string
-        format: date-time
         example: "1999-03-28"
         description: Payment date of the split
       ratio:
@@ -124,7 +114,9 @@
     required: [ ticker, exDate, paymentDate, ratio, tofactor, forfactor ]
     properties:
       ticker:
-        $ref: '#/definitions/TickerSymbol'
+        type: string
+        example: AAPL
+        description: An actual exchange traded ticker.
       period:
         type: string
         example: "Q"
@@ -132,15 +124,12 @@
         enum: [ "Q", "T", "QA", "TA", "Y", "YA" ]
       calendarDate:
         type: string
-        format: date-time
         example: "2019-03-31"
       reportPeriod:
         type: string
-        format: date-time
         example: "2019-03-31"
       updated:
         type: string
-        format: date-time
         example: "1999-03-28"
       accumulatedOtherComprehensiveIncome:
         type: integer
@@ -151,7 +140,8 @@
       assetsCurrent:
         type: integer
       assetTurnover:
-        type: integer
+        type: number
+        format: double
       assetsNonCurrent:
         type: integer
       bookValuePerShare:
@@ -336,11 +326,14 @@
       researchAndDevelopmentExpense:
         type: integer
       returnOnAverageAssets:
-        type: integer
+        type: number
+        format: double
       returnOnAverageEquity:
-        type: integer
+        type: number
+        format: double
       returnOnInvestedCapital:
-        type: integer
+        type: number
+        format: double
       returnOnSales:
         type: number
         format: double

@@ -8,7 +8,7 @@
         Get historic ticks for a currency pair. Example for **USD/JPY** thefrom would be **USD** and to would be **JPY**. The date formatted like **2017-6-22**
       tags:
         - Forex / Currencies
-      parameters: 
+      parameters:
       - name: from
         in: path
         description: From Symbol of the currency pair
@@ -90,7 +90,7 @@
         Convert currencies using the latest market conversion rates. Note than you can convert in both directions. For example USD->CAD or CAD->USD.
       tags:
         - Forex / Currencies
-      parameters: 
+      parameters:
       - name: from
         in: path
         description: From Symbol of the pair
@@ -121,7 +121,7 @@
           description: Last tick for this currency pair, plus the converted amount for the requested amount.
           schema:
             type: object
-            required: [ status, from, to, initialAmount, converted, lastTrade ]
+            required: [ status, from, to, initialAmount, converted ]
             properties:
               status:
                 type: string
@@ -165,7 +165,7 @@
         Get Last Quote Tick for a Currency Pair.
       tags:
         - Forex / Currencies
-      parameters: 
+      parameters:
       - name: from
         in: path
         description: From Symbol of the pair

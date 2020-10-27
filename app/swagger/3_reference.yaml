@@ -89,42 +89,60 @@
         # - Stocks / Equities
       responses:
         200:
-          description: An array of symbols
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/Symbol'
-            example:
-              - ticker: AAPL
-                name: Apple Inc.
-                market: STOCKS
-                locale: US
-                currency: USD
-                active: true
-                primaryExch: NGS
-                type: cs
-                codes:
-                  cik: 0000320193
-                  figiuid: EQ0010169500001000
-                  scfigi: BBG001S5N8V8
-                  cfigi: BBG000B9XRY4
-                  figi: BBG000B9Y5X2
-                updated: "2019-01-15T05:21:28.437Z"
-                url: https://api.polygon.io/v2/reference/tickers/AAPL
-              - ticker: $AEDAUD
-                name: United Arab Emirates dirham - Australian dollar
-                market: FX
-                locale: G
-                currency: AUD
-                active: true
-                primaryExch: FX
-                updated: 2019-01-25
-                attrs:
-                  currencyName: Australian dollar,
-                  currency: AUD,
-                  baseName: United Arab Emirates dirham,
-                  base: AED
-                url: https://api.polygon.io/v2/tickers/$AEDAUD
+            type: object
+            properties:
+              page:
+                type: integer
+                description: Current page of tickers
+                example: 1
+              perpage:
+                type: integer
+                description: Maximum amount of tickers returned per page
+                example: 50
+              count:
+                type: integer
+                description: Amount of tickers returned in this request
+                example: 50
+              status:
+                type: string
+                description: Amount of tickers returned in this request
+                example: OK
+              tickers:
+                type: array
+                items:
+                  $ref: '#/definitions/Ticker'
+                example:
+                  - ticker: AAPL
+                    name: Apple Inc.
+                    market: STOCKS
+                    locale: US
+                    currency: USD
+                    active: true
+                    primaryExch: NGS
+                    type: cs
+                    codes:
+                      cik: 0000320193
+                      figiuid: EQ0010169500001000
+                      scfigi: BBG001S5N8V8
+                      cfigi: BBG000B9XRY4
+                      figi: BBG000B9Y5X2
+                    updated: "2019-01-15T05:21:28.437Z"
+                    url: https://api.polygon.io/v2/reference/tickers/AAPL
+                  - ticker: $AEDAUD
+                    name: United Arab Emirates dirham - Australian dollar
+                    market: FX
+                    locale: G
+                    currency: AUD
+                    active: true
+                    primaryExch: FX
+                    updated: 2019-01-25
+                    attrs:
+                      currencyName: Australian dollar,
+                      currency: AUD,
+                      baseName: United Arab Emirates dirham,
+                      base: AED
+                    url: https://api.polygon.io/v2/tickers/$AEDAUD
         401:
           $ref: '#/definitions/Unauthorized'
         404:
@@ -263,15 +281,15 @@
                 example: OK
               results:
                 type: array
-                example:
-                  - market: STOCKS
-                    desc: Stocks / Equities / ETFs
-                  - market: INDICES
-                    desc: Indices
-                  - market: MF
-                    desc: Mutual Funds
                 items:
-                  type: string
+                  type: object
+                  properties:
+                    market:
+                      type: string
+                      example: STOCKS, INDICES, MF
+                    desc:
+                      type: string
+                      example: Stocks / Equities / ETFs, Indices, Mutual Funds
         401:
           $ref: '#/definitions/Unauthorized'
         404:
@@ -300,15 +318,15 @@
                 example: OK
               results:
                 type: array
-                example:
-                  - locale: US
-                    name: United States
-                  - locale: GB
-                    name: Great Britain / UK
-                  - locale: CA
-                    name: Canada
                 items:
-                  type: string
+                  type: object
+                  properties:
+                    locale:
+                      type: string
+                      example: US, GB, CA
+                    name:
+                      type: string
+                      example: United States, Great Britain / UK, Canada
         401:
           $ref: '#/definitions/Unauthorized'
         404:

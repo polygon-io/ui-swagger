@@ -2,7 +2,7 @@
 
   Trade:
     type: object
-    required: [ c1, c2, c3, c4, e, p, s, t ]
+    required: [ p, s, t ]
     properties:
       c1:
         type: integer
@@ -145,7 +145,8 @@
         example: 9194990
         description: Volume of shares 
       preMarket:
-        type: integer
+        type: number
+        format: double
         example: 355
         description: Open price in pre-market trading
       afterHours:
@@ -201,7 +202,7 @@
 
   StocksV2Trade:
     type: object
-    required: [ t, q, i, x, s, c, p, z ]
+    required: [ t, q, i, x, s, cp, z ]
     properties:
       T:
         type: string
@@ -403,7 +404,8 @@
         description: Ticker symbol
         example: AAPL
       v: 
-        type: integer
+        type: number
+        format: double
         description: Volume
         example: 31315282
       o:
@@ -441,7 +443,7 @@
 
   AggResponse:
     type: object
-    required: [ status, ticker, adjusted, results ]
+    required: [ status, adjusted, results ]
     properties:
       ticker:
         type: string

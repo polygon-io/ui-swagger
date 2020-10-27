@@ -5,7 +5,7 @@
 #  ---------------------------
 # 
 
-  
+
   /v1/marketstatus/now:
     get:
       summary: Market Status
@@ -24,9 +24,9 @@
           $ref: '#/definitions/NotFound'
         409:
           $ref: '#/definitions/Conflict'
-  
 
-  
+
+
   /v1/marketstatus/upcoming:
     get:
       summary: Market Holidays
@@ -47,7 +47,7 @@
           $ref: '#/definitions/NotFound'
         409:
           $ref: '#/definitions/Conflict'
-  
+
 
 
   /v1/meta/exchanges:
@@ -107,7 +107,7 @@
         - Stocks / Equities
         - Forex / Currencies
         - Crypto
-      parameters: 
+      parameters:
       - name: ticker
         in: path
         description: Ticker symbol of the request
@@ -130,14 +130,14 @@
           schema:
             $ref: '#/definitions/Error'
 
-            
- 
+
+
   /v2/aggs/ticker/{ticker}/range/{multiplier}/{timespan}/{from}/{to}:
     get:
       summary: Aggregates ( Bars )
       description: |
         Get aggregates for a date range, in custom time window sizes.
-        
+
         Some tickers require a prefix, see examples below&#58;
         - Stocks&#58; **AAPL**
         - Currencies&#58; **C&#58;EURUSD**
@@ -146,7 +146,7 @@
         - "Stocks / Equities"
         - "Forex / Currencies"
         - "Crypto"
-      parameters: 
+      parameters:
       - name: ticker
         in: path
         description: Ticker symbol of the request
@@ -203,7 +203,7 @@
             $ref: '#/definitions/Error'
 
 
- 
+
   /v2/aggs/grouped/locale/{locale}/market/{market}/{date}:
     get:
       summary: Grouped Daily ( Bars )
@@ -216,7 +216,7 @@
         - Stocks / Equities
         - Forex / Currencies
         - Crypto
-      parameters: 
+      parameters:
       - name: locale
         in: path
         description: Locale of the aggregates ( See 'Locales' API )
@@ -282,7 +282,7 @@
   #       Get historic trades for a symbol.
   #     tags:
   #       - Stocks / Equities
-  #     parameters: 
+  #     parameters:
   #     - name: symbol
   #       in: path
   #       description: Symbol of the company to retrieve
@@ -360,7 +360,7 @@
         Get historic trades for a ticker.
       tags:
         - Stocks / Equities
-      parameters: 
+      parameters:
       - name: ticker
         in: path
         description: Ticker symbol we want ticks for
@@ -438,7 +438,7 @@
   #       Get historic quotes for a symbol.
   #     tags:
   #       - Stocks / Equities
-  #     parameters: 
+  #     parameters:
   #     - name: symbol
   #       in: path
   #       description: Symbol of the company to retrieve
@@ -508,7 +508,7 @@
   #         description: Unexpected error
   #         schema:
   #           $ref: '#/definitions/Error'
-  
+
 
 
   /v2/ticks/stocks/nbbo/{ticker}/{date}:
@@ -518,7 +518,7 @@
         Get historic NBBO quotes for a ticker.
       tags:
         - Stocks / Equities
-      parameters: 
+      parameters:
       - name: ticker
         in: path
         description: Ticker symbol we want ticks for
@@ -589,7 +589,7 @@
             $ref: '#/definitions/Error'
 
 
- 
+
   /v1/last/stocks/{symbol}:
     get:
       summary: Last Trade for a Symbol
@@ -597,7 +597,7 @@
         Get the last trade for a given stock.
       tags:
         - Stocks / Equities
-      parameters: 
+      parameters:
       - name: symbol
         in: path
         description: Symbol of the stock to get
@@ -633,7 +633,7 @@
         Get the last quote tick for a given stock.
       tags:
         - Stocks / Equities
-      parameters: 
+      parameters:
       - name: symbol
         in: path
         description: Symbol of the quote to get
@@ -669,7 +669,7 @@
         Get the open, close and afterhours prices of a symbol on a certain date.
       tags:
         - Stocks / Equities
-      parameters: 
+      parameters:
       - name: symbol
         in: path
         description: Symbol of the stock to get
@@ -779,7 +779,7 @@
         See the current snapshot of a single ticker
       tags:
         - Stocks / Equities
-      parameters: 
+      parameters:
       - name: ticker
         in: path
         description: Ticker of the snapshot

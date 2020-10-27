@@ -1,6 +1,6 @@
 
 
-  
+
   /v1/meta/crypto-exchanges:
     get:
       summary: Crypto Exchanges
@@ -45,7 +45,7 @@
         Get Last Trade Tick for a Currency Pair.
       tags:
         - Crypto
-      parameters: 
+      parameters:
       - name: from
         in: path
         description: From Symbol of the pair
@@ -101,7 +101,7 @@
         Get the open, close prices of a symbol on a certain day.
       tags:
         - Crypto
-      parameters: 
+      parameters:
       - name: from
         in: path
         description: From Symbol of the pair
@@ -173,7 +173,7 @@
         Get historic trade ticks for a crypto pair.
       tags:
         - Crypto
-      parameters: 
+      parameters:
       - name: from
         in: path
         description: From Symbol of the crypto pair
@@ -293,7 +293,7 @@
         See the current snapshot of a single ticker
       tags:
         - Crypto
-      parameters: 
+      parameters:
       - name: ticker
         in: path
         description: Ticker of the snapshot
@@ -329,7 +329,7 @@
         See the current level 2 book of a single ticker. This is the combined book from all the exchanges.
       tags:
         - Crypto
-      parameters: 
+      parameters:
       - name: ticker
         in: path
         description: Ticker of the snapshot

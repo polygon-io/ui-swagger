@@ -1,17 +1,17 @@
 
 
-# 
+#
 #  ---------------------------
 #   DEFINITIONS
 #  ---------------------------
-# 
-  
+#
+
 definitions:
 
 
   LastTrade:
     type: object
-    required: [ price, size, exchange, cond1, cond2, cond3, cond4, timestamp ]
+    required: [ price, size, exchange, timestamp ]
     properties:
       price:
         type: number
@@ -218,7 +218,9 @@ definitions:
         example: Apple Inc.
         description: Name of the company/entity
       symbol:
-        $ref: '#/definitions/StockSymbol'
+        type: string
+        example: AAPL
+        description: An actual exchange symbol this item is traded under.
       listdate:
         type: string
         format: date
@@ -283,7 +285,9 @@ definitions:
         type: array
         example: ['MSFT','IBM','GOOGL']
         items:
-          $ref: '#/definitions/StockSymbol'
+          type: string
+          example: AAPL
+          description: An actual exchange symbol this item is traded under.
       tags:
         type: array
         example: [ "Technology", "Consumer Electronics", "Computer Hardware" ]
@@ -291,7 +295,6 @@ definitions:
           type: string
       updated:
         type: string
-        format: date-time
         description: Last time this company record was updated.
 
   Symbol:
@@ -299,7 +302,9 @@ definitions:
     required: [ symbol, name, type, url, updated, isOTC ]
     properties:
       symbol:
-        $ref: '#/definitions/StockSymbol'
+        type: string
+        example: AAPL
+        description: An actual exchange symbol this item is traded under.
       name:
         type: string
         example: Apple Inc
@@ -314,7 +319,6 @@ definitions:
         description: URL of this symbol. Use this to get this symbols endpoints.
       updated:
         type: string
-        format: date-time
         description: Last time this company record was updated.
       isOTC:
         type: boolean
@@ -324,10 +328,12 @@ definitions:
   Dividend:
     type: object
     description: Company dividend
-    required: [ symbol, type, exDate, amount ]
+    required: [ exDate, amount ]
     properties:
       symbol:
-        $ref: '#/definitions/StockSymbol'
+        type: string
+        example: AAPL
+        description: An actual exchange symbol this item is traded under.
       type:
         type: string
         example: Dividend income
@@ -342,22 +348,18 @@ definitions:
           - Unspecified term capital gain<br/>
       exDate:
         type: string
-        format: date-time
         example: "2016-11-03T04:00:00.000Z"
         description: Execution date of the trade
       paymentDate:
         type: string
-        format: date-time
         example: "2016-11-03T04:00:00.000Z"
         description: Payment date of the trade
       recordDate:
         type: string
-        format: date-time
         example: "2016-11-03T04:00:00.000Z"
         description: Record date of the trade
       declaredDate:
         type: string
-        format: date-time
         example: "2016-11-03T04:00:00.000Z"
         description: Declared date of the trade
       amount:
@@ -401,7 +403,9 @@ definitions:
         type: array
         example: ['MSFT', 'AAPL', 'IBM']
         items:
-          $ref: '#/definitions/StockSymbol'
+          type: string
+          example: AAPL
+          description: An actual exchange symbol this item is traded under.
       title:
         type: string
         example: Goldman in talks to finance iPhones - WSJ
@@ -424,7 +428,6 @@ definitions:
         description: URL of the image for this article, if found
       timestamp:
         type: string
-        format: date-time
         example: "2018-02-07T12:48:47.000Z"
         description: Timestamp of the article
       keywords:
@@ -449,7 +452,6 @@ definitions:
         description: Stock Symbol
       EPSReportDate:
         type: string
-        format: date-time
         example: "2018-02-01T00:00:00.000Z"
         description: Report Date
       EPSReportDateStr:
@@ -461,7 +463,6 @@ definitions:
         example: "Q1 2018"
       fiscalEndDate:
         type: string
-        format: date-time
         example: "2017-12-31T00:00:00.000Z"
       actualEPS:
         type: number
@@ -508,7 +509,6 @@ definitions:
         description: Stock Symbol
       reportDate:
         type: string
-        format: date-time
         example: "2017-12-31T00:00:00.000Z"
         description: Report Date
       reportDateStr:
@@ -575,7 +575,7 @@ definitions:
 
   Exchange:
     type: object
-    required: [ id, type, market, mic, name, tape ]
+    required: [ id, type, market, name ]
     properties:
       id:
         type: number
@@ -606,11 +606,6 @@ definitions:
         type: string
         example: A
         description: Tape id of the exchange
-
-  StockSymbol:
-    type: string
-    example: AAPL
-    description: An actual exchange symbol this item is traded under.
 
   ConditionTypeMap:
     type: object
@@ -685,7 +680,6 @@ definitions:
         type: string
         example: "2018-07-19T08:51:07-04:00"
         description: Current time of the server
-        format: date-time
       exchanges:
         type: object
         properties:
@@ -740,17 +734,14 @@ definitions:
       date:
         type: string
         example: "2018-11-23T00:00:00.000Z"
-        format: date-time
         description: Date of this holiday
       open:
         type: string
         example: "2018-11-23T09:30:00.000Z"
-        format: date-time
         description: Market open time on this holiday ( if it's not closed )
       close:
         type: string
         example: "2018-11-23T13:00:00.000Z"
-        format: date-time
         description: Market close time on this holiday ( if it's not closed )
 
   AnalystRatings:
@@ -793,7 +784,6 @@ definitions:
       updated:
         type: string
         example: "11/10/2018"
-        format: date-time
         description: Last time the ratings for this symbol were updated.
 
   RatingSection:

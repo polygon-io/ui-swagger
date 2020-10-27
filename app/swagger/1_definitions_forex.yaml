@@ -101,7 +101,7 @@
 
   ForexSnapshotTicker:
     type: object
-    required: [ ticker, day, lastTrade, min, prevDay, todaysChange, todaysChangePerc, updated ]
+    required: [ ticker, day, min, prevDay, todaysChange, todaysChangePerc, updated ]
     properties:
       ticker:
         type: string
