@@ -2,8 +2,10 @@
 
 # Swagger UI
 
-Swagger-based application for documentation on Polygon.io's APIs.  <a href="https://polygon.io">Get a free Stock Data API Key</a>
+Swagger-based application for documentation on Polygon.io's APIs. <a href="https://polygon.io">Get a free Stock Data API Key</a>
 See it in action here: <a href="https://polygon.io/docs/#getting-started">View the Polygon.io API Docs</a>
+
+You can find a tutorial on how to use REST <a href="https://u.osu.edu/adams-682/2020/10/23/stock-market-api-polygon-io/"> here </a>
 
 ## Requirements:
 
