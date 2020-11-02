@@ -13,12 +13,12 @@ export const SideBar = ({ orderedOperations, user }) => {
 		<span>Using your API key</span>
 	) : (
 		<div className="sidebar__log-in-btn-group">
-			<a href="/signup" className="button is-primary">
+			<a href="/dashboard/signup" className="button is-primary">
 				Get your API Key
 			</a>
 			<p className="mt-8">
-				<a href="/signup">Sign up</a> or <a href="/login">Login</a> to get
-				started.
+				<a href="/dashboard/signup">Sign up</a> or{' '}
+				<a href="/dahboard/login">Login</a> to get started.
 			</p>
 		</div>
 	);
